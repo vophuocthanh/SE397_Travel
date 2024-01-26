@@ -4,6 +4,7 @@ import Header from './header/Header';
 import BestTrip from '@/components/BestTrip';
 import LocationSection from '@/components/Locations';
 import LocationBasedSearch from '@/components/LocationBasedSearch';
+import Footer from './footer/Footer';
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <BestTrip />
       <LocationSection />
       <LocationBasedSearch />
+      <Footer />
     </div>
   );
 };

@@ -50,8 +50,8 @@ const LocationSection = () => {
           <p>Here are some of the most visited places in 2023</p>
         </div>
         <div className='flex items-center gap-4'>
-          <ChevronLeft className='w-10 h-10' />
-          <ChevronRight className='w-10 h-10' />
+          <ChevronLeft className='w-10 h-10 cursor-pointer' />
+          <ChevronRight className='w-10 h-10 cursor-pointer' />
         </div>
       </div>
       <div className='flex flex-wrap items-center w-full gap-14'>

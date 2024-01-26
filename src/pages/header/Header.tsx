@@ -17,7 +17,9 @@ const Header = () => {
         </Link>
       </div>
       <div className='flex items-center gap-8 text-xl font-bold'>
-        <Link to='/sign-up'>SignIn</Link>
+        <Link to='/sign-up' className='text-white'>
+          Sign Up
+        </Link>
         <Link to='/login' className='px-6 py-2 bg-white rounded-3xl'>
           Login
         </Link>
