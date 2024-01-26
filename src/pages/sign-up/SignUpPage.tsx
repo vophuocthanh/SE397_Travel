@@ -1,9 +1,7 @@
 import bgSingIn from '@/assets/images/bg-sign-in.png';
 import logo from '@/assets/logo/logo-home.png';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Link } from 'react-router-dom';
 
 const SignUpPage = () => {
@@ -34,12 +32,6 @@ const SignUpPage = () => {
               className='outline-none'
               placeholder='Password'
             />
-            <div className='flex items-center space-x-2'>
-              <Checkbox id='terms' className='w-4 h-4' />
-              <Label htmlFor='terms' className='text-base'>
-                Remember me
-              </Label>
-            </div>
             <Button variant='default' className='bg-blue-500 hover:bg-blue-600'>
               Sign Up
             </Button>
