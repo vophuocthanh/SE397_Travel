@@ -7,7 +7,7 @@ import LocationBasedSearch from '@/components/LocationBasedSearch';
 
 const Home = () => {
   return (
-    <div className='h-[150rem] relative'>
+    <div className='relative'>
       <Header />
       <Banner />
       <FeaturedPage />
