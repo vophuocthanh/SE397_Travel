@@ -1,4 +1,5 @@
 import bgSingIn from '@/assets/images/bg-sign-in.png';
+import logo from '@/assets/logo/logo-home.png';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
@@ -8,6 +9,13 @@ import { Link } from 'react-router-dom';
 const SignUpPage = () => {
   return (
     <div className='flex justify-between w-full'>
+      <Link to='/'>
+        <img
+          src={logo}
+          alt=''
+          className='absolute object-cover w-16 h-16 top-8 left-10'
+        />
+      </Link>
       <img src={bgSingIn} alt='' className='object-cover w-1/2 h-screen' />
       <div className='flex items-center justify-center w-1/2 mx-auto'>
         <div className='flex flex-col items-center justify-center mx-auto space-y-4'>
