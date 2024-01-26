@@ -26,7 +26,7 @@ const Trips = [
 
 const BestTrip = () => {
   return (
-    <div className='mx-auto max-w-7xl'>
+    <div className='mx-auto mb-20 max-w-7xl'>
       <div className='flex items-center justify-between w-full mb-10'>
         <div className='flex flex-col space-y-2'>
           <h1 className='text-3xl font-bold'>Plan your best trip ever</h1>
@@ -39,7 +39,7 @@ const BestTrip = () => {
           View All Destination
         </Button>
       </div>
-      <div className='flex items-center justify-between w-full'>
+      <div className='flex flex-wrap items-center w-full gap-14'>
         {Trips.map((trip) => (
           <div
             className='flex flex-col rounded-t-3xl w-96 h-[26rem] space-y-4'
@@ -50,7 +50,7 @@ const BestTrip = () => {
               alt={trip.alt}
               className='object-cover rounded-3xl'
             />
-            <h1 className='text-3xl font-bold'>{trip.name}</h1>
+            <h1 className='text-xl font-bold'>{trip.name}</h1>
           </div>
         ))}
       </div>
