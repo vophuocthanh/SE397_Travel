@@ -35,8 +35,8 @@ const LoginPage = () => {
     mode: 'onBlur',
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: 'phuocthanh@gmail.com',
-      password: '!Enouvo123',
+      email: '',
+      password: '',
     },
   });
 

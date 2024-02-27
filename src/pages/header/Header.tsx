@@ -22,7 +22,11 @@ import { LogOut } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
-const Header = () => {
+interface HeaderProps {
+  className: string;
+}
+
+const Header = ({ className }: HeaderProps) => {
   const navigate = useNavigate();
   const token = getToken();
   const meQuery = useQuery({
@@ -36,8 +40,10 @@ const Header = () => {
     toast.success('Logout successfully!');
   };
   return (
-    <div className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-transparent'>
-      <img src={logo} alt='logo' className='object-cover w-16 h-16' />
+    <div className={className}>
+      <Link to='/'>
+        <img src={logo} alt='logo' className='object-cover w-16 h-16' />
+      </Link>
       <div className='flex items-center justify-between gap-10 text-xl font-bold'>
         <Link to='/' className='text-white hover:underline'>
           Destination
@@ -60,7 +66,7 @@ const Header = () => {
                     <div className='w-max'>
                       <h2 className='text-slate-800'>
                         <h1 className='text-xl font-bold text-white'>
-                          {meQuery.data?.data?.data.username}
+                          {meQuery.data?.data?.data.email}
                         </h1>
                       </h2>
                     </div>

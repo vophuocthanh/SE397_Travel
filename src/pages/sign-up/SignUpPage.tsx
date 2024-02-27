@@ -25,8 +25,8 @@ const SignUpPage = () => {
     mode: 'onBlur',
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
-      email: 'phuocthanh@gmail.com',
-      password: '!Enouvo123',
+      email: '',
+      password: '',
     },
   });
 
