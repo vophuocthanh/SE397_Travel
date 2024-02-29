@@ -33,7 +33,6 @@ const Header = ({ className }: HeaderProps) => {
     queryKey: ['me'],
     queryFn: () => getMe(),
   });
-  console.log('meQuery:', meQuery);
   const logout = () => {
     removeToken();
     navigate('/login');
