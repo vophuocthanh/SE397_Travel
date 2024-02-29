@@ -12,6 +12,7 @@ type TripType = {
   alt: string;
   description: string;
   name: string;
+  location: string;
 };
 
 export default function BestTrip() {
@@ -38,8 +39,8 @@ export default function BestTrip() {
   return (
     <div>
       <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
-      <div className='w-full px-20'>
-        <Link to='/create-new-trip'>
+      <div className='w-full px-20 mb-20'>
+        <Link to='/best-trip/create'>
           <Button className='text-blue-500 bg-white border hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md border-blue-500 ml-auto mt-10 flex justify-end '>
             Create New Trip
           </Button>
@@ -48,20 +49,26 @@ export default function BestTrip() {
           Best Trip
         </h1>
         {error && <p>Đã xảy ra lỗi khi tải dữ liệu.</p>}
-        {trips.length === 0 && !error && <p>Không có dữ liệu.</p>}
-        <div className='flex flex-wrap gap-16'>
+        {trips.length === 0 && !error && (
+          <div className='animate-spin rounded-full h-20 w-20 border-b-4 border-gray-900 mx-auto'></div>
+        )}
+        <div className='flex flex-wrap justify-around gap-16 mb-10'>
           {trips.map((trip: TripType) => (
             <div
-              className='flex flex-col rounded-t-3xl w-96 h-[26rem] space-y-4'
+              className='flex flex-col rounded-t-3xl w-96 h-[26rem] space-y-4 border rounded-md'
               key={trip.id}
             >
               <img
                 src={trip.image}
                 alt={trip.alt}
-                className='object-cover rounded-3xl w-96 h-60'
+                className='object-cover rounded-3xl w-96 h-60 hover:scale-105 transition-all'
               />
-              <p>{trip.description}</p>
-              <h1 className='text-xl font-bold'>{trip.name}</h1>
+              <p className='px-6'>{trip.description}</p>
+              <Link to={`/best-trip/details/${trip.id}`}>
+                <h1 className='text-xl font-bold px-6'>
+                  {trip.name} - <span>{trip.location}</span>
+                </h1>
+              </Link>
             </div>
           ))}
         </div>
@@ -75,9 +82,9 @@ export default function BestTrip() {
           previousLabel='< previous'
           renderOnZeroPageCount={null}
           nextPageRel={'next'}
-          activeClassName='font-bold'
+          activeClassName='font-bold text-blue-500 underline'
         />
-        <p className='text-center mt-4'>Page: {pagination.page}</p>
+        {/* <p className='text-center mt-4'>Page: {pagination.page}</p> */}
       </div>
     </div>
   );
