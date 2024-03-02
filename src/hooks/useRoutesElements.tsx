@@ -3,6 +3,7 @@ import BestTrip from '@/pages/best-trip/BestTrip';
 import DetailsBestTrip from '@/pages/best-trip/details/DetailsBestTrip';
 import CreateNewTrip from '@/pages/best-trip/new-trip/CreateNewTrip';
 import LoginPage from '@/pages/login/LoginPage';
+import Profile from '@/pages/profile/Profile';
 import SignUpPage from '@/pages/sign-up/SignUpPage';
 import { useRoutes } from 'react-router-dom';
 export default function useRoutesElements() {
@@ -10,6 +11,7 @@ export default function useRoutesElements() {
     { path: '/', element: <Home /> },
     { path: '/login', element: <LoginPage /> },
     { path: '/sign-up', element: <SignUpPage /> },
+    { path: '/profile', element: <Profile /> },
     { path: '/best-trip', element: <BestTrip /> },
     { path: '/best-trip/create', element: <CreateNewTrip /> },
     { path: '/best-trip/details/:tourId', element: <DetailsBestTrip /> },

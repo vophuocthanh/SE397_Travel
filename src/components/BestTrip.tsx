@@ -1,31 +1,22 @@
 import { Button } from './ui/button';
-import Croatia from '@/assets/images/trip/croatia.png';
-import Morocco from '@/assets/images/trip/morocco.png';
-import Mexico from '@/assets/images/trip/mexico.png';
 import { Link } from 'react-router-dom';
-
-const Trips = [
-  {
-    id: 1,
-    image: Croatia,
-    alt: 'Croatia',
-    name: 'Croatia',
-  },
-  {
-    id: 2,
-    image: Morocco,
-    alt: 'Morocco',
-    name: 'Morocco',
-  },
-  {
-    id: 3,
-    image: Mexico,
-    alt: 'Mexico',
-    name: 'Mexico',
-  },
-];
+import { useQuery } from '@tanstack/react-query';
+import { getBestTrip } from '@/apis/best-trip';
 
 const BestTrip = () => {
+  // const { tourId } = useParams();
+  const { data: queryGetBestTrip } = useQuery({
+    queryKey: ['getBestTrip'],
+    queryFn: () => getBestTrip(1),
+    enabled: true,
+  });
+
+  // const { data: detailsBestTrip } = useQuery({
+  //   queryKey: ['detailsBestTrip'],
+  //   queryFn: () => getTripDetails(tourId as string),
+  // });
+
+  const trips = queryGetBestTrip?.data?.data || [];
   return (
     <div className='mx-auto mb-20 max-w-7xl'>
       <div className='flex items-center justify-between w-full mb-10'>
@@ -43,7 +34,7 @@ const BestTrip = () => {
         </Link>
       </div>
       <div className='flex flex-wrap items-center w-full gap-14'>
-        {Trips.map((trip) => (
+        {trips.map((trip) => (
           <div
             className='flex flex-col rounded-t-3xl w-96 h-[26rem] space-y-4'
             key={trip.id}
@@ -51,9 +42,11 @@ const BestTrip = () => {
             <img
               src={trip.image}
               alt={trip.alt}
-              className='object-cover rounded-3xl'
+              className='justify-around object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105'
             />
-            <h1 className='text-xl font-bold'>{trip.name}</h1>
+            <Link to={`/best-trip/details/${trip.id}`}>
+              <h1 className='text-xl font-bold'>{trip.name}</h1>
+            </Link>
           </div>
         ))}
       </div>

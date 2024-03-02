@@ -12,6 +12,7 @@ export default function CreateNewTrip() {
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
+  const [price, setPrice] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -34,6 +35,7 @@ export default function CreateNewTrip() {
       image,
       description,
       location,
+      price: Number(price),
     });
   };
 
@@ -83,6 +85,16 @@ export default function CreateNewTrip() {
               className='w-96 outline-none'
               value={location}
               onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+          <div className='space-y-2'>
+            <label htmlFor='price'>Price</label>
+            <Input
+              id='price'
+              placeholder='Price'
+              className='w-96 outline-none'
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
           <div className='flex justify-center items-center mx-auto gap-6'>

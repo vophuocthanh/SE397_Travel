@@ -1,6 +1,6 @@
 import { getMe } from '@/apis/me';
 import logo from '@/assets/logo/logo-home.png';
-import { Avatar } from '@/components/ui/avatar';
+import { PopoverCart } from '@/components/PopoverCart';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/tooltip';
 import { getToken, removeToken } from '@/lib/storage';
 import { useQuery } from '@tanstack/react-query';
-import { LogOut } from 'lucide-react';
+import { LogOut, User } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
@@ -55,40 +55,46 @@ const Header = ({ className }: HeaderProps) => {
         </Link>
       </div>
       {token ? (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <div className='flex space-x-4'>
-                    <Avatar />
-                    <div className='w-max'>
-                      <h2 className='text-slate-800'>
-                        <h1 className='text-xl font-bold text-white'>
-                          {meQuery.data?.data?.data.email}
-                        </h1>
-                      </h2>
+        <div className='flex items-center gap-8'>
+          <PopoverCart />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <div className='flex space-x-4'>
+                      <div className='w-max'>
+                        <h2 className='text-slate-800'>
+                          <h1 className='text-xl font-bold text-white'>
+                            {meQuery.data?.data?.data.email}
+                          </h1>
+                        </h2>
+                      </div>
                     </div>
-                  </div>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className='w-56'>
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem
-                      onClick={logout}
-                      className='cursor-pointer'
-                    >
-                      <LogOut className='w-4 h-4 mr-2' />
-                      <span>Log out</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </TooltipTrigger>
-            <TooltipContent>Account</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className='w-56'>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem className='cursor-pointer'>
+                        <User className='w-4 h-4 mr-2' />
+                        <Link to='/profile'>Account</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={logout}
+                        className='cursor-pointer'
+                      >
+                        <LogOut className='w-4 h-4 mr-2' />
+                        <span>Log out</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </TooltipTrigger>
+              <TooltipContent>Account</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
       ) : (
         <div className='flex items-center gap-8 text-xl font-bold'>
           <Link to='/sign-up' className='text-white'>

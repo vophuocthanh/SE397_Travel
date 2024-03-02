@@ -9,13 +9,15 @@ export const createBestTrip = ({
   image,
   description,
   location,
+  price,
 }: {
   name: string;
   image: string;
   description: string;
   location: string;
+  price: number;
 }) => {
-  return request.post('/tour', { name, image, description, location });
+  return request.post('/tour', { name, image, description, location, price });
 };
 
 export const getTripDetails = (id: string) => {

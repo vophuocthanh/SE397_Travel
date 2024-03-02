@@ -35,16 +35,26 @@ export default function BestTrip() {
 
   const totalPage = queryGetBestTrip?.data?.totalPage || 0;
   const trips = queryGetBestTrip?.data?.data || [];
+  const token = localStorage.getItem('token') || '';
 
   return (
     <div>
       <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
       <div className='w-full px-20 mb-20'>
-        <Link to='/best-trip/create'>
-          <Button className='text-blue-500 bg-white border hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md border-blue-500 ml-auto mt-10 flex justify-end '>
+        {token ? (
+          <Link to='/best-trip/create'>
+            <Button className='text-blue-500 bg-white border hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md border-blue-500 ml-auto mt-10 flex justify-end '>
+              Create New Trip
+            </Button>
+          </Link>
+        ) : (
+          <Button
+            className='text-blue-500 bg-white border hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md border-blue-500 ml-auto mt-10 flex justify-end '
+            disabled={!token}
+          >
             Create New Trip
           </Button>
-        </Link>
+        )}
         <h1 className='flex justify-center my-10 text-3xl font-bold'>
           Best Trip
         </h1>
