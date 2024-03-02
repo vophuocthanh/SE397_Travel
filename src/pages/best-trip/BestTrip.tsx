@@ -5,6 +5,8 @@ import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '@/redux/slice/cardSlice';
 
 type TripType = {
   id: number;
@@ -13,6 +15,7 @@ type TripType = {
   description: string;
   name: string;
   location: string;
+  price: number;
 };
 
 export default function BestTrip() {
@@ -37,19 +40,21 @@ export default function BestTrip() {
   const trips = queryGetBestTrip?.data?.data || [];
   const token = localStorage.getItem('token') || '';
 
+  const dispatch = useDispatch();
+
   return (
     <div>
       <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
       <div className='w-full px-20 mb-20'>
         {token ? (
           <Link to='/best-trip/create'>
-            <Button className='text-blue-500 bg-white border hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md border-blue-500 ml-auto mt-10 flex justify-end '>
+            <Button className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '>
               Create New Trip
             </Button>
           </Link>
         ) : (
           <Button
-            className='text-blue-500 bg-white border hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md border-blue-500 ml-auto mt-10 flex justify-end '
+            className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '
             disabled={!token}
           >
             Create New Trip
@@ -60,7 +65,7 @@ export default function BestTrip() {
         </h1>
         {error && <p>Đã xảy ra lỗi khi tải dữ liệu.</p>}
         {trips.length === 0 && !error && (
-          <div className='animate-spin rounded-full h-20 w-20 border-b-4 border-gray-900 mx-auto'></div>
+          <div className='w-20 h-20 mx-auto border-b-4 border-gray-900 rounded-full animate-spin'></div>
         )}
         <div className='flex flex-wrap justify-around gap-16 mb-10'>
           {trips.map((trip: TripType) => (
@@ -71,14 +76,28 @@ export default function BestTrip() {
               <img
                 src={trip.image}
                 alt={trip.alt}
-                className='object-cover rounded-3xl w-96 h-60 hover:scale-105 transition-all'
+                className='object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105'
               />
               <p className='px-6'>{trip.description}</p>
               <Link to={`/best-trip/details/${trip.id}`}>
-                <h1 className='text-xl font-bold px-6'>
+                <h1 className='px-6 text-xl font-bold'>
                   {trip.name} - <span>{trip.location}</span>
                 </h1>
               </Link>
+              <Button
+                className='w-40 m-6 text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                onClick={() => {
+                  const product = {
+                    id: trip.id,
+                    name: trip.name,
+                    price: trip.price,
+                    quantity: 1,
+                  };
+                  dispatch(addProduct(product));
+                }}
+              >
+                {trip.price} $
+              </Button>
             </div>
           ))}
         </div>
@@ -94,7 +113,7 @@ export default function BestTrip() {
           nextPageRel={'next'}
           activeClassName='font-bold text-blue-500 underline'
         />
-        {/* <p className='text-center mt-4'>Page: {pagination.page}</p> */}
+        {/* <p className='mt-4 text-center'>Page: {pagination.page}</p> */}
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export default function DetailsBestTrip() {
     queryKey: ['detailsBestTrip'],
     queryFn: () => getTripDetails(tourId as string),
   });
+  const token = localStorage.getItem('token');
 
   const dispatch = useDispatch();
   // const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
@@ -36,12 +37,26 @@ export default function DetailsBestTrip() {
             <h1 className='text-xl font-bold'>
               {detailsBestTrip?.data?.data?.location}
             </h1>
-            <Button
-              className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
-              onClick={() => dispatch(addProduct(detailsBestTrip?.data?.data))}
-            >
-              {detailsBestTrip?.data?.data?.price} $
-            </Button>
+            {token ? (
+              <Button
+                className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                onClick={() =>
+                  dispatch(addProduct(detailsBestTrip?.data?.data))
+                }
+              >
+                {detailsBestTrip?.data?.data?.price} $
+              </Button>
+            ) : (
+              <Button
+                className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                onClick={() =>
+                  dispatch(addProduct(detailsBestTrip?.data?.data))
+                }
+                disabled
+              >
+                {detailsBestTrip?.data?.data?.price} $
+              </Button>
+            )}
           </div>
         </div>
       ) : (
