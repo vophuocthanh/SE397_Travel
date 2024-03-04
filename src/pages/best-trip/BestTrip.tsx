@@ -69,7 +69,7 @@ export default function BestTrip() {
         <div className='flex flex-wrap justify-around gap-16 mb-10'>
           {trips.map((trip: TripType) => (
             <div
-              className='flex flex-col rounded-t-3xl w-96 h-[26rem] space-y-4 border rounded-md'
+              className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4 border rounded-md'
               key={trip.id}
             >
               <img
@@ -77,14 +77,14 @@ export default function BestTrip() {
                 alt={trip.alt}
                 className='object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105'
               />
-              <p className='px-6'>{trip.description}</p>
+              <p className='h-10 px-6 truncate'>{trip.description}</p>
               <Link to={`/best-trip/details/${trip.id}`}>
                 <h1 className='px-6 text-xl font-bold'>
                   {trip.name} - <span>{trip.location}</span>
                 </h1>
               </Link>
               <Button
-                className='w-40 m-6 text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                className='w-40 m-6 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
                 onClick={() => {
                   const product = {
                     id: trip.id,

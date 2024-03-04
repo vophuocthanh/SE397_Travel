@@ -44,11 +44,11 @@ const Header = ({ className }: HeaderProps) => {
         <img src={logo} alt='logo' className='object-cover w-16 h-16' />
       </Link>
       <div className='flex items-center justify-between gap-10 text-xl font-bold'>
-        <Link to='/' className='text-white hover:underline'>
-          Destination
+        <Link to='/best-trip' className='text-white hover:underline'>
+          Tours
         </Link>
-        <Link to='/' className='text-white hover:underline'>
-          Stories
+        <Link to='/location' className='text-white hover:underline'>
+          Locations
         </Link>
         <Link to='/' className='text-white hover:underline'>
           Reviews

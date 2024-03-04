@@ -91,3 +91,10 @@
 * {
   font-family: 'Urbanist', sans-serif;
 }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 300px;
+}
