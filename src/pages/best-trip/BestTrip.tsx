@@ -103,12 +103,12 @@ export default function BestTrip() {
         </div>
         <ReactPaginate
           breakLabel='...'
-          nextLabel='next >'
+          nextLabel='>'
           pageRangeDisplayed={5}
           pageCount={totalPage}
           onPageChange={handlePageChange}
           containerClassName='flex justify-center gap-4'
-          previousLabel='< previous'
+          previousLabel='<'
           renderOnZeroPageCount={null}
           nextPageRel={'next'}
           activeClassName='font-bold text-blue-500 underline'

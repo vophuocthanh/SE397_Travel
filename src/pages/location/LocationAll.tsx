@@ -8,9 +8,12 @@ import { addProduct } from '@/redux/slice/cardSlice';
 import { RootState } from '@/redux/store';
 import { LocationType } from '@/lib/type';
 import { ArrowLeft } from 'lucide-react';
+import ReactPaginate from 'react-paginate';
+import { useState } from 'react';
 
 export default function LocationAll() {
-  const { data: queryGetLocation } = useQuery({
+  const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
+  const { data: queryGetLocation, refetch } = useQuery({
     queryKey: ['getLocation'],
     queryFn: () => getLocation(),
   });
@@ -18,10 +21,17 @@ export default function LocationAll() {
   const dispatch = useDispatch();
   const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
   console.log('CartProducts:', CartProducts);
+  const handlePageChange = (selectedItem: { selected: number }) => {
+    const newPage = selectedItem.selected + 1;
+    setPagination({ ...pagination, page: newPage });
+    refetch();
+  };
+
+  const totalPage = queryGetLocation?.data?.totalPage || 0;
   return (
-    <div>
+    <div className='mb-20'>
       <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
-      <div className='w-full px-20 mb-20'>
+      <div className='w-full px-20 mb-10'>
         <Link
           to='/'
           className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg'
@@ -75,6 +85,18 @@ export default function LocationAll() {
           </div>
         ))}
       </div>
+      <ReactPaginate
+        breakLabel='...'
+        nextLabel='>'
+        pageRangeDisplayed={5}
+        pageCount={totalPage}
+        onPageChange={handlePageChange}
+        containerClassName='flex justify-center gap-4'
+        previousLabel='<'
+        renderOnZeroPageCount={null}
+        nextPageRel={'next'}
+        activeClassName='font-bold text-blue-500 underline'
+      />
     </div>
   );
 }
