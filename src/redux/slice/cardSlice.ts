@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { ReactNode } from 'react';
 
 interface Product {
+  location: string;
   price: number;
   name: ReactNode;
   id: number;

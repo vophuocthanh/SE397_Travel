@@ -2,6 +2,7 @@ import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getBestTrip } from '@/apis/best-trip';
+import { TripType } from '@/lib/type';
 
 const BestTrip = () => {
   // const { tourId } = useParams();
@@ -34,18 +35,18 @@ const BestTrip = () => {
         </Link>
       </div>
       <div className='flex flex-wrap items-center w-full gap-14'>
-        {trips.map((trip) => (
+        {trips.map((trip: TripType) => (
           <div
-            className='flex flex-col rounded-t-3xl w-96 h-[26rem] space-y-4'
+            className='flex flex-col rounded-t-3xl rounded-b-lg w-96 h-[20rem] space-y-4 border hover:scale-105 transition-all'
             key={trip.id}
           >
             <img
               src={trip.image}
               alt={trip.alt}
-              className='justify-around object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105'
+              className='justify-around object-cover rounded-3xl w-96 h-60'
             />
             <Link to={`/best-trip/details/${trip.id}`}>
-              <h1 className='text-xl font-bold'>{trip.name}</h1>
+              <h1 className='mx-6 text-xl font-bold'>{trip.name}</h1>
             </Link>
           </div>
         ))}

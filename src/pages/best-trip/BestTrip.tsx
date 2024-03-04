@@ -7,16 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '@/redux/slice/cardSlice';
-
-type TripType = {
-  id: number;
-  image: string;
-  alt: string;
-  description: string;
-  name: string;
-  location: string;
-  price: number;
-};
+import { TripType } from '@/lib/type';
+import { ArrowLeft } from 'lucide-react';
 
 export default function BestTrip() {
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
@@ -46,6 +38,13 @@ export default function BestTrip() {
     <div>
       <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
       <div className='w-full px-20 mb-20'>
+        <Link
+          to='/'
+          className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg'
+        >
+          <ArrowLeft></ArrowLeft>
+          Back
+        </Link>
         {token ? (
           <Link to='/best-trip/create'>
             <Button className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '>
@@ -92,6 +91,7 @@ export default function BestTrip() {
                     name: trip.name,
                     price: trip.price,
                     quantity: 1,
+                    location: trip.location,
                   };
                   dispatch(addProduct(product));
                 }}

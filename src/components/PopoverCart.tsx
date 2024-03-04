@@ -23,17 +23,17 @@ export function PopoverCart() {
       </PopoverTrigger>
       <PopoverContent className='w-80'>
         <h1 className='mb-6 text-xl font-bold'>Your shopping cart</h1>
-        <div className='table-responsive'>
-          <table className='table'>
+        <div className='flex flex-col space-y-2'>
+          <table>
             <tbody>
               {CartProducts.map((product) => (
                 <div
-                  className='flex justify-between gap-4 px-4 py-2 border rounded-md w-72'
+                  className='flex justify-between gap-4 px-4 py-2 mb-4 border rounded-md w-72'
                   key={product.id}
                 >
                   <div className='flex justify-between gap-2 pr-2 border-r-2 w-60'>
                     <div className='flex gap-2'>
-                      <h1>{product.name}</h1>
+                      <h1>{product.name || product.location}</h1>
                       <span>x{product.quantity}</span>
                     </div>
                     <span>${product.price * product.quantity}</span>

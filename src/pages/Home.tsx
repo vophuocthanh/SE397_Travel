@@ -2,7 +2,7 @@ import FeaturedPage from '@/components/Featured';
 import Banner from './banner/Banner';
 import Header from './header/Header';
 import BestTrip from '@/components/BestTrip';
-import LocationSection from '@/components/Locations';
+import LocationSection from '@/pages/location/Locations';
 import LocationBasedSearch from '@/components/LocationBasedSearch';
 import Footer from './footer/Footer';
 
