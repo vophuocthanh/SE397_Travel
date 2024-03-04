@@ -36,8 +36,8 @@ export default function BestTrip() {
 
   return (
     <div>
-      <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
-      <div className='w-full px-20 mb-20'>
+      <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400 shadow-md' />
+      <div className='w-full px-20 mt-32 mb-20'>
         <Link
           to='/'
           className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg'

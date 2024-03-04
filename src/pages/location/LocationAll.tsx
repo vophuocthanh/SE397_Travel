@@ -30,11 +30,11 @@ export default function LocationAll() {
   const totalPage = queryGetLocation?.data?.totalPage || 0;
   return (
     <div className='mb-20'>
-      <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
+      <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400 shadow-md' />
       <div className='w-full px-20 mb-10'>
         <Link
           to='/'
-          className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg'
+          className='flex justify-end w-20 gap-2 p-2 pr-2 mt-32 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg'
         >
           <ArrowLeft></ArrowLeft>
           Back
@@ -47,10 +47,10 @@ export default function LocationAll() {
           </Link>
         ) : (
           <Button
-            className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '
+            className='flex justify-end mt-32 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '
             disabled={!token}
           >
-            Create Location
+            Create New Location
           </Button>
         )}
       </div>
