@@ -98,3 +98,11 @@
   white-space: nowrap;
   width: 300px;
 }
+
+.gradient-text {
+  font-size: 3em;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ff6b6b, #56ab2f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

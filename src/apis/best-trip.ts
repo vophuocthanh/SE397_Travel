@@ -23,3 +23,7 @@ export const createBestTrip = ({
 export const getTripDetails = (id: string) => {
   return request.get(`/tour/${id}`);
 };
+
+export const searchBestTrip = (keyword: string) => {
+  return request.get(`/tour?search=${keyword}`);
+};

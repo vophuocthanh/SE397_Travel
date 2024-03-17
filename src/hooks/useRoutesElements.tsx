@@ -6,6 +6,7 @@ import LocationAll from '@/pages/location/LocationAll';
 import CreateNewLocation from '@/pages/location/create/CreateNewLocation';
 import DetailsLocation from '@/pages/location/details/DetailsLocation';
 import LoginPage from '@/pages/login/LoginPage';
+import Payment from '@/pages/pay/Payment';
 import Profile from '@/pages/profile/Profile';
 import SignUpPage from '@/pages/sign-up/SignUpPage';
 import { useRoutes } from 'react-router-dom';
@@ -21,6 +22,7 @@ export default function useRoutesElements() {
     { path: '/location', element: <LocationAll /> },
     { path: '/location/create', element: <CreateNewLocation /> },
     { path: '/location/details/:locationId', element: <DetailsLocation /> },
+    { path: '/payment/checkout', element: <Payment /> },
     { path: '*', element: <h1>404</h1> },
   ]);
   return routeElements;

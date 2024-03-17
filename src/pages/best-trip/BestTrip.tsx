@@ -1,17 +1,24 @@
-import Header from '../header/Header';
-import { useQuery } from '@tanstack/react-query';
-import { getBestTrip } from '@/apis/best-trip';
-import { useState } from 'react';
-import ReactPaginate from 'react-paginate';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { ArrowLeft } from 'lucide-react';
+import axios from 'axios';
+import _ from 'lodash';
+import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '@/redux/slice/cardSlice';
+import ReactPaginate from 'react-paginate';
+import Header from '../header/Header';
 import { TripType } from '@/lib/type';
-import { ArrowLeft } from 'lucide-react';
+import { getBestTrip } from '@/apis/best-trip';
 
 export default function BestTrip() {
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<TripType[]>([]);
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+
   const {
     data: queryGetBestTrip,
     error,
@@ -22,17 +29,43 @@ export default function BestTrip() {
     enabled: true,
   });
 
+  const totalPage = queryGetBestTrip?.data?.totalPage || 0;
+  const trips = queryGetBestTrip?.data?.data || [];
+  const token = localStorage.getItem('token') || '';
+  const dispatch = useDispatch();
+
+  const debouncedSearchFunction = _.debounce(async (query: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/tour?search=${query}`
+      );
+      setSearchResults(response.data.data);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+      setSearchResults([]);
+    }
+  }, 1000);
+
+  useEffect(() => {
+    setDebouncedSearch(searchQuery);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (debouncedSearch) {
+      debouncedSearchFunction(debouncedSearch);
+    }
+  }, [debouncedSearch, debouncedSearchFunction]);
+
   const handlePageChange = (selectedItem: { selected: number }) => {
     const newPage = selectedItem.selected + 1;
     setPagination({ ...pagination, page: newPage });
     refetch();
   };
 
-  const totalPage = queryGetBestTrip?.data?.totalPage || 0;
-  const trips = queryGetBestTrip?.data?.data || [];
-  const token = localStorage.getItem('token') || '';
-
-  const dispatch = useDispatch();
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+  };
 
   return (
     <div>
@@ -46,11 +79,19 @@ export default function BestTrip() {
           Back
         </Link>
         {token ? (
-          <Link to='/best-trip/create'>
-            <Button className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '>
-              Create New Trip
-            </Button>
-          </Link>
+          <div className='flex items-center justify-between mt-10'>
+            <Input
+              placeholder='Search best trip'
+              className='w-96'
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+            <Link to='/best-trip/create'>
+              <Button className='flex justify-end ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '>
+                Create New Trip
+              </Button>
+            </Link>
+          </div>
         ) : (
           <Button
             className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '
@@ -59,6 +100,26 @@ export default function BestTrip() {
             Create New Trip
           </Button>
         )}
+
+        {searchResults.length > 0 ? (
+          searchResults.map((trip: TripType) => (
+            <div
+              className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4 border rounded-md'
+              key={trip.id}
+            >
+              <img
+                src={trip.image}
+                alt={trip.alt}
+                className='object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105'
+              />
+              <p className='h-10 px-6 truncate'>{trip.description}</p>
+              <Link to={`/best-trip/details/${trip.id}`}>View Details</Link>
+            </div>
+          ))
+        ) : (
+          <p>No search results found.</p>
+        )}
+
         <h1 className='flex justify-center my-10 text-3xl font-bold'>
           Best Trip
         </h1>
@@ -92,6 +153,7 @@ export default function BestTrip() {
                     price: trip.price,
                     quantity: 1,
                     location: trip.location,
+                    image: trip.image,
                   };
                   dispatch(addProduct(product));
                 }}

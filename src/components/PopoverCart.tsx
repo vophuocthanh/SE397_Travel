@@ -7,6 +7,7 @@ import { ShoppingCart, X } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { deleteProduct } from '@/redux/slice/cardSlice';
+import { Link } from 'react-router-dom';
 
 export function PopoverCart() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export function PopoverCart() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <div className=''>
+        <div className='mb-[23px]'>
           <strong className='relative flex items-center justify-center w-6 h-6 text-center text-white bg-red-500 rounded-full left-4 top-2'>
             {CartProducts.length}
           </strong>
@@ -46,6 +47,21 @@ export function PopoverCart() {
               ))}
             </tbody>
           </table>
+          <div className='flex items-center justify-between'>
+            <h1 className='font-bold'>
+              Total: $
+              {CartProducts.reduce(
+                (total, product) => total + product.price * product.quantity,
+                0
+              )}
+            </h1>
+            <Link
+              to='/payment/checkout'
+              className='px-6 py-2 bg-white rounded-3xl hover:text-blue-400'
+            >
+              Checkout
+            </Link>
+          </div>
         </div>
       </PopoverContent>
     </Popover>

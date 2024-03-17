@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { ReactNode } from 'react';
+import { toast } from 'sonner';
 
 interface Product {
+  image: string | undefined;
   location: string;
   price: number;
   name: ReactNode;
@@ -28,6 +30,7 @@ const productSlice = createSlice({
       );
       if (productIndex === -1) {
         state.CartArr.push({ ...action.payload, quantity: 1 });
+        toast.success('Add product successfully!');
       } else {
         state.CartArr[productIndex].quantity += 1;
       }
@@ -38,6 +41,8 @@ const productSlice = createSlice({
         (item) => item.id !== productIdToRemove
       );
       state.CartArr = newCart;
+
+      toast.error('Delete product successfully!');
     },
   },
 });
