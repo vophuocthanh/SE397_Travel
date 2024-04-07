@@ -101,7 +101,7 @@ export default function BestTrip() {
           </Button>
         )}
 
-        {searchResults.length > 0 ? (
+        {/* {searchResults.length > 0 ? (
           searchResults.map((trip: TripType) => (
             <div
               className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4 border rounded-md'
@@ -118,7 +118,21 @@ export default function BestTrip() {
           ))
         ) : (
           <p>No search results found.</p>
-        )}
+        )} */}
+        {searchResults.map((trip: TripType) => (
+          <div
+            className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4 border rounded-md'
+            key={trip.id}
+          >
+            <img
+              src={trip.image}
+              alt={trip.alt}
+              className='object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105'
+            />
+            <p className='h-10 px-6 truncate'>{trip.description}</p>
+            <Link to={`/best-trip/details/${trip.id}`}>View Details</Link>
+          </div>
+        ))}
 
         <h1 className='flex justify-center my-10 text-3xl font-bold'>
           Best Trip
