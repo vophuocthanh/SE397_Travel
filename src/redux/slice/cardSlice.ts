@@ -44,9 +44,13 @@ const productSlice = createSlice({
 
       toast.error('Delete product successfully!');
     },
+    clearCart:(state)=>{
+      state.CartArr = [];
+     
+    }
   },
 });
 
-export const { addProduct, deleteProduct } = productSlice.actions;
+export const { addProduct, deleteProduct , clearCart } = productSlice.actions;
 
 export default productSlice.reducer;

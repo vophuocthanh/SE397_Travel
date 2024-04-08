@@ -2,6 +2,7 @@ import Home from '@/pages/Home';
 import BestTrip from '@/pages/best-trip/BestTrip';
 import DetailsBestTrip from '@/pages/best-trip/details/DetailsBestTrip';
 import CreateNewTrip from '@/pages/best-trip/new-trip/CreateNewTrip';
+import CheckOut from '@/pages/check-out/CheckOut';
 import LocationAll from '@/pages/location/LocationAll';
 import CreateNewLocation from '@/pages/location/create/CreateNewLocation';
 import DetailsLocation from '@/pages/location/details/DetailsLocation';
@@ -23,6 +24,7 @@ export default function useRoutesElements() {
     { path: '/location/create', element: <CreateNewLocation /> },
     { path: '/location/details/:locationId', element: <DetailsLocation /> },
     { path: '/payment/checkout', element: <Payment /> },
+    { path: '/payment/checkoutDetail',element:<CheckOut/>},
     { path: '*', element: <h1>404</h1> },
   ]);
   return routeElements;
