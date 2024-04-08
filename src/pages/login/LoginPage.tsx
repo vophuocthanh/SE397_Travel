@@ -82,7 +82,7 @@ const LoginPage = () => {
           >
             <Input
               type='email'
-              className='text-xl outline-none'
+              className='outline-none '
               placeholder='Email'
               {...register('email')}
             />
@@ -91,7 +91,7 @@ const LoginPage = () => {
             )}
             <Input
               type='password'
-              className='text-xl outline-none'
+              className='outline-none '
               placeholder='Password'
               {...register('password')}
             />
