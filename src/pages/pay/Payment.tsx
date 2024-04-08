@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Header from "@/pages/header/Header";
-import { deleteProduct } from "@/redux/slice/cardSlice";
+import {  deleteProduct } from "@/redux/slice/cardSlice";
 import { RootState } from "@/redux/store";
 import { X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ export default function Payment() {
   const dispatch = useDispatch();
   const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
   console.log("CartProducts:", CartProducts);
+
   return (
     <div>
       <Header className="flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400" />
@@ -90,9 +91,9 @@ export default function Payment() {
                 )}
               </span>
             </div>
-           
+
             <Link to="/payment/checkoutDetail">
-             <Button>Đặt hàng</Button>
+              <Button >Đặt hàng</Button>
             </Link>
           </div>
         </div>
