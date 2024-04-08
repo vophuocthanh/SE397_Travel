@@ -96,7 +96,7 @@ const LoginPage = () => {
               {...register('password')}
             />
             {errors.password && (
-              <p className='text-red-500'>{errors.password.message}</p>
+              <p className='text-red-400'>{errors.password.message}</p>
             )}
             <div className='flex items-center space-x-2'>
               <Checkbox id='terms' className='w-4 h-4' />
