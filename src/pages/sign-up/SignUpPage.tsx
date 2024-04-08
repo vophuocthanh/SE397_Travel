@@ -61,7 +61,7 @@ const SignUpPage = () => {
         />
       </Link>
       <img src={bgSingIn} alt='' className='hidden object-cover w-1/2 h-screen md:block' />
-      <div className='flex items-center justify-center w-1/2 mx-auto sm:w-2/3'>
+      <div className='flex items-center justify-center w-1/2 mx-auto sm:w-2/3 lg:w-1/2'>
         <div className='flex flex-col items-center justify-center mx-auto space-y-4 sm:w-2/3 lg:w-1/2 '>
         <img src={logosignup} alt='' className='visible object-cover mt-6 hiden md:invisible'/>
           <h1 className='py-2 text-3xl font-bold '>Hi, Get Started Now ✌️</h1>
