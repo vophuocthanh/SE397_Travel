@@ -69,11 +69,11 @@ const LoginPage = () => {
           className='absolute object-cover w-16 h-16 top-8 left-10'
         />
       </Link>
-      <img src={bgLogin} alt='' className='object-cover w-1/2 h-screen' />
-      <div className='flex items-center justify-center w-1/2 mx-auto'>
-        <div className='flex flex-col items-center justify-center mx-auto space-y-4'>
+      <img src={bgLogin} alt='' className='hidden object-cover w-1/2 h-screen lg:block' />
+      <div className='flex items-center justify-center w-full h-screen mx-auto sm:w-2/3 '>
+        <div className='flex flex-col items-center justify-center mx-auto space-y-4 sm:w-2/3 lg:w-1/2'>
           <h1 className='text-3xl font-bold'>Welcome Back ✌️</h1>
-          <p className='text-sm '>
+          <p className='text-sm text-center lg:w-full'>
             Continue with Google or Enter Login Details
           </p>
           <form
@@ -82,7 +82,7 @@ const LoginPage = () => {
           >
             <Input
               type='email'
-              className='outline-none'
+              className='outline-none '
               placeholder='Email'
               {...register('email')}
             />
@@ -91,12 +91,12 @@ const LoginPage = () => {
             )}
             <Input
               type='password'
-              className='text-xl outline-none'
+              className='outline-none '
               placeholder='Password'
               {...register('password')}
             />
             {errors.password && (
-              <p className='text-red-500'>{errors.password.message}</p>
+              <p className='text-red-400'>{errors.password.message}</p>
             )}
             <div className='flex items-center space-x-2'>
               <Checkbox id='terms' className='w-4 h-4' />

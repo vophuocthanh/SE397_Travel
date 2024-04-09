@@ -8,7 +8,7 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 
-export function CarouselPlugin() {
+export function CarouselPlugin() {                                                                
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true, Animation: 'slide' })
   );
@@ -18,10 +18,10 @@ export function CarouselPlugin() {
     'https://wallpapercrafter.com/desktop1/554165-Travel-Vietnam-Halong-Bay-Boats-Mountains-Clouds.jpg',
     'https://cdn3.ivivu.com/2022/07/Gi%E1%BB%9Bi-thi%E1%BB%87u-du-l%E1%BB%8Bch-%C4%90%C3%A0-N%E1%BA%B5ng-ivivu-1.jpg',
     'https://sealifegroup.com/storage/files/du-lich-nha-trang-01.jpeg',
-  ];
+  ];                                                            
   return (
     <Carousel
-      plugins={[plugin.current]}
+      plugins={[plugin.current]}                                 
       className='w-full'
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
