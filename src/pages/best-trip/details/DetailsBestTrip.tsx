@@ -14,6 +14,7 @@ export default function DetailsBestTrip() {
     queryKey: ['detailsBestTrip'],
     queryFn: () => getTripDetails(tourId as string),
   });
+  console.log('detailsBestTrip:', detailsBestTrip);
   const token = localStorage.getItem('token');
 
   const dispatch = useDispatch();
@@ -35,34 +36,41 @@ export default function DetailsBestTrip() {
       {detailsBestTrip ? (
         <div className='flex items-center gap-10 mx-auto max-w-7xl'>
           <img
-            src={detailsBestTrip?.data?.data?.image}
+            src={detailsBestTrip?.data?.data?.data?.image}
             alt='best trip'
             className='w-[30rem] h-80 object-cover rounded-md border'
           />
           <div className='flex flex-col space-y-4 w-[30rem]'>
-            <li>{detailsBestTrip?.data?.data?.description}</li>
-            <li>{detailsBestTrip?.data?.data?.name}</li>
+            <li>{detailsBestTrip?.data?.data?.data?.description}</li>
+            <li>{detailsBestTrip?.data?.data?.data?.name}</li>
             <h1 className='text-xl font-bold'>
-              {detailsBestTrip?.data?.data?.location}
+              {detailsBestTrip?.data?.data?.data?.location}
             </h1>
+            <p>
+              {detailsBestTrip?.data?.data?.data?.remainingCount} sản phẩm có
+              sẵn
+            </p>
+            <span className='text-2xl font-bold'>
+              Giá: {detailsBestTrip?.data?.data?.data?.price} $
+            </span>
             {token ? (
               <Button
                 className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
                 onClick={() =>
-                  dispatch(addProduct(detailsBestTrip?.data?.data))
+                  dispatch(addProduct(detailsBestTrip?.data?.data?.data))
                 }
               >
-                {detailsBestTrip?.data?.data?.price} $
+                Mua
               </Button>
             ) : (
               <Button
                 className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
                 onClick={() =>
-                  dispatch(addProduct(detailsBestTrip?.data?.data))
+                  dispatch(addProduct(detailsBestTrip?.data?.data?.data))
                 }
                 disabled
               >
-                {detailsBestTrip?.data?.data?.price} $
+                {detailsBestTrip?.data?.data?.data?.price} $
               </Button>
             )}
           </div>

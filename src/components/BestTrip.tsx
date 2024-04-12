@@ -13,6 +13,7 @@ const BestTrip = () => {
   });
 
   // const { data: detailsBestTrip } = useQuery({
+  console.log('queryGetBestTrip:', queryGetBestTrip);
   //   queryKey: ['detailsBestTrip'],
   //   queryFn: () => getTripDetails(tourId as string),
   // });
@@ -45,9 +46,16 @@ const BestTrip = () => {
               alt={trip.alt}
               className='justify-around object-cover rounded-3xl w-96 h-60'
             />
-            <Link to={`/best-trip/details/${trip.id}`}>
-              <h1 className='mx-6 text-xl font-bold'>{trip.name}</h1>
-            </Link>
+            {/* <p>{trip.description}</p> */}
+            <div className='flex justify-between '>
+              <Link to={`/best-trip/details/${trip.id}`}>
+                <h1 className='mx-6 text-xl font-bold'>{trip.name}</h1>
+              </Link>
+              <span className='pr-6 text-xl font-semibold'>
+                Giá: {trip.price} $
+              </span>
+            </div>
+            <span></span>
           </div>
         ))}
       </div>
