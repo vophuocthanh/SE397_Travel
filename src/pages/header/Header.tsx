@@ -53,7 +53,7 @@ const Header = ({ className }: HeaderProps) => {
       </Link>
 
       {/* Menu trên màn hình lớn */}
-      <div className='items-center justify-between hidden gap-10 text-xl font-bold md:flex'>
+      <div className='items-center justify-between hidden gap-10 text-xl font-bold lg:flex'>
         <Link to='/best-trip' className='text-white hover:underline'>
           Tours
         </Link>
