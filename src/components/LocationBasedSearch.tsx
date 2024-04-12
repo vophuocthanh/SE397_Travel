@@ -29,8 +29,8 @@ const locationBasedSearch = [
 
 const LocationBasedSearch = () => {
   return (
-    <div className='mx-auto mb-20 max-w-7xl'>
-      <div className='flex items-center justify-between w-full mb-10'>
+    <div className='mx-auto mb-20 max-w-7xl '>
+      <div className='flex items-center justify-between w-full mx-3 mb-10'>
         <div className='flex flex-col space-y-2'>
           <h1 className='text-3xl font-bold'>Locations based on search</h1>
           <p>Check out fun places based on your searches </p>
@@ -40,7 +40,7 @@ const LocationBasedSearch = () => {
           <ChevronRight className='w-10 h-10 cursor-pointer' />
         </div>
       </div>
-      <div className='flex flex-wrap items-center w-full gap-14'>
+      <div className='flex flex-wrap items-center justify-center w-full gap-14'>
         {locationBasedSearch.map((location) => (
           <div
             className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4'
