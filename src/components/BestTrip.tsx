@@ -20,17 +20,17 @@ const BestTrip = () => {
 
   const trips = queryGetBestTrip?.data?.data || [];
   return (
-    <div className='mx-auto mb-20 max-w-7xl'>
+    <div className='mx-auto mb-20 max-w-7xl '>
       <div className='flex flex-col items-center justify-between w-full mb-10 md:flex-row'>
         <div className='flex flex-col mx-5 space-y-2 md:mx-0 md:mr-5 md:mb-0'>
           <h1 className='text-3xl font-bold'>Plan your best trip ever</h1>
           <p>Making the Most of Your Travel Experience in 2024</p>
         </div>
-        <div className='mx-5 mb-5 md:mb-0'>
+        <div className='mx-5 mt-6 md:mt-0 md:mb-0'>
           <Link to='/best-trip'>
             <Button
               variant='ghost'
-              className='text-blue-500 border border-blue-500 rounded-full hover:bg-white hover:text-blue-500 hover:shadow-md'
+              className='text-blue-500 border border-blue-500 rounded-full md:w-40 w-72 hover:bg-white hover:text-blue-500 hover:shadow-md'
             >
               View All Destination
             </Button>
@@ -38,7 +38,7 @@ const BestTrip = () => {
         </div>
       </div>
 
-      <div className='flex flex-wrap items-center justify-center w-full gap-14'>
+      <div className='flex flex-wrap items-center justify-center w-full mx-auto gap-14'>
         {trips.map((trip: TripType) => (
           <div
             className='flex flex-col rounded-t-3xl rounded-b-lg w-96 h-[20rem] space-y-4 border hover:scale-105 transition-all '
@@ -47,7 +47,7 @@ const BestTrip = () => {
             <img
               src={trip.image}
               alt={trip.alt}
-              className='justify-around object-cover rounded-3xl w-96 h-60'
+              className='justify-around object-cover rounded-3xl w-[24rem] sm:w-96 h-60'
             />
             {/* <p>{trip.description}</p> */}
             <div className='flex justify-between '>

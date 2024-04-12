@@ -3,7 +3,7 @@ import { CarouselPlugin } from '@/components/CarouselAnimation';
 const Banner = () => {
   return (
     <div className='mb-[48rem]'>
-      <div className='absolute top-0 flex w-full z-[-1]'>
+      <div className='absolute top-0 flex md:w-full z-[-1]'>
         <CarouselPlugin></CarouselPlugin>
       </div>
       <div className='relative'>

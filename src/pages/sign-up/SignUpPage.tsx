@@ -57,56 +57,68 @@ const SignUpPage = () => {
         <img
           src={logo}
           alt=''
-          className='absolute object-cover w-16 h-16 top-8 left-10'
+          className='absolute hidden object-cover w-16 h-16 sm:block top-8 left-10'
         />
       </Link>
-      <img src={bgSingIn} alt='' className='hidden object-cover w-1/2 h-screen md:block' />
+      <img
+        src={bgSingIn}
+        alt=''
+        className='hidden object-cover w-1/2 sm:w-[48%] h-screen md:block'
+      />
       <div className='flex items-center justify-center w-1/2 mx-auto sm:w-2/3 lg:w-1/2'>
         <div className='flex flex-col items-center justify-center mx-auto space-y-4 sm:w-2/3 lg:w-1/2 '>
-        <img src={logosignup} alt='' className='visible object-cover mt-6 hiden md:invisible'/>
-          <h1 className='py-2 text-3xl font-bold '>Hi, Get Started Now ✌️</h1>
-          <p className='text-sm text-center lg:w-full'>
-            Enter details to create your Travel Pulse account
-          </p>
-          <form
-            className='flex flex-col w-full h-full space-y-4'
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Input
-              type='email'
-              className='outline-none'
-              placeholder='Email address'
-              {...register('email')}
-            />
-            {errors.email && (
-              <p className='text-red-500'>{errors.email.message}</p>
-            )}
-            <Input
-              type='password'
-              className='outline-none'
-              placeholder='Password'
-              {...register('password')}
-            />
-            {errors.password && (
-              <p className='text-red-500'>{errors.password.message}</p>
-            )}
-            <Button
-              loading={isLoading}
-              variant='default'
-              className='bg-blue-500 hover:bg-blue-600'
-            >
-              Sign Up
-            </Button>
-            <p className='font-medium'>
-              Already have an account?
-              <Link
-                to='/login'
-                className='text-blue-600 underline cursor-pointer'
-              >
-                Sign in to account
-              </Link>
+          <img
+            src={logosignup}
+            alt=''
+            className='visible object-cover mt-6 mb-[50%] sm:mb-0 md:hidden'
+          />
+          <div className='flex flex-col gap-6 sm:gap-2'>
+            <h1 className='py-2 text-2xl font-bold text-center sm:text-3xl'>
+              Hi, Get Started Now ✌️
+            </h1>
+            <p className='text-sm text-center lg:w-full'>
+              Enter details to create your Travel Pulse account
             </p>
-          </form>
+            <form
+              className='flex flex-col h-full space-y-4 w-80 sm:w-full'
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <Input
+                type='email'
+                className='outline-none sm:w-[500px]'
+                placeholder='Email address'
+                {...register('email')}
+              />
+              {errors.email && (
+                <p className='text-red-500'>{errors.email.message}</p>
+              )}
+              <Input
+                type='password'
+                className='outline-none sm:w-[500px]'
+                placeholder='Password'
+                {...register('password')}
+              />
+              {errors.password && (
+                <p className='text-red-500'>{errors.password.message}</p>
+              )}
+              <Button
+                loading={isLoading}
+                variant='default'
+                className='bg-blue-500 hover:bg-blue-600'
+              >
+                Sign Up
+              </Button>
+              <p className='font-medium'>
+                Already have an account?
+                <Link
+                  to='/login'
+                  className='text-blue-600 underline cursor-pointer'
+                >
+                  Sign in to account
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
