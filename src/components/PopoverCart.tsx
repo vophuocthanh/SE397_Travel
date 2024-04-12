@@ -13,13 +13,13 @@ export function PopoverCart() {
   const dispatch = useDispatch();
   const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
   return (
-    <Popover>
+    <Popover >
       <PopoverTrigger asChild>
         <div className='mb-[23px]'>
           <strong className='relative flex items-center justify-center w-6 h-6 text-center text-white bg-red-500 rounded-full left-4 top-2'>
             {CartProducts.length}
           </strong>
-          <ShoppingCart className='w-6 h-6 text-white'></ShoppingCart>
+          <ShoppingCart className='w-6 h-6 mr-8 text-white'></ShoppingCart>
         </div>
       </PopoverTrigger>
       <PopoverContent className='w-80'>
