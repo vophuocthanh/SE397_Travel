@@ -1,5 +1,5 @@
-import React from "react";
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import React from 'react';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 interface PaypalButtonInterface {
   totalValue: string;
@@ -13,23 +13,23 @@ const PaypalButton: React.FC<PaypalButtonInterface> = (props) => {
   };
   return (
     <PayPalButtons
-      createOrder={(data, actions) => {
+      createOrder={(_data, actions) => {
         return actions.order.create({
-          intent: "CAPTURE",
+          intent: 'CAPTURE',
           purchase_units: [
             {
               description: props.invoice,
               amount: {
                 value: props.totalValue,
-                currency_code: "USD",
+                currency_code: 'USD',
               },
             },
           ],
         });
       }}
-      onApprove={async (data, actions) => {
+      onApprove={async (_data, actions) => {
         const order = await actions.order?.capture();
-        console.log("order", order);
+        console.log('order', order);
         handlePaymentSuccess();
       }}
     />
