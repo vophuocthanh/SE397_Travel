@@ -33,7 +33,7 @@ const Header = ({ className }: HeaderProps) => {
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const menuStyle = isMenuOpen ? 'fixed z-10 top-8 right-4' : 'absolute';
+  const menuStyle = isMenuOpen ? 'fixed z-10 top-8 right-4.5' : 'absolute';
 
   const navigate = useNavigate();
   const token = getToken();

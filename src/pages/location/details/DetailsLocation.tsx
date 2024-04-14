@@ -20,29 +20,31 @@ export default function DetailsLocation() {
       <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
       <Link
         to='/location'
-        className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto mr-20 text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg'
+        className='flex justify-end w-20 gap-2 p-2 pr-2 mt-8 ml-auto mr-[1rem] text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg lg:mr-20'
       >
         <ArrowLeft></ArrowLeft>
         Back
       </Link>
-      <h1 className='flex justify-center my-10 text-3xl font-bold'>
+      <h1 className='flex justify-center py-5 text-2xl font-bold lg:text-3xl'>
         Location Details
       </h1>
       {detailsLocation ? (
-        <div className='flex items-center gap-10 mx-auto max-w-7xl'>
+        <div className='items-center gap-10 mx-auto md:flex max-w-7xl'>
           <img
             src={detailsLocation?.data?.data?.image}
             alt='best trip'
-            className='w-[30rem] h-80 object-cover rounded-md border'
+            className='w-[22rem] h-70 object-cover rounded-md border lg:w-[30rem] lg:h-80 lg:ml-[5rem] mx-auto '
           />
-          <div className='flex flex-col space-y-4 w-[30rem]'>
+          <div className='flex flex-col space-y-4 w-full lg:w-[30rem] p-7 mr-[12rem] gap-10'>
+            <div className='flex flex-col gap-5 p-5 mt-3 space-y-4'>
             <li>{detailsLocation?.data?.data?.location}</li>
             <h1 className='text-xl font-bold'>
               {detailsLocation?.data?.data?.country}
             </h1>
+            </div>
             {token ? (
               <Button
-                className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg max-sm:mx-auto '
                 onClick={() =>
                   dispatch(addProduct(detailsLocation?.data?.data))
                 }
@@ -51,7 +53,7 @@ export default function DetailsLocation() {
               </Button>
             ) : (
               <Button
-                className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg max-sm:mx-auto '
                 onClick={() =>
                   dispatch(addProduct(detailsLocation?.data?.data))
                 }
