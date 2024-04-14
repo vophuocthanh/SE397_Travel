@@ -52,7 +52,7 @@ const LocationBasedSearch = () => {
               className='object-cover rounded-3xl'
             />
             <p>{location.location}</p>
-            <h1 className='text-xl font-bold'>{location.name}</h1>
+            <h1 className='text-xl font-bold'>{location.name} </h1>
           </div>
         ))}
       </div>

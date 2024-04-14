@@ -47,7 +47,7 @@ const BestTrip = () => {
             <img
               src={trip.image}
               alt={trip.alt}
-              className='justify-around object-cover rounded-3xl w-[24rem] sm:w-96 h-60'
+              className='justify-around  object-cover rounded-3xl w-[24rem] sm:w-96 h-60 space-evenly'
             />
             {/* <p>{trip.description}</p> */}
             <div className='flex justify-between '>
