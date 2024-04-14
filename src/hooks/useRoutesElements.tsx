@@ -1,3 +1,5 @@
+import ForgotPassword from '@/components/ForgotPassword';
+import ResetPassword from '@/components/ResetPassword';
 import Home from '@/pages/Home';
 import BestTrip from '@/pages/best-trip/BestTrip';
 import DetailsBestTrip from '@/pages/best-trip/details/DetailsBestTrip';
@@ -16,6 +18,8 @@ export default function useRoutesElements() {
     { path: '/', element: <Home /> },
     { path: '/login', element: <LoginPage /> },
     { path: '/sign-up', element: <SignUpPage /> },
+    { path: '/forgot-password', element: <ForgotPassword /> },
+    { path: '/reset-password', element: <ResetPassword /> },
     { path: '/profile', element: <Profile /> },
     { path: '/best-trip', element: <BestTrip /> },
     { path: '/best-trip/create', element: <CreateNewTrip /> },
@@ -24,7 +28,7 @@ export default function useRoutesElements() {
     { path: '/location/create', element: <CreateNewLocation /> },
     { path: '/location/details/:locationId', element: <DetailsLocation /> },
     { path: '/payment/checkout', element: <Payment /> },
-    { path: '/payment/checkoutDetail',element:<CheckOut/>},
+    { path: '/payment/checkoutDetail', element: <CheckOut /> },
     { path: '*', element: <h1>404</h1> },
   ]);
   return routeElements;
