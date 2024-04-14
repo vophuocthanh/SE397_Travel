@@ -33,7 +33,7 @@ const Header = ({ className }: HeaderProps) => {
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const menuStyle = isMenuOpen ? 'fixed z-10 top-8 right-4.5' : 'absolute';
+  const menuStyle = isMenuOpen ? 'fixed z-10 top-8 right-4' : 'absolute';
 
   const navigate = useNavigate();
   const token = getToken();
@@ -53,7 +53,7 @@ const Header = ({ className }: HeaderProps) => {
       </Link>
 
       {/* Menu trên màn hình lớn */}
-      <div className='items-center justify-between hidden gap-10 text-xl font-bold lg:flex'>
+      <div className='items-center justify-between hidden gap-10 text-xl font-bold md:flex '>
         <Link to='/best-trip' className='text-white hover:underline'>
           Tours
         </Link>
@@ -131,23 +131,43 @@ const Header = ({ className }: HeaderProps) => {
       </div>
 
       {/* Biểu tượng menu trên màn hình nhỏ */}
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        width='24'
-        height='24'
-        viewBox='0 0 24 24'
-        fill='none'
-        stroke='currentColor'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        className={` top-8 right-3 lg:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-gray-200 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600 transition-colors duration-300 focus:ring-gray-200 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600 transition-colors duration-300 ${menuStyle}`}
-        onClick={handleMenuClick}
-      >
-        <line x1='4' x2='20' y1='12' y2='12' />
-        <line x1='4' x2='20' y1='6' y2='6' />
-        <line x1='4' x2='20' y1='18' y2='18' />
-      </svg>
+      {token ? (
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='24'
+          height='24'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          className={`top-8 right-3 lg:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-gray-200 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600 transition-colors duration-300 focus:ring-gray-200 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600 transition-colors duration-300 ${menuStyle}`}
+          onClick={handleMenuClick}
+        >
+          <line x1='4' x2='20' y1='12' y2='12' />
+          <line x1='4' x2='20' y1='6' y2='6' />
+          <line x1='4' x2='20' y1='18' y2='18' />
+        </svg>
+      ) : (
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='24'
+          height='24'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          className={`hidden top-8 right-3 lg:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-gray-200 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600 transition-colors duration-300 focus:ring-gray-200 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600 transition-colors duration-300 ${menuStyle}`}
+          onClick={handleMenuClick}
+        >
+          <line x1='4' x2='20' y1='12' y2='12' />
+          <line x1='4' x2='20' y1='6' y2='6' />
+          <line x1='4' x2='20' y1='18' y2='18' />
+        </svg>
+      )}
 
       {token ? (
         <div className='flex items-center gap-8 '>
@@ -181,7 +201,7 @@ const Header = ({ className }: HeaderProps) => {
           </div>
         </div>
       ) : (
-        <div className='flex items-center gap-8 text-xl font-bold'>
+        <div className='flex items-center gap-8 ml-6 text-xl font-bold'>
           <Link to='/sign-up' className='text-white'>
             Sign Up
           </Link>
