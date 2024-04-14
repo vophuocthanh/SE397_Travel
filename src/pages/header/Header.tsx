@@ -67,8 +67,8 @@ const Header = ({ className }: HeaderProps) => {
 
       {/* Menu dọc trên màn hình nhỏ */}
       <div
-        className={`lg:hidden ${
-          isMenuOpen ? 'block' : 'hidden'
+        className={`lg:hidden w-full ${
+          isMenuOpen ? 'block w-full' : 'hidden'
         } z-10 fixed top-0 left-0 w-full bg-blue-400 pt-16 pb-8`}
       >
         <div className='flex flex-col gap-4 mt-4 text-xl font-bold'>
