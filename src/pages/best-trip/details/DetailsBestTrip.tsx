@@ -34,15 +34,15 @@ export default function DetailsBestTrip() {
           Best Trip Details
         </h1>
         {/* flex-wrap */}
-      <div className='flex '>
+      <div className='flex m-[45px] max-sm:mb-[8rem] max-lg:space-around  items-center justify-around '>
         {detailsBestTrip ? (
-          <div className='items-center gap-10 mx-auto max-w-7xl md:flex '>
+          <div className='gap-10 md:flex'>
             <img
               src={detailsBestTrip?.data?.data?.data?.image}
               alt='best trip'
-              className='w-[25rem] h-80 object-cover rounded-md border lg:w-[30rem]  '
+              className='  max-sm:h-30 max-lg:w-[25rem] sm:h-80 object-cover rounded-md border lg:w-[30rem]  '
             />
-            <div className='flex flex-col space-y-4 w-[25rem]  lg:w-[30rem]  mt-[4rem] max-md:items-center '>
+            <div className='flex flex-col space-y-4 md:w-[20rem]  lg:w-[30rem] mt-[6rem] max-md:items-center '>
               <li>{detailsBestTrip?.data?.data?.data?.description}</li>
               <li>{detailsBestTrip?.data?.data?.data?.name}</li>
               <h1 className='text-xl font-bold'>
