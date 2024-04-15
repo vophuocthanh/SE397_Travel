@@ -1,5 +1,5 @@
-import ForgotPassword from '@/components/ForgotPassword';
-import ResetPassword from '@/components/ResetPassword';
+import ForgotPassword from '@/pages/forgot-password/ForgotPassword';
+import ResetPassword from '@/pages/reset-password/ResetPassword';
 import Home from '@/pages/Home';
 import BestTrip from '@/pages/best-trip/BestTrip';
 import DetailsBestTrip from '@/pages/best-trip/details/DetailsBestTrip';
