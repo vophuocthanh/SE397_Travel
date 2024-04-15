@@ -31,23 +31,24 @@ export default function LocationAll() {
   return (
     <div className='mb-20'>
       <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400 shadow-md' />
-      <div className='w-full px-20 mb-10'>
+      <div className='w-full mt-32 mb-20 lg:px-20'>
         <Link
           to='/'
-          className='flex justify-end w-20 gap-2 p-2 pr-2 mt-32 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg'
+          className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
+          
         >
           <ArrowLeft></ArrowLeft>
           Back
         </Link>
         {token ? (
           <Link to='/location/create'>
-            <Button className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '>
+            <Button className='lg:mr-[0.2rem] flex justify-end mt-10 mx-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md justify-center lg:w-[10rem] w-80'>
               Create New Location
             </Button>
           </Link>
         ) : (
           <Button
-            className='flex justify-end mt-32 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '
+            className='flex justify-end mt-32 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md justify-center lg:w-[10rem] w-80'
             disabled={!token}
           >
             Create New Location
@@ -60,13 +61,13 @@ export default function LocationAll() {
       <div className='flex flex-wrap items-center w-full mx-auto my-10 gap-14 max-w-7xl'>
         {queryGetLocation?.data?.data?.map((location: LocationType) => (
           <div
-            className='flex flex-col rounded-t-3xl rounded-b-xl transition-all w-96 h-[23.5rem] space-y-2 border hover:scale-105'
+            className='flex flex-col rounded-t-3xl rounded-b-xl transition-all w-96 h-[23.5rem] space-y-2 border hover:scale-105 mx-auto gap-2 '
             key={location.id}
           >
             <img
               src={location.image}
               alt={location.alt}
-              className='object-cover rounded-3xl w-96 h-60'
+              className='object-cover rounded-3xl w-96 h-60 '
             />
             <p className='mx-6'>{location.location}</p>
             <div className='flex items-center justify-between'>
@@ -74,7 +75,7 @@ export default function LocationAll() {
                 <h1 className='mx-6 text-xl font-bold'>{location.country}</h1>
               </Link>
               <Button
-                className='w-20 m-6 bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                className='w-20 m-3 bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
                 onClick={() =>
                   dispatch(addProduct({ ...location, quantity: 1 }))
                 }

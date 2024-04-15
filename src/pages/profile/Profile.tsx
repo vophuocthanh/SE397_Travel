@@ -54,15 +54,15 @@ export default function Profile() {
       <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
       <h1 className='flex justify-center my-10 text-3xl font-bold'>Profile</h1>
       <div className='flex justify-center mx-auto max-w-7xl'>
-        <form className='mt-10 space-y-4' onSubmit={handleUpdateMe}>
-          <div className='space-y-2'>
+        <form className='mt-10 space-y-6' onSubmit={handleUpdateMe}>
+          <div className='space-y-2 w-80'>
             <label htmlFor='name' className='text-xl font-bold'>
               Name
             </label>
             <Input
               id='name'
               placeholder='Name'
-              className='outline-none w-96'
+              className='outline-none lg:w-96'
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -75,7 +75,7 @@ export default function Profile() {
               id='email'
               readOnly
               placeholder='email'
-              className='outline-none w-96'
+              className='outline-none lg:w-96'
               value={meQuery.data?.data?.data?.email}
             />
           </div>
@@ -86,13 +86,13 @@ export default function Profile() {
             <Input
               id='fullName'
               placeholder='fullName'
-              className='outline-none w-96'
+              className='outline-none lg:w-96'
               value={fullName}
               onChange={handleFullNameChange}
             />
           </div>
 
-          <div className='flex items-center justify-center gap-6 mx-auto'>
+          <div className='flex items-center justify-center gap-6 pt-8 mx-auto'>
             <Button loading={loading}>Update Profile</Button>
             <Link to='/'>
               <Button loading={loading}>Back</Button>
