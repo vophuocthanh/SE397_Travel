@@ -14,6 +14,8 @@ import { signIn } from '@/apis/auth';
 import { AxiosError } from 'axios';
 import { toast } from 'sonner';
 import * as z from 'zod';
+import IconEyShow from '@/icon/IconEyeShow';
+import IconEyeHidden from '@/icon/IconEyeHidden';
 
 export function Loader() {
   const isAuth = getToken();
@@ -25,6 +27,7 @@ export function Loader() {
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -94,11 +97,22 @@ const LoginPage = () => {
               <p className='text-red-500'>{errors.email.message}</p>
             )}
             <Input
-              type='password'
+              type={show ? 'text' : 'password'}
               className='outline-none '
               placeholder='Password'
               {...register('password')}
             />
+            {show ? (
+              <IconEyShow
+                className='absolute -translate-y-1/2 cursor-pointer right-72 top-[49.5%]'
+                onClick={() => setShow(false)}
+              />
+            ) : (
+              <IconEyeHidden
+                className='absolute -translate-y-1/2 cursor-pointer right-72 top-[48.5%]'
+                onClick={() => setShow(true)}
+              />
+            )}
             {errors.password && (
               <p className='text-red-400'>{errors.password.message}</p>
             )}
