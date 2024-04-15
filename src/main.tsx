@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
+import AppContextProvider from '@/contexts/app.context.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,7 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Toaster richColors position='top-right' />
-          <App />
+          <AppContextProvider>
+            <App />
+          </AppContextProvider>
         </QueryClientProvider>
       </BrowserRouter>
     </React.StrictMode>
