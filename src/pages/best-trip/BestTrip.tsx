@@ -142,22 +142,27 @@ export default function BestTrip() {
                   {trip.name} - <span>{trip.location}</span>
                 </h1>
               </Link>
-              <Button
-                className='w-40 m-6 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
-                onClick={() => {
-                  const product = {
-                    id: trip.id,
-                    name: trip.name,
-                    price: trip.price,
-                    quantity: 1,
-                    location: trip.location,
-                    image: trip.image,
-                  };
-                  dispatch(addProduct(product));
-                }}
-              >
-                {trip.price} $
-              </Button>
+              <div className='flex items-center justify-between'>
+                <span className='pl-6 text-xl font-semibold'>
+                  Giá: {trip.price} $
+                </span>
+                <Button
+                  className='w-40 m-6 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                  onClick={() => {
+                    const product = {
+                      id: trip.id,
+                      name: trip.name,
+                      price: trip.price,
+                      quantity: 1,
+                      location: trip.location,
+                      image: trip.image,
+                    };
+                    dispatch(addProduct(product));
+                  }}
+                >
+                  Add to cart
+                </Button>
+              </div>
             </div>
           ))}
         </div>
