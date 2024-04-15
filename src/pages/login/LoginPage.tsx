@@ -102,11 +102,16 @@ const LoginPage = () => {
             {errors.password && (
               <p className='text-red-400'>{errors.password.message}</p>
             )}
-            <div className='flex items-center space-x-2'>
-              <Checkbox id='terms' className='w-4 h-4' />
-              <Label htmlFor='terms' className='text-base'>
-                Remember me
-              </Label>
+            <div className='flex justify-between'>
+              <div className='flex items-center space-x-2'>
+                <Checkbox id='terms' className='w-4 h-4' />
+                <Label htmlFor='terms' className='text-base'>
+                  Remember me
+                </Label>
+              </div>
+              <Link to='/forgot-password' className='text-blue-600 underline'>
+                Forgot Password
+              </Link>
             </div>
             <Button
               variant='default'
