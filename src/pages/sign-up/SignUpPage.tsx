@@ -13,9 +13,12 @@ import { signUp } from '@/apis/auth';
 import { AxiosError } from 'axios';
 import { toast } from 'sonner';
 import * as z from 'zod';
+import IconEyShow from '@/icon/IconEyeShow';
+import IconEyeHidden from '@/icon/IconEyeHidden';
 
 const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -93,11 +96,22 @@ const SignUpPage = () => {
                 <p className='text-red-500'>{errors.email.message}</p>
               )}
               <Input
-                type='password'
+                type={show ? 'text' : 'password'}
                 className='outline-none sm:w-[500px]'
                 placeholder='Password'
                 {...register('password')}
               />
+              {show ? (
+                <IconEyShow
+                  className='absolute -translate-y-1/2 cursor-pointer right-12 md:right-40 top-[54.5%] md:top-[53.5%]'
+                  onClick={() => setShow(false)}
+                />
+              ) : (
+                <IconEyeHidden
+                  className='absolute -translate-y-1/2 cursor-pointer right-12 md:right-40 top-[52.5%] md:top-[52.5%]'
+                  onClick={() => setShow(true)}
+                />
+              )}
               {errors.password && (
                 <p className='text-red-500'>{errors.password.message}</p>
               )}

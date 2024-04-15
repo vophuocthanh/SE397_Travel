@@ -104,12 +104,12 @@ const LoginPage = () => {
             />
             {show ? (
               <IconEyShow
-                className='absolute -translate-y-1/2 cursor-pointer right-72 top-[49.5%]'
+                className='absolute -translate-y-1/2 cursor-pointer right-14 md:right-56 top-[49.5%]'
                 onClick={() => setShow(false)}
               />
             ) : (
               <IconEyeHidden
-                className='absolute -translate-y-1/2 cursor-pointer right-72 top-[48.5%]'
+                className='absolute -translate-y-1/2 cursor-pointer right-14 md:right-56 top-[48.5%]'
                 onClick={() => setShow(true)}
               />
             )}

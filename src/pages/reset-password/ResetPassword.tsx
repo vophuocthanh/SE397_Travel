@@ -2,6 +2,8 @@ import { resetPassword } from '@/apis/auth';
 import bgAuth from '@/assets/images/bg-reset-password.jpg';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import IconEyeHidden from '@/icon/IconEyeHidden';
+import IconEyShow from '@/icon/IconEyeShow';
 import { ResetPasswordSchema } from '@/lib/shcema';
 import { getToken } from '@/lib/storage';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,6 +25,7 @@ export function Loader() {
 
 export default function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -73,11 +76,22 @@ export default function ResetPassword() {
             <h1 className='text-2xl font-bold text-center'>Reset Password</h1>
             <form className='mt-5 text-start' onSubmit={handleSubmit(onSubmit)}>
               <Input
-                type='password'
+                type={show ? 'text' : 'password'}
                 placeholder='Password'
                 className='text-black bg-gray-200'
                 {...register('password')}
               />
+              {show ? (
+                <IconEyShow
+                  className='absolute -translate-y-1/2 cursor-pointer right-12 md:right-16 top-[54.5%] md:top-[54.5%]'
+                  onClick={() => setShow(false)}
+                />
+              ) : (
+                <IconEyeHidden
+                  className='absolute -translate-y-1/2 cursor-pointer right-12 md:right-16 top-[54.5%] md:top-[54.5%]'
+                  onClick={() => setShow(true)}
+                />
+              )}
               {errors.password && (
                 <p className='mt-1 text-red-500'>{errors.password.message}</p>
               )}
