@@ -13,6 +13,10 @@ import Payment from '@/pages/pay/Payment';
 import Profile from '@/pages/profile/Profile';
 import SignUpPage from '@/pages/sign-up/SignUpPage';
 import { useRoutes } from 'react-router-dom';
+import AdminPage from '@/pages/admin/AdminPage';
+import LayoutMain from '@/layouts/LayoutMain';
+import TourAdmin from '@/pages/admin/TourAdmin';
+import LocationAdmin from '@/pages/admin/LocationAdmin';
 export default function useRoutesElements() {
   const routeElements = useRoutes([
     { path: '/', element: <Home /> },
@@ -20,6 +24,12 @@ export default function useRoutesElements() {
     { path: '/sign-up', element: <SignUpPage /> },
     { path: '/forgot-password', element: <ForgotPassword /> },
     { path: '/reset-password', element: <ResetPassword /> },
+    { path: '/admin', element: <LayoutMain children={<AdminPage />} /> },
+    { path: '/admin/tour', element: <LayoutMain children={<TourAdmin />} /> },
+    {
+      path: '/admin/location',
+      element: <LayoutMain children={<LocationAdmin />} />,
+    },
     { path: '/profile', element: <Profile /> },
     { path: '/best-trip', element: <BestTrip /> },
     { path: '/best-trip/create', element: <CreateNewTrip /> },
