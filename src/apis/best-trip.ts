@@ -27,3 +27,31 @@ export const getTripDetails = (id: string) => {
 export const searchBestTrip = (keyword: string) => {
   return request.get(`/tour?search=${keyword}`);
 };
+
+export const putBestTrip = ({
+  id,
+  name,
+  image,
+  description,
+  location,
+  price,
+}: {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+  location: string;
+  price: number;
+}) => {
+  return request.put(`/tour/${id}`, {
+    name,
+    image,
+    description,
+    location,
+    price,
+  });
+};
+
+export const deteleBestTrip = (id: string) => {
+  return request.delete(`/tour/${id}`);
+};
