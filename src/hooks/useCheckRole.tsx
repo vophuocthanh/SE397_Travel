@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getToken } from '@/lib/storage';
 
 const useCheckRole = () => {
   const [isAdmin, setIsAdmin] = useState<boolean>(true);
@@ -7,11 +8,14 @@ const useCheckRole = () => {
   useEffect(() => {
     const checkAdminRole = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/users/me', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/users/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          }
+        );
         const userRole = response.data.data.role;
         setIsAdmin(userRole === 'ADMIN');
       } catch (error) {
