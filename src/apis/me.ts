@@ -13,3 +13,7 @@ export const updateMe = ({
 }) => {
   return request.put('/users/me', { username, fullName });
 };
+
+export const getUserTotal = () => {
+  return request.get('/users');
+};
