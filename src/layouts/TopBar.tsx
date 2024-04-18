@@ -1,6 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '@/assets/logo/logo_Sigup.png';
 import { Input } from '@/components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { LogOut, User } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { getMe } from '@/apis/me';
+import { removeToken } from '@/lib/storage';
+import { toast } from 'sonner';
 
 const TopBar = () => {
   return (
@@ -12,7 +26,7 @@ const TopBar = () => {
           placeholder='Search...'
         />
       </div>
-      <User />
+      <UserAdmin />
     </div>
   );
 };
@@ -25,22 +39,47 @@ function Logo() {
   );
 }
 
-function User() {
+function UserAdmin() {
+  const navigate = useNavigate();
+  const meQuery = useQuery({
+    queryKey: ['meAdmin'],
+    queryFn: () => getMe(),
+  });
+  const logout = () => {
+    removeToken();
+    navigate('/login');
+    toast.success('Logout successfully!');
+  };
   return (
     <div className='flex items-center flex-shrink-0 gap-5'>
-      <span className='flex-shrink-0'></span>
       <div className='flex items-center gap-[10px] flex-shrink-0'>
-        <img
-          src='https://images.unsplash.com/photo-1661956602153-23384936a1d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
-          alt='avatar'
-          width={40}
-          height={40}
-          className='object-cover w-10 h-10 rounded-full'
-        ></img>
-        <div className='flex flex-col'>
-          <h4 className='font-semibold'>Hawkins Maru</h4>
-          <span className='text-[#808191] '>Company Manager</span>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className='flex space-x-4 '>
+              <div className='w-max'>
+                <h2 className='text-slate-800'>
+                  <h1 className='text-xl font-bold border-none outline-none'>
+                    {meQuery.data?.data?.data.email}
+                  </h1>
+                </h2>
+              </div>
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className='w-56'>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem className='cursor-pointer'>
+                <User className='w-4 h-4 mr-2' />
+                <Link to='/profile'>Account</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={logout} className='cursor-pointer'>
+                <LogOut className='w-4 h-4 mr-2' />
+                <span>Log out</span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );

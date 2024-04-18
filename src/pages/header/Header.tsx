@@ -10,12 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+
 import { getToken, removeToken } from '@/lib/storage';
 import { useQuery } from '@tanstack/react-query';
 import { LogOut, User } from 'lucide-react';
@@ -72,43 +67,33 @@ const Header = ({ className }: HeaderProps) => {
         } z-10 fixed top-0 left-0 w-full bg-blue-400 pt-16 pb-8`}
       >
         <div className='flex flex-col gap-4 mt-4 text-xl font-bold'>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger className='flex justify-center text-white hover:underline hover:bg-gray-500'>
-                <DropdownMenu>
-                  <DropdownMenuTrigger>
-                    <div className='flex space-x-4 '>
-                      <div className='w-max'>
-                        <h2 className='text-slate-800'>
-                          <h1 className='text-xl font-bold text-white'>
-                            {meQuery.data?.data?.data.email}
-                          </h1>
-                        </h2>
-                      </div>
-                    </div>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className='w-56'>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                      <DropdownMenuItem className='cursor-pointer'>
-                        <User className='w-4 h-4 mr-2' />
-                        <Link to='/profile'>Account</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={logout}
-                        className='cursor-pointer'
-                      >
-                        <LogOut className='w-4 h-4 mr-2' />
-                        <span>Log out</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TooltipTrigger>
-              <TooltipContent>Account</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <div className='flex space-x-4 '>
+                <div className='w-max'>
+                  <h2 className='text-slate-800'>
+                    <h1 className='text-xl font-bold text-white'>
+                      {meQuery.data?.data?.data.email}
+                    </h1>
+                  </h2>
+                </div>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='w-56'>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem className='cursor-pointer'>
+                  <User className='w-4 h-4 mr-2' />
+                  <Link to='/profile'>Account</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout} className='cursor-pointer'>
+                  <LogOut className='w-4 h-4 mr-2' />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link
             to='/best-trip'
             className='flex justify-center text-white hover:underline hover:bg-gray-500'

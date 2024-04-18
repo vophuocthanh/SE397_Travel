@@ -3,6 +3,9 @@ import { request } from '@/lib/request';
 export const getBestTrip = (page?: number) => {
   return request.get(`/tour?page=${page}&limit=3`);
 };
+export const getBestTripAdmin = () => {
+  return request.get(`/tour`);
+};
 
 export const createBestTrip = ({
   name,
