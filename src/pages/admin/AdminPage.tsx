@@ -1,12 +1,19 @@
 import { AppContext, AppContextType } from '@/contexts/app.context';
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import useCheckRole from '@/hooks/useCheckRole';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminPage() {
   const { isAuthenticated } = useContext<AppContextType>(AppContext);
-  const [userRole, setUserRole] = useState<string | null>(null);
+
+  const isAdmin = useCheckRole();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate('/');
+    }
+  }, [isAdmin, navigate]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -14,32 +21,14 @@ export default function AdminPage() {
     }
   }, [isAuthenticated, navigate]);
 
-  useEffect(() => {
-    const fetchUserRole = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/users/me');
-        const { role } = response.data;
-        setUserRole(role);
-        console.log('response:', response);
-      } catch (error) {
-        console.error('Error fetching user role:', error);
-      }
-    };
-
-    fetchUserRole();
-  }, []);
-
-  if (!userRole) {
-    return <div>Loading...</div>;
-  }
-
-  if (userRole !== 'ADMIN') {
-    navigate('/login');
-    return null;
-  }
-
   if (!isAuthenticated) {
     return null;
   }
-  return <div>AdminPage</div>;
+
+  return (
+    <div>
+      <h1>Admin Page</h1>
+      <p>You are logged in as {isAdmin ? 'admin' : 'user'}</p>
+    </div>
+  );
 }
