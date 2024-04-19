@@ -1,5 +1,6 @@
 import IconBuilding from '@/icon/IconBuilding';
 import IconDashboard from '@/icon/IconDashboard';
+import IconPerson from '@/icon/IconPerson';
 import IconStar from '@/icon/IconStar';
 import { TSidebarLinks } from '@/types/general.type';
 
@@ -18,6 +19,11 @@ export const sidebarLinks: TSidebarLinks[] = [
     title: 'Location',
     icon: <IconStar />,
     path: '/admin/location',
+  },
+  {
+    title: 'Users',
+    icon: <IconPerson />,
+    path: '/admin/user',
   },
   // {
   //   title: 'Review',

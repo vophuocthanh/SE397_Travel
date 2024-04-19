@@ -41,7 +41,8 @@ export default function Profile() {
     setFullName(e.target.value);
   };
 
-  const handleUpdateMe = () => {
+  const handleUpdateMe = (e: React.FormEvent) => {
+    e.preventDefault();
     updateMeQuery.mutate({
       username: name,
       fullName: fullName,

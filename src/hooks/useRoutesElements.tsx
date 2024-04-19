@@ -17,6 +17,8 @@ import AdminPage from '@/pages/admin/AdminPage';
 import LayoutMain from '@/layouts/LayoutMain';
 import TourAdmin from '@/pages/admin/TourAdmin';
 import LocationAdmin from '@/pages/admin/LocationAdmin';
+import UserAdmin from '@/pages/admin/users/UserAdmin';
+import UserAdminDetails from '@/pages/admin/users/UserAdminDetails';
 export default function useRoutesElements() {
   const routeElements = useRoutes([
     { path: '/', element: <Home /> },
@@ -29,6 +31,14 @@ export default function useRoutesElements() {
     {
       path: '/admin/location',
       element: <LayoutMain children={<LocationAdmin />} />,
+    },
+    {
+      path: '/admin/user',
+      element: <LayoutMain children={<UserAdmin />} />,
+    },
+    {
+      path: '/admin/user/:id',
+      element: <LayoutMain children={<UserAdminDetails />} />,
     },
     { path: '/profile', element: <Profile /> },
     { path: '/best-trip', element: <BestTrip /> },

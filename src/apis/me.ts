@@ -17,3 +17,11 @@ export const updateMe = ({
 export const getUserTotal = () => {
   return request.get('/users');
 };
+
+export const deleleUserMe = (id: string) => {
+  return request.delete(`/users/${id}`);
+};
+
+export const getUserDetailsAdmin = (id: string) => {
+  return request.get(`/users/${id}`);
+};
