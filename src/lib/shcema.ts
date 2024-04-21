@@ -57,3 +57,10 @@ export const ResetPasswordSchema = z.object({
       'Password must contain at least 8 characters, 1 letter and 1 number'
     ),
 });
+export type LocationSchemaType = {
+  id: string|undefined;
+  image?: string;
+  country?: string;
+  location?: string;
+  price?: string;
+};

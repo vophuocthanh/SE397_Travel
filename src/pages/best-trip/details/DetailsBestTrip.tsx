@@ -10,6 +10,8 @@ import { ArrowLeft } from 'lucide-react';
 
 export default function DetailsBestTrip() {
   const { tourId } = useParams();
+  console.log(tourId,"bettrip");
+  
   const { data: detailsBestTrip } = useQuery({
     queryKey: ['detailsBestTrip'],
     queryFn: () => getTripDetails(tourId as string),
