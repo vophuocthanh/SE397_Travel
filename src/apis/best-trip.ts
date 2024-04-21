@@ -10,14 +10,16 @@ export const createBestTrip = ({
   description,
   location,
   price,
+  remainingCount
 }: {
   name: string;
   image: string;
   description: string;
   location: string;
   price: number;
+  remainingCount: number;
 }) => {
-  return request.post('/tour', { name, image, description, location, price });
+  return request.post('/tour', { name, image, description, location, price, remainingCount });
 };
 
 export const getTripDetails = (id: string) => {
@@ -35,6 +37,7 @@ export const putBestTrip = ({
   description,
   location,
   price,
+  remainingCount
 }: {
   id: string;
   name: string;
@@ -42,6 +45,7 @@ export const putBestTrip = ({
   description: string;
   location: string;
   price: number;
+  remainingCount: number;
 }) => {
   return request.put(`/tour/${id}`, {
     name,
@@ -49,6 +53,7 @@ export const putBestTrip = ({
     description,
     location,
     price,
+    remainingCount
   });
 };
 
