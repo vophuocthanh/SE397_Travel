@@ -1,5 +1,12 @@
 import { request } from '@/lib/request';
 
+interface UserAdmin {
+  id?: string;
+  username: string;
+  fullName: string;
+  role: string;
+}
+
 export const getMe = () => {
   return request.get('/users/me');
 };
@@ -24,4 +31,8 @@ export const deleleUserMe = (id: string) => {
 
 export const getUserDetailsAdmin = (id: string) => {
   return request.get(`/users/${id}`);
+};
+
+export const putUserAdmin = (id: string, data: UserAdmin) => {
+  return request.put(`/users/${id}`, data);
 };
