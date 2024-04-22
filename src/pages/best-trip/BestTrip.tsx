@@ -30,7 +30,6 @@ export default function BestTrip() {
 
   const totalPage = queryGetBestTrip?.data?.totalPage || 0;
   const trips = queryGetBestTrip?.data?.data || [];
-  const token = localStorage.getItem('token') || '';
   const dispatch = useDispatch();
 
   const debouncedSearchFunction = debounce(async (query: string) => {
@@ -75,28 +74,14 @@ export default function BestTrip() {
           <ArrowLeft></ArrowLeft>
           Back
         </Link>
-        {token ? (
-          <div className='items-center justify-between block mt-10 lg:flex'>
-            <Input
-              placeholder='Search best trip'
-              className='mx-auto w-96 lg:ml-[1.5rem] outline-none'
-              value={searchQuery}
-              onChange={handleSearch}
-            />
-            <Link to='/best-trip/create'>
-              <Button className='flex justify-end mx-auto mt-2 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md lg:mr-[0.2rem]'>
-                Create New Trip
-              </Button>
-            </Link>
-          </div>
-        ) : (
-          <Button
-            className='flex justify-end mt-10 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md '
-            disabled={!token}
-          >
-            Create New Trip
-          </Button>
-        )}
+        <div className='items-center justify-between block mt-10 lg:flex'>
+          <Input
+            placeholder='Search best trip'
+            className='mx-auto w-96 lg:ml-[1.5rem] outline-none'
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+        </div>
 
         {searchResults.map((trip: TripType) => (
           <div

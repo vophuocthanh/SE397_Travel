@@ -17,7 +17,6 @@ export default function LocationAll() {
     queryKey: ['getLocation'],
     queryFn: () => getLocation(),
   });
-  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
   console.log('CartProducts:', CartProducts);
@@ -35,25 +34,10 @@ export default function LocationAll() {
         <Link
           to='/'
           className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
-          
         >
           <ArrowLeft></ArrowLeft>
           Back
         </Link>
-        {token ? (
-          <Link to='/location/create'>
-            <Button className='lg:mr-[0.2rem] flex justify-end mt-10 mx-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md justify-center lg:w-[10rem] w-80'>
-              Create New Location
-            </Button>
-          </Link>
-        ) : (
-          <Button
-            className='flex justify-end mt-32 ml-auto text-blue-500 bg-white border border-blue-500 hover:bg-blue-400 hover:text-white hover:border-none hover:shadow-md justify-center lg:w-[10rem] w-80'
-            disabled={!token}
-          >
-            Create New Location
-          </Button>
-        )}
       </div>
       <h1 className='flex justify-center mx-auto text-3xl font-bold'>
         Location List
