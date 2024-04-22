@@ -15,10 +15,11 @@ import SignUpPage from '@/pages/sign-up/SignUpPage';
 import { useRoutes } from 'react-router-dom';
 import AdminPage from '@/pages/admin/AdminPage';
 import LayoutMain from '@/layouts/LayoutMain';
-import TourAdmin from '@/pages/admin/TourAdmin';
 import LocationAdmin from '@/pages/admin/LocationAdmin';
 import UserAdmin from '@/pages/admin/users/UserAdmin';
 import UserAdminDetails from '@/pages/admin/users/UserAdminDetails';
+import TourAdminDetail from '@/pages/admin/Tour-Admin/components/TourAdminDetail';
+import TourAdmin from '@/pages/admin/Tour-Admin/TourAdmin';
 export default function useRoutesElements() {
   const routeElements = useRoutes([
     { path: '/', element: <Home /> },
@@ -28,6 +29,10 @@ export default function useRoutesElements() {
     { path: '/reset-password', element: <ResetPassword /> },
     { path: '/admin', element: <LayoutMain children={<AdminPage />} /> },
     { path: '/admin/tour', element: <LayoutMain children={<TourAdmin />} /> },
+    {
+      path: '/admin/tour/detail/:tourId',
+      element: <LayoutMain children={<TourAdminDetail />} />,
+    },
     {
       path: '/admin/location',
       element: <LayoutMain children={<LocationAdmin />} />,
