@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
@@ -21,13 +21,22 @@ export const UpdateLocationAdmin = () => {
     const initCountry = locationAdminDetailsQuery.data?.data?.data?.country || '' ;    
     const initLocation = locationAdminDetailsQuery.data?.data?.data?.location || '' ;
     const initialPrice = locationAdminDetailsQuery.data?.data?.data?.price || '' ;
-    const [image, setImage] = useState(initImage);
-    const [country, setCountry] = useState(initCountry);
-    const [location, setLocation] = useState(initLocation);
-    const [price, setPrice] = useState(initialPrice);
+    const [image, setImage] = useState("");
+    const [country, setCountry] = useState("");
+    const [location, setLocation] = useState("");
+    const [price, setPrice] = useState("");
 
+    console.log(initImage,initCountry,initLocation,initialPrice);
+    console.log(id,"34567");
     
-
+    console.log(image,country,location,price);
+    console.log(locationAdminDetailsQuery.data?.data?.data?.id === id,"134");
+    useEffect(()=> {
+        setImage(initImage);
+        setCountry(initCountry);
+        setLocation(initLocation);
+        setPrice(initialPrice);
+    },[locationAdminDetailsQuery.data?.data?.data])
 
     const handleUpdateMe = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -59,7 +68,7 @@ export const UpdateLocationAdmin = () => {
     };
     return (
         <div className='flex justify-center w-full mx-auto'>
-        <form className='mt-10 space-y-6' onSubmit={handleUpdateMe}>
+            <form className='mt-10 space-y-6' onSubmit={handleUpdateMe}>
             <div className='space-y-2 w-80'>
             <label htmlFor='name' className='text-xl font-bold'>
                 Image
@@ -68,7 +77,7 @@ export const UpdateLocationAdmin = () => {
                 id="image"
                 placeholder="Image"
                 className="outline-none w-96"
-                value={image}
+                value={ image}
                 onChange={(e) => setImage(e.target.value)}
             />
             </div>
@@ -91,7 +100,7 @@ export const UpdateLocationAdmin = () => {
             <Input
                 id='location'
                 placeholder='location'
-                value={location}
+                value={ location}
                 className='outline-none lg:w-96'
                 onChange={(e) => setLocation(e.target.value)}
             />
@@ -104,7 +113,7 @@ export const UpdateLocationAdmin = () => {
                 id='price'
                 placeholder='price'
                 className='outline-none lg:w-96'
-                value={price}
+                value={ price}
                 onChange={(e) => setPrice(e.target.value)}
             />
             </div>
@@ -119,6 +128,7 @@ export const UpdateLocationAdmin = () => {
             </Link>
             </div>
         </form>
+        
         </div>
     )
 }
