@@ -5,6 +5,7 @@ import BestTrip from '@/components/BestTrip';
 import LocationSection from '@/pages/location/Locations';
 import LocationBasedSearch from '@/components/LocationBasedSearch';
 import Footer from './footer/Footer';
+import CrispProvider from '@/components/crisp-provirde';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <LocationSection />
       <LocationBasedSearch />
       <Footer />
+      <CrispProvider/>
     </div>
   );
 };
