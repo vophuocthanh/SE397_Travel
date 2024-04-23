@@ -31,16 +31,16 @@ export default function DetailsLocation() {
       {detailsLocation ? (
         <div className='items-center gap-10 mx-auto md:flex max-w-7xl'>
           <img
-            src={detailsLocation?.data?.data?.image}
+            src={detailsLocation?.data?.data?.data?.image}
             alt='best trip'
             className='w-[22rem] h-70 object-cover rounded-md border lg:w-[30rem] lg:h-80 lg:ml-[5rem] mx-auto '
           />
           <div className='flex flex-col space-y-4 w-full lg:w-[30rem] p-7 mr-[12rem] gap-10'>
             <div className='flex flex-col gap-5 p-5 mt-3 space-y-4'>
-            <li>{detailsLocation?.data?.data?.location}</li>
-            <h1 className='text-xl font-bold'>
-              {detailsLocation?.data?.data?.country}
-            </h1>
+              <li>{detailsLocation?.data?.data?.data?.location}</li>
+              <h1 className='text-xl font-bold'>
+                {detailsLocation?.data?.data?.data?.country}
+              </h1>
             </div>
             {token ? (
               <Button
@@ -49,7 +49,7 @@ export default function DetailsLocation() {
                   dispatch(addProduct(detailsLocation?.data?.data))
                 }
               >
-                {detailsLocation?.data?.data?.price} $
+                {detailsLocation?.data?.data?.data?.price} $
               </Button>
             ) : (
               <Button
@@ -59,7 +59,7 @@ export default function DetailsLocation() {
                 }
                 disabled
               >
-                {detailsLocation?.data?.data?.price} $
+                {detailsLocation?.data?.data?.data?.price} $
               </Button>
             )}
           </div>
