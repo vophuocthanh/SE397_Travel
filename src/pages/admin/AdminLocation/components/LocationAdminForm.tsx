@@ -23,11 +23,13 @@ export type TourFormConditionProps =
     onSubmit: (data: LocationSchemaType) => void;
     isLoading?: boolean;
     onClose: () => void;
+    fetchLocation: () => Promise<void>;
 }
 
 const LocationAdminForm = ({
     type,
     onClose,
+    fetchLocation,
 }: TourFormProps & TourFormConditionProps) => {
     console.log(type);
     const [image, setImage] = useState("");
@@ -48,8 +50,10 @@ const LocationAdminForm = ({
         queryClient.invalidateQueries({
         queryKey: ["createLocation"],
         });
+        
         toast.success("Create Successfully");
         setLoading(false);
+        fetchLocation();
         navigate("/admin/location");
     },
     });

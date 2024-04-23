@@ -7,13 +7,15 @@ interface LocationAdminModalsProps {
     isOpen: boolean;
     onClose: () => void;
     tab?: string;
-    onOpenModal: (type: "create") => void;
-    type: "create" ;
+    onOpenModal: (type: "create" ) => void;
+    type: "create" ;    
+    fetchLocation: () => Promise<void>;
 }
 
 const LocationAdminModal: React.FC<LocationAdminModalsProps> = ({
     isOpen,
     onClose,
+    fetchLocation,
 }) => {
     const handleCloseModal = () => {
     onClose();
@@ -50,6 +52,7 @@ const LocationAdminModal: React.FC<LocationAdminModalsProps> = ({
                     onSubmit={handleSubmit}
                     onClose={handleCloseModal}
                     type="create"
+                    fetchLocation={fetchLocation}
                     />
                 </div>
                 </div>
@@ -60,4 +63,4 @@ const LocationAdminModal: React.FC<LocationAdminModalsProps> = ({
     )
 }
 
-export default LocationAdminModal
+export default LocationAdminModal                                                                                                                                      
