@@ -22,7 +22,7 @@ export default function DetailsBestTrip() {
   // console.log('CartProducts:', CartProducts.length);
   return (
     <div>
-      <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
+      <Header className='flex items-center justify-between w-full px-10 mx-auto bg-blue-400' />
       <Link
         to='/best-trip'
         className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto mr-20 text-white bg-green-500 rounded-md cursor-pointer max-sm:mr-[30px] hover:shadow-lg'
@@ -31,9 +31,9 @@ export default function DetailsBestTrip() {
         Back
       </Link>
       <h1 className='flex justify-center my-10 text-3xl font-bold'>
-          Best Trip Details
-        </h1>
-        {/* flex-wrap */}
+        Best Trip Details
+      </h1>
+      {/* flex-wrap */}
       <div className='flex m-[45px] max-sm:mb-[8rem] max-lg:space-around  items-center justify-around '>
         {detailsBestTrip ? (
           <div className='gap-10 md:flex'>
