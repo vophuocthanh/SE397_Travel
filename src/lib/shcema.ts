@@ -79,12 +79,19 @@ export const TourAdminSchema = z.object({
   }),
 });
 export type TourSchemaType = {
-  id: string|undefined;
+  id: string | undefined;
   name: string;
   image?: string;
   description?: string;
   location?: string;
   price?: string;
   remainingCount?: string;
-  
+};
+
+export type LocationSchemaType = {
+  id: string | undefined;
+  image?: string;
+  country?: string;
+  location?: string;
+  price?: string;
 };
