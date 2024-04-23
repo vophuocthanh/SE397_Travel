@@ -238,7 +238,6 @@ const fetchLocation = async () => {
 
   return (
     <div className="w-full px-4 py-6 bg-white rounded-md">
-      <h1>Location Admin</h1>
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter country..."
@@ -249,7 +248,7 @@ const fetchLocation = async () => {
         <Button
           onClick={() => handleOpenModal("create")}
           variant="outline"
-          className="ml-[48rem] mr-8 bg-blue-600"
+          className="ml-[48rem] mr-8 text-white hover:border hover:border-blue-600 bg-blue-600"
         >
           Add
         </Button>

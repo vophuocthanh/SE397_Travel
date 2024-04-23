@@ -1,5 +1,4 @@
 
-import Header from '@/pages/header/Header';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router-dom';
 
@@ -19,7 +18,6 @@ export default function LocationAdminDetail ()  {
 
     return (
         <div>
-        <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
         <Link
             to='/admin/location'
             className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto mr-20 text-white bg-green-500 rounded-md cursor-pointer max-sm:mr-[30px] hover:shadow-lg'
@@ -27,9 +25,7 @@ export default function LocationAdminDetail ()  {
             <ArrowLeft></ArrowLeft>
             Back
         </Link>
-        <h1 className='flex justify-center my-10 text-3xl font-bold'>
-            Location Details
-            </h1>
+
             {/* flex-wrap */}
         <div className='flex m-[45px] max-sm:mb-[8rem] max-lg:space-around  items-center justify-around '>
             {DetailsLocation && (
