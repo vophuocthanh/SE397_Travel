@@ -1,4 +1,4 @@
-import { getLocation } from '@/apis/location';
+import { getLocationPagination } from '@/apis/location';
 import { useQuery } from '@tanstack/react-query';
 import Header from '../header/Header';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ export default function LocationAll() {
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
   const { data: queryGetLocation, refetch } = useQuery({
     queryKey: ['getLocation'],
-    queryFn: () => getLocation(),
+    queryFn: () => getLocationPagination(pagination.page),
   });
   const dispatch = useDispatch();
   const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
@@ -29,7 +29,7 @@ export default function LocationAll() {
   const totalPage = queryGetLocation?.data?.totalPage || 0;
   return (
     <div className='mb-20'>
-      <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400 shadow-md' />
+      <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 mx-auto bg-blue-400 shadow-md' />
       <div className='w-full mt-32 mb-20 lg:px-20'>
         <Link
           to='/'
@@ -76,11 +76,14 @@ export default function LocationAll() {
         pageRangeDisplayed={5}
         pageCount={totalPage}
         onPageChange={handlePageChange}
-        containerClassName='flex justify-center gap-4'
         previousLabel='<'
         renderOnZeroPageCount={null}
         nextPageRel={'next'}
-        activeClassName='font-bold text-blue-500 underline'
+        nextClassName='w-10 h-10 border rounded-md flex justify-center items-center text-2xl font-bold'
+        previousClassName='w-10 h-10 border rounded-md flex justify-center items-center text-2xl font-bold'
+        className='flex items-center justify-center gap-4'
+        pageClassName='w-10 h-10 border rounded-md flex justify-center items-center font-bold'
+        activeClassName='font-bold text-blue-500 underline border-2 border-gray-400 px-4 rounded-md'
       />
     </div>
   );
