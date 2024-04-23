@@ -26,11 +26,6 @@ export const UpdateLocationAdmin = () => {
     const [location, setLocation] = useState("");
     const [price, setPrice] = useState("");
 
-    console.log(initImage,initCountry,initLocation,initialPrice);
-    console.log(id,"34567");
-    
-    console.log(image,country,location,price);
-    console.log(locationAdminDetailsQuery.data?.data?.data?.id === id,"134");
     useEffect(()=> {
         setImage(initImage);
         setCountry(initCountry);
