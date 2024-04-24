@@ -64,7 +64,7 @@ const Header = ({ className }: HeaderProps) => {
       <div
         className={`lg:hidden w-full ${
           isMenuOpen ? 'block w-full' : 'hidden'
-        } z-10 fixed top-0 left-0 w-full bg-blue-400 pt-16 pb-8`}
+        } z-10 fixed top-0 left-0 w-full bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500 pt-16 pb-8`}
       >
         <div className='flex flex-col gap-4 mt-4 text-xl font-bold'>
           <DropdownMenu>

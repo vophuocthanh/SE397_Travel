@@ -17,7 +17,7 @@ export default function DetailsLocation() {
   const dispatch = useDispatch();
   return (
     <div>
-      <Header className='flex items-center justify-between w-full px-10 mx-auto bg-blue-400' />
+      <Header className='flex items-center justify-between w-full px-10 mx-auto bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500' />
       <Link
         to='/location'
         className='flex justify-end w-20 gap-2 p-2 pr-2 mt-8 ml-auto mr-[1rem] text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg lg:mr-20'

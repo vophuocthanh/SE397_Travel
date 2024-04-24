@@ -10,8 +10,8 @@ import { ArrowLeft } from 'lucide-react';
 
 export default function DetailsBestTrip() {
   const { tourId } = useParams();
-  console.log(tourId,"bettrip");
-  
+  console.log(tourId, 'bettrip');
+
   const { data: detailsBestTrip } = useQuery({
     queryKey: ['detailsBestTrip'],
     queryFn: () => getTripDetails(tourId as string),
@@ -24,7 +24,7 @@ export default function DetailsBestTrip() {
   // console.log('CartProducts:', CartProducts.length);
   return (
     <div>
-      <Header className='flex items-center justify-between w-full px-10 mx-auto bg-blue-400' />
+      <Header className='flex items-center justify-between w-full px-10 mx-auto bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500' />
       <Link
         to='/best-trip'
         className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto mr-20 text-white bg-green-500 rounded-md cursor-pointer max-sm:mr-[30px] hover:shadow-lg'

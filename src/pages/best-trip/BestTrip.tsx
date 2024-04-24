@@ -65,7 +65,7 @@ export default function BestTrip() {
 
   return (
     <div>
-      <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 mx-auto bg-blue-400 shadow-md' />
+      <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 mx-auto shadow-md bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500' />
       <div className='w-full mt-32 mb-20 lg:px-20'>
         <Link
           to='/'
