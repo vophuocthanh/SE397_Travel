@@ -9,6 +9,7 @@ const LocationSection = () => {
     queryKey: ["getLocation"],
     queryFn: () => getLocation(),
   });
+
   return (
     <div className="mx-auto mb-20 max-w-7xl">
       <div className="flex flex-col items-center justify-between w-full mb-10 md:flex-row">
@@ -43,9 +44,12 @@ const LocationSection = () => {
             <Link to={`/location/details/${location.id}`}>
               <h1 className="mx-6 text-xl font-bold">{location.country}</h1>
             </Link>
-            {/* <Button className='w-20 m-6 bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'>
-                $ {location.price}
-              </Button> */}
+            <Link to={`/location/details/${location.id}`}>
+              <h1 className="mx-6 text-xl font-bold">{location.price}</h1>
+            </Link>
+            {/* <Button className="w-20 m-6 bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg">
+              Add To Cart
+            </Button> */}
           </div>
         ))}
       </div>
