@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.8.0",
     "@hookform/resolvers": "^3.3.4",
     "@paypal/react-paypal-js": "^8.2.0",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -27,11 +28,13 @@
     "@types/lodash": "^4.17.0",
     "@types/lodash.debounce": "^4.0.9",
     "@types/react-paginate": "^7.1.4",
+    "@uiw/react-md-editor": "^4.0.4",
     "antd": "^5.16.2",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "crisp-sdk-web": "^1.0.25",
+    "dayjs": "^1.11.10",
     "debounce": "^2.0.0",
     "embla-carousel-autoplay": "^8.0.0",
     "embla-carousel-react": "^8.0.0",

@@ -58,6 +58,9 @@ const Header = ({ className }: HeaderProps) => {
         <Link to='/' className='text-white hover:underline'>
           Reviews
         </Link>
+        <Link to='/chat-ai' className='text-white hover:underline'>
+          Chat AI
+        </Link>
       </div>
 
       {/* Menu dọc trên màn hình nhỏ */}
