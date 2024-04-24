@@ -78,7 +78,7 @@ export default function LocationAll() {
         </div>
         {searchResults.map((location: LocationType) => (
           <div
-            className="flex flex-col rounded-t-3xl w-96 h-[22rem] mt-10 space-y-4 border rounded-md"
+            className="flex flex-col rounded-t-3xl w-96 h-[28rem] mt-10 space-y-4 border rounded-md"
             key={location.id}
           >
             <img
@@ -87,6 +87,12 @@ export default function LocationAll() {
               className="object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105"
             />
             <b className="mx-6">{location.location}</b>
+            <Link to={`/location/details/${location.id}`}>
+              <h1 className="mx-6 text-xl font-bold">{location.country}</h1>
+            </Link>
+            <span className="pl-6 text-xl font-semibold">
+              Giá: {location.price} $
+            </span>
             <Link
               to={`/location/details/${location.id}`}
               className="flex justify-end pr-10 hover:underline hover:text-blue-500"
