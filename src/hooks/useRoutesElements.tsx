@@ -20,6 +20,7 @@ import TourAdminDetail from '@/pages/admin/Tour-Admin/components/TourAdminDetail
 import UserAdmin from '@/pages/admin/users/UserAdmin';
 import UserAdminDetails from '@/pages/admin/users/UserAdminDetails';
 import DetailsLocation from '@/pages/location/details/DetailsLocation';
+import ChatAi from '@/pages/chatAI/ChatAi';
 
 export default function useRoutesElements() {
   const routeElements = useRoutes([
@@ -61,6 +62,7 @@ export default function useRoutesElements() {
     { path: '/location/details/:locationId', element: <DetailsLocation /> },
     { path: '/payment/checkout', element: <Payment /> },
     { path: '/payment/checkoutDetail', element: <CheckOut /> },
+    { path: '/chat-ai', element: <ChatAi /> },
     { path: '*', element: <h1>404</h1> },
   ]);
   return routeElements;

@@ -1,6 +1,7 @@
 import { getMe } from '@/apis/me';
 import logo from '@/assets/logo/logo-home.png';
 import { PopoverCart } from '@/components/PopoverCart';
+import SectionInViewDown from '@/components/SectionInViewDown';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,7 +43,7 @@ const Header = ({ className }: HeaderProps) => {
     toast.success('Logout successfully!');
   };
   return (
-    <div className={className}>
+    <SectionInViewDown className={className}>
       <Link to='/'>
         <img src={logo} alt='logo' className='object-cover w-16 h-16' />
       </Link>
@@ -57,6 +58,9 @@ const Header = ({ className }: HeaderProps) => {
         </Link>
         <Link to='/' className='text-white hover:underline'>
           Reviews
+        </Link>
+        <Link to='/chat-ai' className='text-white hover:underline'>
+          Chat AI
         </Link>
       </div>
 
@@ -195,7 +199,7 @@ const Header = ({ className }: HeaderProps) => {
           </Link>
         </div>
       )}
-    </div>
+    </SectionInViewDown>
   );
 };
 
