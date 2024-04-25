@@ -6,6 +6,7 @@ import InputBox from './InputBox';
 import './ChatWindow.css';
 
 import logo from '@/assets/images/gemini-small.png';
+import Header from '@/pages/header/Header';
 
 const API_KEY: string = import.meta.env.VITE_GEMINI_API_KEY as string;
 const genAI: GoogleGenerativeAI = new GoogleGenerativeAI(API_KEY);
@@ -18,9 +19,9 @@ interface Message {
   isCode?: boolean;
 }
 
-const Header: React.FC = () => {
+const HeaderMain: React.FC = () => {
   return (
-    <div className='header'>
+    <div className='p-5 pt-1 mt-2 text-center text-black'>
       <h1 id='chat-header'>
         <img src={logo} alt='gemini' width={120} />
         <b style={{ marginLeft: 5 }}>Chatbot</b>
@@ -57,7 +58,7 @@ const ChatWindow: React.FC = () => {
       const result = await model.generateContent(inputText);
       const text = await result.response.text();
 
-      const isCode = text.includes('```');
+      const isCode = text.includes(' ');
 
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -77,35 +78,41 @@ const ChatWindow: React.FC = () => {
   };
 
   return (
-    <div className={`chat-window`}>
-      <Header />
-      <div className='chat-container' ref={chatContainerRef}>
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.sender === 'user' ? 'user' : 'ai'}`}
-          >
-            {message.isCode ? (
-              <MDEditor.Markdown
-                source={message.text}
-                style={{ whiteSpace: 'pre-wrap' }}
-              />
-            ) : (
-              <>
-                <p className='message-text'>{message.text}</p>
-                <span
-                  className={`time ${
-                    message.sender === 'user' ? 'user' : 'ai'
-                  }`}
-                >
-                  {message.timestamp
-                    ? dayjs(message.timestamp).format('DD.MM.YYYY HH:mm:ss')
-                    : ''}
-                </span>
-              </>
-            )}
-          </div>
-        ))}
+    <div className={`w-full h-full`}>
+      <Header className='fixed top-0 z-20 flex items-center justify-between w-full px-10 mx-auto shadow-md bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500' />
+      <div className='flex flex-col px-8 mt-16'>
+        <HeaderMain />
+        <div className='mb-10 chat-container' ref={chatContainerRef}>
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`message  ${
+                message.sender === 'user' ? 'user' : 'ai'
+              }`}
+            >
+              {message.isCode ? (
+                <MDEditor.Markdown
+                  source={message.text}
+                  style={{ whiteSpace: 'pre-wrap' }}
+                  className='p-2 rounded-md'
+                />
+              ) : (
+                <>
+                  <p className='message-text '>{message.text}</p>
+                  <span
+                    className={`time ${
+                      message.sender === 'user' ? 'user' : 'ai'
+                    }`}
+                  >
+                    {message.timestamp
+                      ? dayjs(message.timestamp).format('DD.MM.YYYY HH:mm:ss')
+                      : ''}
+                  </span>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
       <InputBox sendMessage={sendMessage} loading={loading} />
     </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getBestTrip } from '@/apis/best-trip';
 import { TripType } from '@/lib/type';
+import SectionInViewRight from '@/components/SectionInViewRight';
 
 const BestTrip = () => {
   // const { tourId } = useParams();
@@ -38,7 +39,7 @@ const BestTrip = () => {
         </div>
       </div>
 
-      <div className='flex flex-wrap items-center justify-center w-full mx-auto gap-14'>
+      <SectionInViewRight className='flex flex-wrap items-center justify-center w-full mx-auto gap-14'>
         {trips.map((trip: TripType) => (
           <div
             className='flex flex-col rounded-t-3xl rounded-b-lg w-96 h-[20rem] space-y-4 border hover:scale-105 transition-all '
@@ -61,7 +62,7 @@ const BestTrip = () => {
             <span></span>
           </div>
         ))}
-      </div>
+      </SectionInViewRight>
     </div>
   );
 };

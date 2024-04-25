@@ -2,6 +2,7 @@ import Dubai from '@/assets/images/locationBasedSearch/dubai.png';
 import Canada from '@/assets/images/locationBasedSearch/canada.png';
 import Ecuador from '@/assets/images/locationBasedSearch/ecuador.png';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import SectionInViewRight from '@/components/SectionInViewRight';
 
 const locationBasedSearch = [
   {
@@ -40,7 +41,7 @@ const LocationBasedSearch = () => {
           <ChevronRight className='w-10 h-10 cursor-pointer' />
         </div>
       </div>
-      <div className='flex flex-wrap items-center justify-center w-full gap-14'>
+      <SectionInViewRight className='flex flex-wrap items-center justify-center w-full gap-14'>
         {locationBasedSearch.map((location) => (
           <div
             className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4'
@@ -55,7 +56,7 @@ const LocationBasedSearch = () => {
             <h1 className='text-xl font-bold'>{location.name} </h1>
           </div>
         ))}
-      </div>
+      </SectionInViewRight>
     </div>
   );
 };

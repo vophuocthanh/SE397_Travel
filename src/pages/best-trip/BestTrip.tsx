@@ -12,6 +12,7 @@ import Header from '../header/Header';
 import { TripType } from '@/lib/type';
 import { getBestTrip } from '@/apis/best-trip';
 import debounce from 'debounce';
+import SectionInViewRight from '@/components/SectionInViewRight';
 
 export default function BestTrip() {
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
@@ -110,7 +111,7 @@ export default function BestTrip() {
         {trips.length === 0 && !error && (
           <div className='w-20 h-20 mx-auto border-b-4 border-gray-900 rounded-full animate-spin'></div>
         )}
-        <div className='flex flex-wrap justify-around gap-16 mb-10'>
+        <SectionInViewRight className='flex flex-wrap justify-around gap-16 mb-10'>
           {trips.map((trip: TripType) => (
             <div
               className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4 border rounded-md '
@@ -150,7 +151,7 @@ export default function BestTrip() {
               </div>
             </div>
           ))}
-        </div>
+        </SectionInViewRight>
         <ReactPaginate
           breakLabel='...'
           nextLabel='>'

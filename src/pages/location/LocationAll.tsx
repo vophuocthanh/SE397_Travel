@@ -10,6 +10,7 @@ import { LocationType } from '@/lib/type';
 import { ArrowLeft } from 'lucide-react';
 import ReactPaginate from 'react-paginate';
 import { useState } from 'react';
+import SectionInViewRight from '@/components/SectionInViewRight';
 
 export default function LocationAll() {
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
@@ -42,7 +43,7 @@ export default function LocationAll() {
       <h1 className='flex justify-center mx-auto text-3xl font-bold'>
         Location List
       </h1>
-      <div className='flex flex-wrap items-center w-full mx-auto my-10 gap-14 max-w-7xl'>
+      <SectionInViewRight className='flex flex-wrap items-center w-full mx-auto my-10 gap-14 max-w-7xl'>
         {queryGetLocation?.data?.data?.map((location: LocationType) => (
           <div
             className='flex flex-col rounded-t-3xl rounded-b-xl transition-all w-96 h-[23.5rem] space-y-2 border hover:scale-105 mx-auto gap-2 '
@@ -69,7 +70,7 @@ export default function LocationAll() {
             </div>
           </div>
         ))}
-      </div>
+      </SectionInViewRight>
       <ReactPaginate
         breakLabel='...'
         nextLabel='>'
