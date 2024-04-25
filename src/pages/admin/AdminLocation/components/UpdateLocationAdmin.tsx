@@ -25,6 +25,7 @@ export const UpdateLocationAdmin = () => {
     locationAdminDetailsQuery.data?.data?.data?.data?.price || "";
   const initialRemainingCount =
     locationAdminDetailsQuery.data?.data?.data?.data?.remainingCount || "";
+
   const [image, setImage] = useState(initImage);
   const [country, setCountry] = useState(initCountry);
   const [location, setLocation] = useState(initLocation);
@@ -36,7 +37,7 @@ export const UpdateLocationAdmin = () => {
     setCountry(initCountry);
     setLocation(initLocation);
     setPrice(initialPrice);
-    setPrice(initialRemainingCount);
+    setRemainingCount(initialRemainingCount);
   }, [locationAdminDetailsQuery.data?.data?.data?.data]);
 
   const handleUpdateMe = async (e: React.FormEvent) => {
@@ -120,7 +121,7 @@ export const UpdateLocationAdmin = () => {
         </div>
         <div className="space-y-2">
           <label htmlFor="remainingCount" className="text-xl font-bold">
-            remainingCount
+            RemainingCount
           </label>
           <Input
             id="remainingCount"

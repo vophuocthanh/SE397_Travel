@@ -336,6 +336,7 @@ export default function LocationAdmin() {
                   <TableCell>{item.country}</TableCell>
                   <TableCell>{item.location}</TableCell>
                   <TableCell>{item.price}$</TableCell>
+                  <TableCell>{item.remainingCount}</TableCell>
                   <TableCell>
                     <div className="flex gap-4 ">
                       <Link to={`/admin/loaction/edit/${item.id}`}>
