@@ -16,4 +16,5 @@ export type LocationType = {
   location: string;
   price: number;
   country: string;
+  remainingCount: number;
 };
