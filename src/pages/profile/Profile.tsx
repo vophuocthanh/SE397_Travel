@@ -52,7 +52,7 @@ export default function Profile() {
   };
   return (
     <div>
-      <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-blue-400' />
+      <Header className='flex items-center justify-between w-full px-10 py-4 mx-auto bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500' />
       <h1 className='flex justify-center my-10 text-3xl font-bold'>Profile</h1>
       <div className='flex justify-center mx-auto max-w-7xl'>
         <form className='mt-10 space-y-6' onSubmit={handleUpdateMe}>

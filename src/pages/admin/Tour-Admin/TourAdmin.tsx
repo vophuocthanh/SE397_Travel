@@ -327,7 +327,7 @@ export default function TourAdmin() {
 
   return (
     <div className='w-full px-4 py-6 bg-white rounded-md'>
-      <div className='flex items-center py-4'>
+      <div className='flex items-center gap-4 py-4'>
         <Input
           placeholder='Filter name...'
           value={searchQuery}
