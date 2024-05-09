@@ -8,7 +8,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
 import AppContextProvider from '@/contexts/app.context.tsx';
-
+import { ThemeProvider } from '@/components/theme-provider';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -26,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <QueryClientProvider client={queryClient}>
           <Toaster richColors position='top-right' />
           <AppContextProvider>
-            <App />
+            <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+              <App />
+            </ThemeProvider>
           </AppContextProvider>
         </QueryClientProvider>
       </BrowserRouter>

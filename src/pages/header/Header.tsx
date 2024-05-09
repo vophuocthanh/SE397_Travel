@@ -1,5 +1,6 @@
 import { getMe } from '@/apis/me';
 import logo from '@/assets/logo/logo-home.png';
+import { ModeToggle } from '@/components/mode-toggle';
 import { PopoverCart } from '@/components/PopoverCart';
 import SectionInViewDown from '@/components/SectionInViewDown';
 import {
@@ -163,6 +164,7 @@ const Header = ({ className }: HeaderProps) => {
       {token ? (
         <div className='flex items-center gap-8 '>
           <PopoverCart />
+          <ModeToggle />
           <div className='hidden lg:flex'>
             <DropdownMenu>
               <DropdownMenuTrigger>
@@ -195,6 +197,7 @@ const Header = ({ className }: HeaderProps) => {
         </div>
       ) : (
         <div className='flex items-center gap-8 ml-6 text-xl font-bold'>
+          <ModeToggle />
           <Link to='/sign-up' className='text-white'>
             Sign Up
           </Link>
