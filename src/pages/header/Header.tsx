@@ -88,8 +88,10 @@ const Header = ({ className }: HeaderProps) => {
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem className='cursor-pointer'>
-                  <User className='w-4 h-4 mr-2' />
-                  <Link to='/profile'>Account</Link>
+                  <Link to='/profile' className='flex items-center'>
+                    <User className='w-4 h-4 mr-2' />
+                    <p>Account</p>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={logout} className='cursor-pointer'>
                   <LogOut className='w-4 h-4 mr-2' />
@@ -177,8 +179,10 @@ const Header = ({ className }: HeaderProps) => {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem className='cursor-pointer'>
-                    <User className='w-4 h-4 mr-2' />
-                    <Link to='/profile'>Account</Link>
+                    <Link to='/profile' className='flex items-center'>
+                      <User className='w-4 h-4 mr-2' />
+                      <p>Account</p>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={logout} className='cursor-pointer'>
                     <LogOut className='w-4 h-4 mr-2' />
