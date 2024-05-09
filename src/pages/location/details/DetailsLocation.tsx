@@ -46,14 +46,14 @@ export default function DetailsLocation() {
               <div className="flex flex-wrap mb-2">
                     <div className=" w-[49.3%] mr-2">
                         <img
-                        src={detailsLocation?.data?.data?.data?.image}
+                        src={detailsLocation?.data?.data?.data?.image2}
                         alt="best trip"
                         className="w-[22rem] h-70 object-cover rounded-md border lg:w-full lg:h-60 "
                         />
                     </div>
                     <div className="w-[49.3%]">
                         <img
-                        src={detailsLocation?.data?.data?.data?.image}
+                        src={detailsLocation?.data?.data?.data?.image3}
                         alt="best trip"
                         className="w-[22rem] h-70 object-cover rounded-md border lg:w-full lg:h-60"
                         />
@@ -62,7 +62,7 @@ export default function DetailsLocation() {
               </div>
               <div className="w-ful">
                         <img
-                        src={detailsLocation?.data?.data?.data?.image}
+                        src={detailsLocation?.data?.data?.data?.image4}
                         alt="best trip"
                         className="w-[22rem] h-70 object-cover rounded-md border lg:w-full lg:h-full"
                         />
@@ -78,10 +78,10 @@ export default function DetailsLocation() {
                   {detailsLocation?.data?.data?.data?.country}
                 </h1>
                 <h1 className="text-xl font-bold">
-                  Thời gian: 4 ngày <br></br>(Từ 20/5/2024 đến 24/5/2024) 
+                  Thời gian: {detailsLocation?.data?.data?.data?.time_out}
                 </h1>
                 <h1 className="text-xl font-bold">
-                  Nơi khởi hành: TP. Đà Nẵng
+                  Nơi khởi hành: {detailsLocation?.data?.data?.data?.starting_gate}
                 </h1>
                 <h1 className="text-xl font-bold">
                   Giá: {detailsLocation?.data?.data?.data?.price}$
@@ -99,8 +99,8 @@ export default function DetailsLocation() {
                 alt=""
                 className="w-[2rem] h-[2rem] mb-2 "
                 />             
-                <label>Thời gian</label>
-                <p>4 ngày 3 đêm</p>
+                <label>Thời gian <br></br> {detailsLocation?.data?.data?.data?.time_out}</label>
+                
               </div>
               <div className="w-40 h-40 py-3">
                 <img
@@ -108,8 +108,7 @@ export default function DetailsLocation() {
                 alt=""
                 className="w-[2rem] h-[2rem] mb-2"
                 />             
-                <label>Phương tiện di chuyển</label>
-                <p>Máy bay, xe du lịch</p>
+                <label>Phương tiện di chuyển <br></br>{detailsLocation?.data?.data?.data?.transport}</label>
               </div>
               <div className="w-40 h-40 py-3">
                 <img
@@ -126,8 +125,8 @@ export default function DetailsLocation() {
                 alt=""
                 className="w-[2rem] h-[2rem] mb-2"
                 />             
-                <label>Ẩm thực</label>
-                <p>Buffet sáng, Theo thực đơn, Đặc sản địa phương</p>
+                <label>Ẩm thực<br></br>{detailsLocation?.data?.data?.data?.cuisine}</label>
+                
               </div>
             </div>
             <div className="flex grid gap-x-8 lg:grid-cols-4">
@@ -137,8 +136,8 @@ export default function DetailsLocation() {
                 alt=""
                 className="w-[2rem] h-[2rem] mb-2"
                 />             
-                <label>Khách sạn</label>
-                <p>Khách sạn 4 sao</p>
+                <label>Khách sạn <br></br>{detailsLocation?.data?.data?.data?.hotel} </label>
+                
               </div>
               <div className="w-40 h-40 py-3">
                 <img
@@ -146,8 +145,8 @@ export default function DetailsLocation() {
                 alt=""
                 className="w-[2rem] h-[2rem] mb-2"
                 />             
-                <label>Thời gian lý tưởng</label>
-                <p>Quanh năm</p>
+                <label>Thời gian lý tưởng <br></br>{detailsLocation?.data?.data?.data?.ideal_time}</label>
+                
               </div>
               <div className="w-40 h-40 py-3">
                 <img
@@ -155,8 +154,8 @@ export default function DetailsLocation() {
                 alt=""
                 className="w-[2rem] h-[2rem] mb-2"
                 />             
-                <label>Đối tượng thích hợp</label>
-                <p>Cặp đôi, Gia đình nhiều thế hệ, Tập thể, Thanh niên </p>
+                <label>Đối tượng thích hợp <br></br>{detailsLocation?.data?.data?.data?.suitable_subject}</label>
+                
               </div>
               <div className="w-40 h-40 py-3">
                 <img
@@ -164,8 +163,8 @@ export default function DetailsLocation() {
                 alt=""
                 className="w-[2rem] h-[2rem] mb-2"
                 />             
-                <label>Ưu đãi</label>
-                <p>Đã bao gồm ưu đãi trong giá tour</p>
+                <label>Ưu đãi <br></br> {detailsLocation?.data?.data?.data?.vchouer}</label>
+                
               </div>
             </div>
             </div>
