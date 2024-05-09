@@ -18,12 +18,37 @@ export const createLocation = ({
   country,
   price,
   remainingCount,
+  image2,
+  image3,
+  image4,
+  cuisine,
+  suitable_subject,
+  vchouer,
+  time_out,
+  ideal_time,
+  transport,
+  hotel,
+  starting_gate,
+  sight_seeing,
 }: {
   image: string;
   location: string;
   country: string;
   price: number;
   remainingCount: number;
+  image2: string;
+  image3: string;
+  image4: string;
+  cuisine: string;
+  suitable_subject: string;
+  vchouer: string;
+  time_out: string;
+  ideal_time: string;
+  transport: string;
+  hotel: string;
+  starting_gate: string;
+  sight_seeing: string;
+
 }) => {
   return request.post('/location', {
     image,
@@ -31,6 +56,18 @@ export const createLocation = ({
     country,
     price,
     remainingCount,
+    image2,
+    image3,
+    image4,
+    cuisine,
+    suitable_subject,
+    vchouer,
+    time_out,
+    ideal_time,
+    transport,
+    hotel,
+    starting_gate,
+    sight_seeing,
   });
 };
 
@@ -41,6 +78,18 @@ export const putLocation = ({
   country,
   price,
   remainingCount,
+  image2,
+  image3,
+  image4,
+  cuisine,
+  suitable_subject,
+  vchouer,
+  time_out,
+  ideal_time,
+  transport,
+  hotel,
+  starting_gate,
+  sight_seeing,
 }: {
   id: string;
   image: string;
@@ -48,6 +97,19 @@ export const putLocation = ({
   country: string;
   price: number;
   remainingCount: number;
+  image2: string;
+  image3: string;
+  image4: string;
+  cuisine: string;
+  suitable_subject: string;
+  vchouer: string;
+  time_out: string;
+  ideal_time: string;
+  transport: string;
+  hotel: string;
+  starting_gate: string;
+  sight_seeing: string;
+
 }) => {
   return request.put(`/location/${id}`, {
     image,
@@ -55,6 +117,18 @@ export const putLocation = ({
     country,
     price,
     remainingCount,
+    image2,
+    image3,
+    image4,
+    cuisine,
+    suitable_subject,
+    vchouer,
+    time_out,
+    ideal_time,
+    transport,
+    hotel,
+    starting_gate,
+    sight_seeing,
   });
 };
 

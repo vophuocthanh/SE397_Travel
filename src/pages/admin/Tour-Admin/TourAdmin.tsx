@@ -1,6 +1,6 @@
-import { AppContext, AppContextType } from '@/contexts/app.context';
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { AppContext, AppContextType } from "@/contexts/app.context";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -8,7 +8,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -20,22 +20,22 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
-import { ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+} from "@tanstack/react-table";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
-import axios from 'axios';
-import TourActions from './components/TourAction';
-import TourAdminModals from './components/TourAdminModals';
-import { toast } from 'sonner';
-import { debounce } from 'lodash';
-import warningImage from '../../../assets/images/Tour/warning.png';
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import axios from "axios";
+import TourActions from "./components/TourAction";
+import TourAdminModals from "./components/TourAdminModals";
+import { toast } from "sonner";
+import { debounce } from "lodash";
+import warningImage from "../../../assets/images/Tour/warning.png";
 
 export type Tour = {
   id: string;
@@ -45,71 +45,83 @@ export type Tour = {
   location: string;
   price: number;
   remainingCount: string;
+  cuisine: string;
+  suitable_subject: string;
+  vchouer: string;
+  time_out: string;
+  ideal_time: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  transport: string;
+  hotel: string;
+  starting_gate: string;
+  sight_seeing: string;
 };
 
 export const columns: ColumnDef<Tour>[] = [
   {
-    accessorKey: 'id',
-    header: 'Id',
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('id')}</div>,
+    accessorKey: "id",
+    header: "Id",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("id")}</div>,
   },
   {
-    accessorKey: 'name',
-    header: 'Name',
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('name')}</div>,
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
-    accessorKey: 'image',
-    header: 'Image',
+    accessorKey: "image",
+    header: "Image",
     cell: ({ row }) => (
-      <div className='capitalize'>
+      <div className="capitalize">
         <img
-          src={row.getValue('image')}
-          alt='Tour'
-          className='object-cover w-16 h-16'
+          src={row.getValue("image")}
+          alt="Tour"
+          className="object-cover w-16 h-16"
         />
       </div>
     ),
   },
 
   {
-    accessorKey: 'description',
-    header: 'Description',
+    accessorKey: "description",
+    header: "Description",
     cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('description')}</div>
+      <div className="capitalize">{row.getValue("description")}</div>
     ),
   },
   {
-    accessorKey: 'location',
-    header: 'Location',
+    accessorKey: "location",
+    header: "Location",
     cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('location')}</div>
+      <div className="capitalize">{row.getValue("location")}</div>
     ),
   },
   {
-    accessorKey: 'price',
-    header: 'Price',
+    accessorKey: "price",
+    header: "Price",
     cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('price')}</div>
+      <div className="capitalize">{row.getValue("price")}</div>
     ),
   },
   {
-    accessorKey: 'remainingCount',
-    header: 'RemainingCount',
+    accessorKey: "remainingCount",
+    header: "RemainingCount",
     cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('remainingCount')}</div>
+      <div className="capitalize">{row.getValue("remainingCount")}</div>
     ),
   },
   {
-    accessorKey: 'action',
-    header: 'Action',
+    accessorKey: "action",
+    header: "Action",
     cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('action')}</div>
+      <div className="capitalize">{row.getValue("action")}</div>
     ),
   },
 
   {
-    id: 'actions',
+    id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
       const tour = row.original;
@@ -118,10 +130,10 @@ export const columns: ColumnDef<Tour>[] = [
         navigator.clipboard
           .writeText(tour.id)
           .then(() => {
-            console.log('Payment ID copied to clipboard:', tour.id);
+            console.log("Payment ID copied to clipboard:", tour.id);
           })
           .catch((error) => {
-            console.error('Error copying payment ID to clipboard:', error);
+            console.error("Error copying payment ID to clipboard:", error);
           });
       };
 
@@ -134,14 +146,14 @@ export const columns: ColumnDef<Tour>[] = [
       };
 
       return (
-        <div className='flex items-center space-x-2'>
-          <Button variant='outline' onClick={handleCopyId}>
+        <div className="flex items-center space-x-2">
+          <Button variant="outline" onClick={handleCopyId}>
             Copy ID
           </Button>
-          <Button variant='outline' onClick={handleViewCustomer}>
+          <Button variant="outline" onClick={handleViewCustomer}>
             View Customer
           </Button>
-          <Button variant='outline' onClick={handleViewPaymentDetails}>
+          <Button variant="outline" onClick={handleViewPaymentDetails}>
             View Payment Details
           </Button>
         </div>
@@ -151,22 +163,34 @@ export const columns: ColumnDef<Tour>[] = [
 ];
 
 const initialTour: Tour = {
-  id: '',
-  name: '',
-  image: '',
-  description: '',
-  location: '',
+  id: "",
+  name: "",
+  image: "",
+  description: "",
+  location: "",
   price: 0,
-  remainingCount: '',
+  remainingCount: "",
+  cuisine: "",
+  suitable_subject: "",
+  vchouer: "",
+  time_out: "",
+  ideal_time: "",
+  image2: "",
+  image3: "",
+  image4: "",
+  transport: "",
+  hotel: "",
+  starting_gate: "",
+  sight_seeing: "",
 };
 export default function TourAdmin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<'create' | 'edit'>('create');
+  const [modalType, setModalType] = useState<"create" | "edit">("create");
   //edit
   const [editingTour, setEditingTour] = useState<Tour>(initialTour);
   //search
   // const [searchKeyword, setSearchKeyword] = useState("");
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Tour[]>([]);
 
   const debouncedSearchFunction = debounce(async (query: string) => {
@@ -176,20 +200,20 @@ export default function TourAdmin() {
       );
       setSearchResults(response.data.data);
     } catch (error) {
-      console.error('Error fetching search results:', error);
+      console.error("Error fetching search results:", error);
       setSearchResults([]);
     }
   }, 1000);
 
   useEffect(() => {
-    if (searchQuery !== '') {
+    if (searchQuery !== "") {
       debouncedSearchFunction(searchQuery);
     } else {
       setSearchResults([]);
     }
   }, [searchQuery]);
 
-  const handleOpenModal = (type: 'create' | 'edit') => {
+  const handleOpenModal = (type: "create" | "edit") => {
     setIsModalOpen(true);
     setModalType(type);
   };
@@ -204,11 +228,11 @@ export default function TourAdmin() {
     setEditingTour(initialTour);
   };
   const handleEditTour = (tourId: string) => {
-    setModalType('edit');
+    setModalType("edit");
     const tourToEdit = tours.find((tour) => tour.id === tourId);
     if (tourToEdit) {
       setEditingTour(tourToEdit);
-      console.log('Editing tour:', tourToEdit);
+      console.log("Editing tour:", tourToEdit);
       setIsModalOpen(true);
     }
   };
@@ -231,7 +255,7 @@ export default function TourAdmin() {
         setTotalPages(response.data.totalPage || 0);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching tours:', error);
+        console.error("Error fetching tours:", error);
         setLoading(false);
       }
     };
@@ -247,7 +271,7 @@ export default function TourAdmin() {
       setTotalPages(response.data.totalPage || 0);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching tours:', error);
+      console.error("Error fetching tours:", error);
       setLoading(false);
     }
   };
@@ -262,11 +286,11 @@ export default function TourAdmin() {
       await axios.delete(`http://localhost:3000/api/tour/${tourId}`);
 
       setTours((prevTours) => prevTours.filter((tour) => tour.id !== tourId));
-      toast.success('Delete Tour Successful');
+      toast.success("Delete Tour Successful");
       setIsDeleteModalOpen(false);
     } catch (error) {
-      console.error('Error deleting tour:', error);
-      toast.error('Delete Tour Faild');
+      console.error("Error deleting tour:", error);
+      toast.error("Delete Tour Faild");
     }
   };
 
@@ -310,7 +334,7 @@ export default function TourAdmin() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [isAuthenticated, navigate]);
   if (!isAuthenticated) {
@@ -326,29 +350,29 @@ export default function TourAdmin() {
   };
 
   return (
-    <div className='w-full px-4 py-6 bg-white rounded-md'>
-      <div className='flex items-center gap-4 py-4'>
+    <div className="w-full px-4 py-6 bg-white rounded-md">
+      <div className="flex items-center gap-4 py-4">
         <Input
-          placeholder='Filter name...'
+          placeholder="Filter name..."
           value={searchQuery}
           onChange={handleSearch}
-          className='max-w-sm'
+          className="max-w-sm"
         />
 
         <Button
-          className='bg-blue-600 ml-[48rem]'
-          onClick={() => handleOpenModal('create')}
+          className="bg-blue-600 ml-[48rem]"
+          onClick={() => handleOpenModal("create")}
         >
           ADD
         </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='outline' className='ml-auto'>
-              Columns <ChevronDown className='w-4 h-4 ml-2' />
+            <Button variant="outline" className="ml-auto">
+              Columns <ChevronDown className="w-4 h-4 ml-2" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
+          <DropdownMenuContent align="end">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -356,7 +380,7 @@ export default function TourAdmin() {
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className='capitalize'
+                    className="capitalize"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) =>
                       column.toggleVisibility(!!value)
@@ -369,7 +393,7 @@ export default function TourAdmin() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className='border rounded-md '>
+      <div className="border rounded-md ">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -378,7 +402,7 @@ export default function TourAdmin() {
                   return (
                     <TableHead
                       key={header.id}
-                      className='text-lg font-bold text-center'
+                      className="text-lg font-bold text-center"
                     >
                       {header.isPlaceholder
                         ? null
@@ -398,64 +422,64 @@ export default function TourAdmin() {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
+                  className="h-24 text-center"
                 >
                   Loading...
                 </TableCell>
               </TableRow>
-            ) : searchQuery !== '' && searchResults.length > 0 ? (
+            ) : searchQuery !== "" && searchResults.length > 0 ? (
               // Hiển thị kết quả tìm kiếm nếu có
               searchResults.map((tour) => (
                 <TableRow key={tour.id}>
                   <TableCell>{tour.id}</TableCell>
                   <TableCell>{tour.name}</TableCell>
-                  <TableCell className='w-[150px] h-25'>
+                  <TableCell className="w-[150px] h-25">
                     <img
                       src={tour.image}
-                      alt='Tour'
-                      className='object-cover w-full transition duration-300 transform border border-gray-500 max-h-[70px] hover:scale-110'
-                      style={{ objectFit: 'cover' }}
+                      alt="Tour"
+                      className="object-cover w-full transition duration-300 transform border border-gray-500 max-h-[70px] hover:scale-110"
+                      style={{ objectFit: "cover" }}
                     />
                   </TableCell>
-                  <TableCell className='max-w-[150px] truncate'>
+                  <TableCell className="max-w-[150px] truncate">
                     {tour.description}
                   </TableCell>
                   <TableCell>{tour.location}</TableCell>
                   <TableCell>{tour.price}$</TableCell>
-                  <TableCell className='text-center'>
+                  <TableCell className="text-center">
                     {tour.remainingCount}
                   </TableCell>
                   <TableCell>
-                    <div className='flex items-center justify-center gap-4'>
+                    <div className="flex items-center justify-center gap-4">
                       <Button
-                        className='w-[85px] bg-yellow-400'
+                        className="w-[85px] bg-yellow-400"
                         onClick={() => handleEditTour(tour.id)}
                       >
                         EDIT
                       </Button>
                       <Button
-                        className='bg-red-600 w-42'
+                        className="bg-red-600 w-42"
                         onClick={handleOpenModalDelete}
                       >
                         DELETE
                       </Button>
                       {/* Modal for delete action */}
                       {isDeleteModalOpen && (
-                        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-                          <div className='p-6 bg-white rounded-lg'>
-                            <h2 className='mb-4 text-lg font-semibold'>
+                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                          <div className="p-6 bg-white rounded-lg">
+                            <h2 className="mb-4 text-lg font-semibold">
                               Are you sure you want to delete this tour?
                             </h2>
 
-                            <div className='flex justify-end'>
+                            <div className="flex justify-end">
                               <button
-                                className='px-4 py-2 mr-2 text-white bg-red-500 rounded hover:bg-red-600'
+                                className="px-4 py-2 mr-2 text-white bg-red-500 rounded hover:bg-red-600"
                                 onClick={() => handleDeleteTour(tour.id)}
                               >
                                 Confirm
                               </button>
                               <button
-                                className='px-4 py-2 text-gray-700 bg-gray-300 rounded hover:bg-gray-400'
+                                className="px-4 py-2 text-gray-700 bg-gray-300 rounded hover:bg-gray-400"
                                 onClick={handleCloseModalDelete}
                               >
                                 Cancel
@@ -476,60 +500,60 @@ export default function TourAdmin() {
               tours.map((tour) => (
                 <TableRow key={tour.id}>
                   <TableCell>{tour.id}</TableCell>
-                  <TableCell className='w-[250px]'>{tour.name}</TableCell>
-                  <TableCell className='w-[150px] h-25'>
+                  <TableCell className="w-[250px]">{tour.name}</TableCell>
+                  <TableCell className="w-[150px] h-25">
                     <img
                       src={tour.image}
-                      alt='Tour'
-                      className='object-cover w-full transition duration-300 transform border border-gray-500 max-h-[70px] hover:scale-110'
-                      style={{ objectFit: 'cover' }}
+                      alt="Tour"
+                      className="object-cover w-full transition duration-300 transform border border-gray-500 max-h-[70px] hover:scale-110"
+                      style={{ objectFit: "cover" }}
                     />
                   </TableCell>
-                  <TableCell className='max-w-[150px] truncate'>
+                  <TableCell className="max-w-[150px] truncate">
                     {tour.description}
                   </TableCell>
                   <TableCell>{tour.location}</TableCell>
                   <TableCell>{tour.price}$</TableCell>
-                  <TableCell className='text-center'>
+                  <TableCell className="text-center">
                     {tour.remainingCount}
                   </TableCell>
                   <TableCell>
-                    <div className='flex items-center justify-center gap-4'>
+                    <div className="flex items-center justify-center gap-4">
                       <Button
-                        className='w-[85px] bg-yellow-400'
+                        className="w-[85px] bg-yellow-400"
                         onClick={() => handleEditTour(tour.id)}
                       >
                         EDIT
                       </Button>
                       <Button
-                        className='bg-red-600 w-42'
+                        className="bg-red-600 w-42"
                         onClick={handleOpenModalDelete}
                       >
                         DELETE
                       </Button>
                       {/* Modal for delete action */}
                       {isDeleteModalOpen && (
-                        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-                          <div className='p-6 bg-white rounded-lg'>
-                            <h2 className='mb-4 text-lg font-semibold'>
+                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                          <div className="p-6 bg-white rounded-lg">
+                            <h2 className="mb-4 text-lg font-semibold">
                               Are you sure you want to delete this tour?
                             </h2>
-                            <div className='flex items-center justify-center w-full h-full mb-7'>
+                            <div className="flex items-center justify-center w-full h-full mb-7">
                               <img
-                                className='h-20 w-50 '
+                                className="h-20 w-50 "
                                 src={warningImage}
-                                alt='warning'
+                                alt="warning"
                               />
                             </div>
-                            <div className='flex justify-end'>
+                            <div className="flex justify-end">
                               <button
-                                className='px-4 py-2 mr-2 text-white bg-red-500 rounded hover:bg-red-600'
+                                className="px-4 py-2 mr-2 text-white bg-red-500 rounded hover:bg-red-600"
                                 onClick={() => handleDeleteTour(tour.id)}
                               >
                                 Confirm
                               </button>
                               <button
-                                className='px-4 py-2 text-gray-700 bg-gray-300 rounded hover:bg-gray-400'
+                                className="px-4 py-2 text-gray-700 bg-gray-300 rounded hover:bg-gray-400"
                                 onClick={handleCloseModalDelete}
                               >
                                 Cancel
@@ -549,22 +573,22 @@ export default function TourAdmin() {
           </TableBody>
         </Table>
       </div>
-      <div className='flex items-center justify-end py-4 space-x-2'>
-        <div className='flex-1 text-sm text-muted-foreground'>
+      <div className="flex items-center justify-end py-4 space-x-2">
+        <div className="flex-1 text-sm text-muted-foreground">
           Page {currentPage} of {totalPages}
         </div>
-        <div className='space-x-2'>
+        <div className="space-x-2">
           <Button
-            variant='outline'
-            size='sm'
+            variant="outline"
+            size="sm"
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
           >
             Previous
           </Button>
           <Button
-            variant='outline'
-            size='sm'
+            variant="outline"
+            size="sm"
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
           >
