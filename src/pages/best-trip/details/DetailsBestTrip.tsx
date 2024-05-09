@@ -7,6 +7,14 @@ import { useDispatch } from 'react-redux';
 import { addProduct } from '@/redux/slice/cardSlice';
 import { ArrowLeft } from 'lucide-react';
 // import { RootState } from '@/redux/store';
+import thoigian from "@/assets/images/besttrip/thoi gian (1).webp"
+import amthuc from "@/assets/images/besttrip/am thuc.webp"
+import thamquan from "@/assets/images/besttrip/diem tham quan.webp"
+import doituong from "@/assets/images/besttrip/doi tuong thich hop.webp"
+import khachsan from "@/assets/images/besttrip/khach san.webp"
+import phuongtien from "@/assets/images/besttrip/phuong tien di chuyen.webp"
+import lytuong from "@/assets/images/besttrip/thoi gian ly tuong.webp"
+import uudai from "@/assets/images/besttrip/uu dai.webp"
 
 export default function DetailsBestTrip() {
   const { tourId } = useParams();
@@ -32,43 +40,124 @@ export default function DetailsBestTrip() {
         <ArrowLeft></ArrowLeft>
         Back
       </Link>
-      <h1 className='flex justify-center my-10 text-3xl font-bold'>
-        Best Trip Details
-      </h1>
+
       {/* flex-wrap */}
-      <div className='flex m-[45px] max-sm:mb-[8rem] max-lg:space-around  items-center justify-around '>
+      <div className='flex m-[45px] max-sm:mb-[8rem] max-lg:space-around  '>
         {detailsBestTrip ? (
-          <div className='gap-10 md:flex'>
-            <img
-              src={detailsBestTrip?.data?.data?.data?.image}
-              alt='best trip'
-              className='  max-sm:h-30 max-lg:w-[25rem] sm:h-80 object-cover rounded-md border lg:w-[30rem]  '
-            />
-            <div className='flex flex-col space-y-4 md:w-[20rem]  lg:w-[30rem] mt-[6rem] max-md:items-center '>
-              <li>{detailsBestTrip?.data?.data?.data?.description}</li>
-              <li>{detailsBestTrip?.data?.data?.data?.name}</li>
-              <h1 className='text-xl font-bold'>
-                {detailsBestTrip?.data?.data?.data?.location}
-              </h1>
-              <p>
-                {detailsBestTrip?.data?.data?.data?.remainingCount} sản phẩm có
-                sẵn
-              </p>
-              <span className='text-2xl font-bold'>
-                Giá: {detailsBestTrip?.data?.data?.data?.price} $
-              </span>
+          <div className='w-full gap-10 '>
+            <p className='mb-4 text-4xl font-bold text-slate-600'>{detailsBestTrip?.data?.data?.data?.name}</p>
+            <p className='mb-4 text-2xl font-bold text-slate-600'>
+                Quốc gia: <span className='text-2xl font-bold ' >{detailsBestTrip?.data?.data?.data?.location}</span>
+            </p>
+            <div className='flex w-full h-[38rem]'>
+              <div className='w-0.8/2'>
+                <img
+                  src={detailsBestTrip?.data?.data?.data?.image}
+                  alt='best trip'
+                  className='object-cover w-[98%] h-full border rounded-md '
+                />
+              </div>
+              <div className='w-1/2 h-full'>
+                <div className='flex justify-between h-[16rem] '>
+                  <img
+                    src={detailsBestTrip?.data?.data?.data?.image2}
+                    alt='best trip'
+                    className='object-cover border rounded-md w-[48.5%] '
+                  />
+                  <img
+                    src={detailsBestTrip?.data?.data?.data?.image3}
+                    alt='best trip'
+                    className='object-cover border rounded-md w-[48.5%]  '
+                  />
+                </div>
+                <div className='mt-4 '>
+                  <img
+                    src={detailsBestTrip?.data?.data?.data?.image4}
+                    alt='best trip'
+                    className='object-cover w-full border rounded-md h-[21rem]'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='mt-10 '>
+              <div className='flex '>
+                <div className='w-[40rem] mr-8 '>
+                  <div className='h-24 mb-20 overflow-hidden overflow-y-auto'>
+                    <p className='mb-6'>{detailsBestTrip?.data?.data?.data?.description}</p>
+                  </div>
+                  <div className='p-4 rounded-md shadow-md bg-slate-200'>
+                    <p>Thời gian: <span className='text-base font-bold' >{detailsBestTrip?.data?.data?.data?.time_out}</span></p>
+                    <p className=''> Nơi khởi hành: <span className='text-base font-bold' >{detailsBestTrip?.data?.data?.data?.location}</span>
+                    </p>
+                    <p>
+                      Số chỗ còn nhận: <span className='text-base font-bold' >{detailsBestTrip?.data?.data?.data?.remainingCount}</span>
+                    </p>
+                    <p>
+                    Giá: <span className='text-base font-bold' >{detailsBestTrip?.data?.data?.data?.price} $</span>
+                    </p>
+                  </div>
+                </div>
+                <div className='p-2 pb-8 border-b-2 col-md-7 col-12 right'>
+                  <div className='w-[50rem]'>
+                    <div className='flex justify-between '>
+                      <div className='w-40' >
+                        <img src={thoigian} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Thời gian</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.time_out}</p>
+                      </div>
+                      <div className='w-40'>
+                        <img src={phuongtien} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Phương tiện di chuyển</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.transport}</p>
+                      </div>
+                      <div className='w-40'>
+                        <img src={thamquan} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Điểm tham quan</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.sight_seeing}</p>
+                      </div>
+                      <div className='w-40'>
+                        <img src={amthuc} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Ẩm thực</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.cuisine}</p>
+                      </div>
+                    </div>
+                    <div className='flex justify-between mt-5'>
+                      <div className='w-40'>
+                        <img src={khachsan} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Khách sạn</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.hotel}</p>
+                      </div>
+                      <div className='w-40'>
+                        <img src={lytuong} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Thời gian lý tưởng</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.ideal_time}</p>
+                      </div>
+                      <div className='w-40'>
+                        <img src={doituong} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Đối tượng thích hợp</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.suitable_subject}</p>
+                      </div>
+                      <div className='w-40'>
+                        <img src={uudai} className='w-[25px] h-[25px] mb-3' />
+                        <label className='font-bold'>Ưu đãi</label>
+                        <p className='mt-3'>{detailsBestTrip?.data?.data?.data?.vchouer}</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
               {token ? (
                 <Button
-                  className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg max-md:mx-auto'
+                  className='flex w-40 mt-8 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg max-md:mx-auto'
                   onClick={() =>
                     dispatch(addProduct(detailsBestTrip?.data?.data?.data))
                   }
                 >
-                  Mua
+                  Mua 
                 </Button>
               ) : (
                 <Button
-                  className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
+                  className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg '
                   onClick={() =>
                     dispatch(addProduct(detailsBestTrip?.data?.data?.data))
                   }
