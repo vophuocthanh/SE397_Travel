@@ -17,7 +17,7 @@ const Home = () => {
       <LocationSection />
       <LocationBasedSearch />
       <Footer />
-      <CrispProvider/>
+      <CrispProvider />
     </div>
   );
 };

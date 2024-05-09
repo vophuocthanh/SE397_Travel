@@ -476,7 +476,7 @@ export default function TourAdmin() {
               tours.map((tour) => (
                 <TableRow key={tour.id}>
                   <TableCell>{tour.id}</TableCell>
-                  <TableCell>{tour.name}</TableCell>
+                  <TableCell className='w-[250px]'>{tour.name}</TableCell>
                   <TableCell className='w-[150px] h-25'>
                     <img
                       src={tour.image}

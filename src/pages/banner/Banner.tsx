@@ -54,13 +54,13 @@ const Banner = () => {
       <div className='absolute top-0 flex md:w-full z-[-1]'>
         <CarouselPlugin></CarouselPlugin>
       </div>
-      <div className='relative'>
+      {/* <div className='relative'>
         <h1 className='absolute inset-0 items-center justify-center text-white z-1 top-[16rem] text-7xl font-bold text-center left-0 leading-tight md:block hidden'>
           <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-red-500 to-yellow-300'>
             {text}
           </span>
         </h1>
-      </div>
+      </div> */}
     </div>
   );
 };

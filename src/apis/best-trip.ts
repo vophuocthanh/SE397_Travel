@@ -1,3 +1,4 @@
+import { IBestTrip } from '@/interface/best-trip';
 import { request } from '@/lib/request';
 
 export const getBestTrip = (page?: number) => {
@@ -13,7 +14,19 @@ export const createBestTrip = ({
   description,
   location,
   price,
-  remainingCount
+  remainingCount,
+  image2,
+  image3,
+  image4,
+  cuisine,
+  suitable_subject,
+  vchouer,
+  time_out,
+  ideal_time,
+  transport,
+  hotel,
+  starting_gate,
+  sight_seeing,
 }: {
   name: string;
   image: string;
@@ -21,8 +34,39 @@ export const createBestTrip = ({
   location: string;
   price: number;
   remainingCount: number;
+  image2: string;
+  image3: string;
+  image4: string;
+  cuisine: string;
+  suitable_subject: string;
+  vchouer: string;
+  time_out: string;
+  ideal_time: string;
+  transport: string;
+  hotel: string;
+  starting_gate: string;
+  sight_seeing: string;
 }) => {
-  return request.post('/tour', { name, image, description, location, price, remainingCount });
+  return request.post('/tour', {
+    name,
+    image,
+    description,
+    location,
+    price,
+    remainingCount,
+    image2,
+    image3,
+    image4,
+    cuisine,
+    suitable_subject,
+    vchouer,
+    time_out,
+    ideal_time,
+    transport,
+    hotel,
+    starting_gate,
+    sight_seeing,
+  });
 };
 
 export const getTripDetails = (id: string) => {
@@ -40,23 +84,39 @@ export const putBestTrip = ({
   description,
   location,
   price,
-  remainingCount
-}: {
-  id: string;
-  name: string;
-  image: string;
-  description: string;
-  location: string;
-  price: number;
-  remainingCount: number;
-}) => {
+  remainingCount,
+  image2,
+  image3,
+  image4,
+  cuisine,
+  suitable_subject,
+  vchouer,
+  time_out,
+  ideal_time,
+  transport,
+  hotel,
+  starting_gate,
+  sight_seeing,
+}: IBestTrip) => {
   return request.put(`/tour/${id}`, {
     name,
     image,
     description,
     location,
     price,
-    remainingCount
+    remainingCount,
+    image2,
+    image3,
+    image4,
+    cuisine,
+    suitable_subject,
+    vchouer,
+    time_out,
+    ideal_time,
+    transport,
+    hotel,
+    starting_gate,
+    sight_seeing,
   });
 };
 

@@ -87,7 +87,7 @@ export default function LocationAll() {
               alt={location.alt}
               className='object-cover transition-all rounded-3xl w-96 h-60 hover:scale-105'
             />
-            <b className='mx-6'>{location.location}</b>
+            <p className='h-10 mx-6 truncate'>{location.location}</p>
             <Link to={`/location/details/${location.id}`}>
               <h1 className='mx-6 text-xl font-bold'>{location.country}</h1>
             </Link>
@@ -117,7 +117,7 @@ export default function LocationAll() {
               alt={location.alt}
               className='object-cover rounded-3xl w-96 h-60 '
             />
-            <p className='mx-6'>{location.location}</p>
+            <p className='h-10 mx-6 truncate'>{location.location}</p>
             <div className='flex items-center justify-between'>
               <Link to={`/location/details/${location.id}`}>
                 <h1 className='mx-6 text-xl font-bold'>{location.country}</h1>

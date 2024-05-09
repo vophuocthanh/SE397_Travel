@@ -44,7 +44,7 @@ const LocationSection = () => {
               alt={location.alt}
               className='object-cover rounded-3xl w-96 h-60 '
             />
-            <p className='mx-6'>{location.location}</p>
+            <p className='mx-6 textContainerLocation'>{location.location}</p>
             <div className='flex items-center justify-between'>
               <Link to={`/location/details/${location.id}`}>
                 <h1 className='mx-6 text-xl font-bold'>{location.country}</h1>

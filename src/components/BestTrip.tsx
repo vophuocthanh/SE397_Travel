@@ -55,7 +55,8 @@ const BestTrip = () => {
             <p className='h-10 px-6 truncate'>{trip.description}</p>
             <Link to={`/best-trip/details/${trip.id}`}>
               <h1 className='px-6 text-xl font-bold'>
-                {trip.name} - <span>{trip.location}</span>
+                <span className='font-medium textContainer'>{trip.name}</span>
+                <span>{trip.location}</span>
               </h1>
             </Link>
             <div className='flex items-center justify-between'>
