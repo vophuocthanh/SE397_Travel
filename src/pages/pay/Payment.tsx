@@ -11,6 +11,10 @@ export default function Payment() {
   const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
   console.log('CartProducts:', CartProducts);
 
+  const giaFormatted = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(CartProducts.reduce((total, product) => total + product.price, 0));
   return (
     <div>
       <Header className='flex items-center justify-between w-full px-10 mx-auto bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500' />
@@ -46,7 +50,7 @@ export default function Payment() {
                   <span>x{product.quantity}</span>
                 </div>
                 <div className='flex gap-2 mr-20'>
-                  <span>${product.price * product.quantity}</span>
+                  <span>{giaFormatted}</span>
                   <X
                     className='text-white bg-red-500 rounded-lg cursor-pointer'
                     onClick={() => dispatch(deleteProduct(product.id))}

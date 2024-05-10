@@ -98,6 +98,12 @@
   white-space: nowrap;
   width: 300px;
 }
+.textCard {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100px;
+}
 
 .textContainer {
   height: 2.6em;

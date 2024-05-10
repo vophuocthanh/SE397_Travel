@@ -37,7 +37,9 @@ export function PopoverCart() {
                   >
                     <div className='flex justify-between gap-2 pr-2 border-r-2 w-60'>
                       <div className='flex gap-2'>
-                        <h1>{product.name || product.location}</h1>
+                        <h1 className='textCard'>
+                          {product.name || product.location}
+                        </h1>
                         <span>x{product.quantity}</span>
                       </div>
                       <span>${product.price * product.quantity}</span>

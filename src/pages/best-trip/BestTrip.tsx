@@ -154,7 +154,7 @@ export default function BestTrip() {
                     dispatch(addProduct(product));
                   }}
                 >
-                  Add to cart
+                  Mua
                 </Button>
               </div>
             </div>

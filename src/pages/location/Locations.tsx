@@ -62,7 +62,7 @@ const LocationSection = () => {
                   dispatch(addProduct({ ...location, quantity: 1 }))
                 }
               >
-                Add To Cart
+                Mua
               </Button>
             </div>
           </div>
