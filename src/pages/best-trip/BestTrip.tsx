@@ -122,7 +122,7 @@ export default function BestTrip() {
         <SectionInViewRight className='flex flex-wrap justify-around gap-16 mb-10'>
           {trips.map((trip: TripType) => (
             <div
-              className='flex flex-col rounded-t-3xl w-96 h-[28rem] space-y-4 border rounded-md '
+              className='flex flex-col rounded-t-3xl w-96 h-[28rem] shadow-md space-y-4 border rounded-md '
               key={trip.id}
             >
               <img

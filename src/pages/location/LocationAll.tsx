@@ -109,7 +109,7 @@ export default function LocationAll() {
       <SectionInViewRight className='flex flex-wrap items-center w-full mx-auto my-10 gap-14 max-w-7xl'>
         {queryGetLocation?.data?.data?.map((location: LocationType) => (
           <div
-            className='flex flex-col rounded-t-3xl rounded-b-xl transition-all w-96 h-[28rem] space-y-2 border hover:scale-105 mx-auto gap-2 '
+            className='flex flex-col rounded-t-3xl shadow-md rounded-b-xl transition-all w-96 h-[28rem] space-y-2 border hover:scale-105 mx-auto gap-2 '
             key={location.id}
           >
             <img
