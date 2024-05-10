@@ -1,200 +1,231 @@
-import { getDetailsLocation } from "@/apis/location";
-import { Button } from "@/components/ui/button";
-import Header from "@/pages/header/Header";
-import { addProduct } from "@/redux/slice/cardSlice";
-import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft } from "lucide-react";
-import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-
+import { getDetailsLocation } from '@/apis/location';
+import { Button } from '@/components/ui/button';
+import Header from '@/pages/header/Header';
+import { addProduct } from '@/redux/slice/cardSlice';
+import { useQuery } from '@tanstack/react-query';
+import { ArrowLeft } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 export default function DetailsLocation() {
   const { locationId } = useParams();
   const { data: detailsLocation } = useQuery({
-    queryKey: ["getDetailsLocation"],
+    queryKey: ['getDetailsLocation'],
     queryFn: () => getDetailsLocation(locationId as string),
   });
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
-  console.log("data", detailsLocation?.data.data);
+  console.log('data', detailsLocation?.data.data);
+
+  const giaFormatted = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(detailsLocation?.data?.data?.data?.price);
 
   return (
     <div>
-      <Header className="flex items-center justify-between w-full px-10 mx-auto bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500" />
+      <Header className='flex items-center justify-between w-full px-10 mx-auto bg-gradient-to-r from-purple-600 via-red-300 to-yellow-500' />
       <Link
-        to="/location"
-        className="flex justify-end w-20 gap-2 p-2 pr-2 mt-8 ml-auto mr-[1rem] text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg lg:mr-20"
+        to='/location'
+        className='flex justify-end w-20 gap-2 p-2 pr-2 mt-8 ml-auto mr-[1rem] text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg lg:mr-20'
       >
         <ArrowLeft></ArrowLeft>
         Back
       </Link>
-      <h1 className="flex justify-center my-10 text-2xl font-bold lg:text-3xl">
-        Location Details
-      </h1>
-      {detailsLocation ? (
-        <div id="content">
-          <div className="items-center mx-auto max-w-7.5xl">
-          <div className="flex mx-auto space-x-2 lg:container ">
-            <div className="flex w-full gap-10 lg:ml-0 lg:w-full lg:block">
-              <img
-              src={detailsLocation?.data?.data?.data?.image}
-              alt="best trip"
-              className="w-[22rem] h-70 object-cover rounded-md border lg:w-full lg:h-full mx-auto"
-              />
+      <div className='flex m-[45px] max-sm:mb-[8rem] max-lg:space-around  '>
+        {detailsLocation ? (
+          <div className='w-full gap-10 '>
+            <p className='mb-4 text-4xl font-bold text-slate-600'>
+              {detailsLocation?.data?.data?.data?.location}
+            </p>
+            <p className='mb-4 text-2xl font-bold text-slate-600'>
+              Quốc gia:{' '}
+              <span className='text-2xl font-bold '>
+                {detailsLocation?.data?.data?.data?.country}
+              </span>
+            </p>
+            <div className='flex w-full h-[38rem]'>
+              <div className='w-0.8/2'>
+                <img
+                  src={detailsLocation?.data?.data?.data?.image}
+                  alt='best trip'
+                  className='object-cover w-[98%] h-full border rounded-md '
+                />
+              </div>
+              <div className='w-1/2 h-full'>
+                <div className='flex justify-between h-[16rem] '>
+                  <img
+                    src={detailsLocation?.data?.data?.data?.image2}
+                    alt='best trip'
+                    className='object-cover border rounded-md w-[48.5%] '
+                  />
+                  <img
+                    src={detailsLocation?.data?.data?.data?.image3}
+                    alt='best trip'
+                    className='object-cover border rounded-md w-[48.5%]  '
+                  />
+                </div>
+                <div className='mt-4 '>
+                  <img
+                    src={detailsLocation?.data?.data?.data?.image4}
+                    alt='best trip'
+                    className='object-cover w-full border rounded-md h-[21rem]'
+                  />
+                </div>
+              </div>
             </div>
-            <div className="hidden mr-0 lg:w-full lg:block">
-              <div className="flex flex-wrap w-full md:w-full">
-              <div className="flex flex-wrap mb-2">
-                    <div className=" w-[49.3%] mr-2">
+            <div className='mt-10 '>
+              <div className='flex '>
+                <div className='w-[40rem] mr-8 '>
+                  <div className='h-24 mb-20 overflow-hidden overflow-y-auto'>
+                    <p className='mb-6'>
+                      {detailsLocation?.data?.data?.data?.description}
+                    </p>
+                  </div>
+                  <div className='p-4 rounded-md shadow-md bg-slate-200'>
+                    <p>
+                      Thời gian:{' '}
+                      <span className='text-base font-bold'>
+                        {detailsLocation?.data?.data?.data?.time_out}
+                      </span>
+                    </p>
+                    <p className=''>
+                      {' '}
+                      Nơi khởi hành:{' '}
+                      <span className='text-base font-bold'>
+                        {detailsLocation?.data?.data?.data?.starting_gate}
+                      </span>
+                    </p>
+                    <p>
+                      Số chỗ còn nhận:{' '}
+                      <span className='text-base font-bold'>
+                        {detailsLocation?.data?.data?.data?.remainingCount}
+                      </span>
+                    </p>
+                    <p>
+                      Giá:{' '}
+                      <span className='text-base font-bold'>
+                        {giaFormatted} $
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className='p-2 pb-8 border-b-2 col-md-7 col-12 right'>
+                  <div className='w-[50rem]'>
+                    <div className='flex justify-between '>
+                      <div className='w-40'>
                         <img
-                        src={detailsLocation?.data?.data?.data?.image2}
-                        alt="best trip"
-                        className="w-[22rem] h-70 object-cover rounded-md border lg:w-full lg:h-60 "
+                          src='https://travel.com.vn/images/icons/utility/thoi%20gian.png'
+                          className='w-[25px] h-[25px] mb-3'
                         />
+                        <label className='font-bold'>Thời gian</label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.time_out}
+                        </p>
+                      </div>
+                      <div className='w-40'>
+                        <img
+                          src='https://travel.com.vn/images/icons/utility/phuong%20tien%20di%20chuyen.png'
+                          className='w-[25px] h-[25px] mb-3'
+                        />
+                        <label className='font-bold'>
+                          Phương tiện di chuyển
+                        </label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.transport}
+                        </p>
+                      </div>
+                      <div className='w-40'>
+                        <img
+                          src='https://travel.com.vn/images/icons/utility/diem%20tham%20quan.png'
+                          className='w-[25px] h-[25px] mb-3'
+                        />
+                        <label className='font-bold'>Điểm tham quan</label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.sight_seeing}
+                        </p>
+                      </div>
+                      <div className='w-40'>
+                        <img
+                          src='https://travel.com.vn/images/icons/utility/am%20thuc.png'
+                          className='w-[25px] h-[25px] mb-3'
+                        />
+                        <label className='font-bold'>Ẩm thực</label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.cuisine}
+                        </p>
+                      </div>
                     </div>
-                    <div className="w-[49.3%]">
+                    <div className='flex justify-between mt-5'>
+                      <div className='w-40'>
                         <img
-                        src={detailsLocation?.data?.data?.data?.image3}
-                        alt="best trip"
-                        className="w-[22rem] h-70 object-cover rounded-md border lg:w-full lg:h-60"
+                          src='https://travel.com.vn/images/icons/utility/khach%20san.png'
+                          className='w-[25px] h-[25px] mb-3'
                         />
+                        <label className='font-bold'>Khách sạn</label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.hotel}
+                        </p>
+                      </div>
+                      <div className='w-40'>
+                        <img
+                          src='https://travel.com.vn/images/icons/utility/thoi%20gian%20ly%20tuong.png'
+                          className='w-[25px] h-[25px] mb-3'
+                        />
+                        <label className='font-bold'>Thời gian lý tưởng</label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.ideal_time}
+                        </p>
+                      </div>
+                      <div className='w-40'>
+                        <img
+                          src='https://travel.com.vn/images/icons/utility/doi%20tuong%20thich%20hop.png'
+                          className='w-[25px] h-[25px] mb-3'
+                        />
+                        <label className='font-bold'>Đối tượng thích hợp</label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.suitable_subject}
+                        </p>
+                      </div>
+                      <div className='w-40'>
+                        <img
+                          src='https://travel.com.vn/images/icons/utility/uu%20dai.png'
+                          className='w-[25px] h-[25px] mb-3'
+                        />
+                        <label className='font-bold'>Ưu đãi</label>
+                        <p className='mt-3'>
+                          {detailsLocation?.data?.data?.data?.vchouer}
+                        </p>
+                      </div>
                     </div>
                   </div>
+                </div>
               </div>
-              <div className="w-ful">
-                        <img
-                        src={detailsLocation?.data?.data?.data?.image4}
-                        alt="best trip"
-                        className="w-[22rem] h-70 object-cover rounded-md border lg:w-full lg:h-full"
-                        />
-                  </div>
-            </div>
-          </div>
-          </div>
-          <div className="items-center mx-auto lg:max-w-7.5xl lg:flex lg:container lg:space-x-8 w-[23.5rem]">
-            <div className="flex-col w-full border rounded-lg lg:ml-0 lg:w-3/4 my-7 bg-slate-100">
-              <div className="flex flex-col w-full gap-5 p-5 mt-3 space-y-4 text-xl ">
-                <li>{detailsLocation?.data?.data?.data?.location}</li>
-                <h1 className="text-xl font-bold">
-                  {detailsLocation?.data?.data?.data?.country}
-                </h1>
-                <h1 className="text-xl font-bold">
-                  Thời gian: {detailsLocation?.data?.data?.data?.time_out}
-                </h1>
-                <h1 className="text-xl font-bold">
-                  Nơi khởi hành: {detailsLocation?.data?.data?.data?.starting_gate}
-                </h1>
-                <h1 className="text-xl font-bold">
-                  Giá: {detailsLocation?.data?.data?.data?.price}$
-                </h1>
-                <h1 className="text-xl font-bold">
-                  Số chỗ còn: {detailsLocation?.data?.data?.data?.remainingCount}
-                </h1>
-              </div>
-            </div>
-            <div className="flex mt-5 mb-5 lg:block lg:w-full lg:mr-0 gap-x-6">
-            <div className="flex grid lg:grid-cols-4 gap-x-7  mb-[2rem] pb-[3rem] lg:w-full mx-auto">
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/thoi%20gian.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2 "
-                />             
-                <label>Thời gian <br></br> {detailsLocation?.data?.data?.data?.time_out}</label>
-                
-              </div>
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/phuong%20tien%20di%20chuyen.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2"
-                />             
-                <label>Phương tiện di chuyển <br></br>{detailsLocation?.data?.data?.data?.transport}</label>
-              </div>
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/diem%20tham%20quan.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2"
-                />             
-                <label>Điểm tham quan</label>
-                <p>7 địa điểm ngoài trời</p>
-              </div>
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/am%20thuc.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2"
-                />             
-                <label>Ẩm thực<br></br>{detailsLocation?.data?.data?.data?.cuisine}</label>
-                
-              </div>
-            </div>
-            <div className="flex grid gap-x-8 lg:grid-cols-4">
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/khach%20san.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2"
-                />             
-                <label>Khách sạn <br></br>{detailsLocation?.data?.data?.data?.hotel} </label>
-                
-              </div>
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/thoi%20gian%20ly%20tuong.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2"
-                />             
-                <label>Thời gian lý tưởng <br></br>{detailsLocation?.data?.data?.data?.ideal_time}</label>
-                
-              </div>
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/doi%20tuong%20thich%20hop.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2"
-                />             
-                <label>Đối tượng thích hợp <br></br>{detailsLocation?.data?.data?.data?.suitable_subject}</label>
-                
-              </div>
-              <div className="w-40 h-40 py-3">
-                <img
-                src="https://travel.com.vn/images/icons/utility/uu%20dai.png"
-                alt=""
-                className="w-[2rem] h-[2rem] mb-2"
-                />             
-                <label>Ưu đãi <br></br> {detailsLocation?.data?.data?.data?.vchouer}</label>
-                
-              </div>
-            </div>
-            </div>
-          </div>
-          <div className="flex justify-center">
-          {token ? (
+              {token ? (
                 <Button
-                  className="mx-auto ml-auto text-xl bg-yellow-400 w-80 hover:bg-yellow-500 hover:shadow-lg "
+                  className='flex w-40 mt-8 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg max-md:mx-auto'
                   onClick={() =>
-                    dispatch(addProduct(detailsLocation?.data?.data))
+                    dispatch(addProduct(detailsLocation?.data?.data?.data))
                   }
                 >
-                  Add To Cart
+                  Mua
                 </Button>
               ) : (
                 <Button
-                  className="mx-auto ml-auto text-xl bg-yellow-400 w-80 hover:bg-yellow-500 hover:shadow-lg"
+                  className='w-40 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg '
                   onClick={() =>
-                    dispatch(addProduct(detailsLocation?.data?.data))
+                    dispatch(addProduct(detailsLocation?.data?.data?.data))
                   }
                   disabled
                 >
-                  Add To Cart
+                  {detailsLocation?.data?.data?.data?.price} $
                 </Button>
               )}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="w-20 h-20 mx-auto border-b-4 border-gray-900 rounded-full animate-spin"></div>
-      )} 
+        ) : (
+          <div className='w-20 h-20 mx-auto border-b-4 border-gray-900 rounded-full animate-spin'></div>
+        )}
+      </div>
     </div>
   );
 }
