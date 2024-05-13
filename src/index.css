@@ -132,3 +132,29 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.scrollToTop {
+	@apply bg-slate-300;
+	@apply text-white;
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	z-index: 999;
+	cursor: pointer;
+	animation: fadeIn 0.3s;
+	transition: opacity 0.4s;
+	opacity: 0.9;
+}
+
+.scrollToTop:hover {
+	opacity: 1;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.5;
+	}
+}
