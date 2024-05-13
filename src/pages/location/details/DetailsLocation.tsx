@@ -6,6 +6,16 @@ import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+
+import thoigian from '@/assets/images/besttrip/thoi gian (1).webp';
+import amthuc from '@/assets/images/besttrip/am thuc.webp';
+import thamquan from '@/assets/images/besttrip/diem tham quan.webp';
+import doituong from '@/assets/images/besttrip/doi tuong thich hop.webp';
+import khachsan from '@/assets/images/besttrip/khach san.webp';
+import phuongtien from '@/assets/images/besttrip/phuong tien di chuyen.webp';
+import lytuong from '@/assets/images/besttrip/thoi gian ly tuong.webp';
+import uudai from '@/assets/images/besttrip/uu dai.webp';
+
 export default function DetailsLocation() {
   const { locationId } = useParams();
   const { data: detailsLocation } = useQuery({
@@ -114,7 +124,7 @@ export default function DetailsLocation() {
                     <div className='flex justify-between '>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/thoi%20gian.png'
+                          src={thoigian}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>Thời gian</label>
@@ -124,7 +134,7 @@ export default function DetailsLocation() {
                       </div>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/phuong%20tien%20di%20chuyen.png'
+                          src={phuongtien}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>
@@ -136,7 +146,7 @@ export default function DetailsLocation() {
                       </div>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/diem%20tham%20quan.png'
+                          src={thamquan}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>Điểm tham quan</label>
@@ -146,7 +156,7 @@ export default function DetailsLocation() {
                       </div>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/am%20thuc.png'
+                          src={amthuc}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>Ẩm thực</label>
@@ -158,7 +168,7 @@ export default function DetailsLocation() {
                     <div className='flex justify-between mt-5'>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/khach%20san.png'
+                          src={khachsan}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>Khách sạn</label>
@@ -168,7 +178,7 @@ export default function DetailsLocation() {
                       </div>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/thoi%20gian%20ly%20tuong.png'
+                          src={lytuong}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>Thời gian lý tưởng</label>
@@ -178,7 +188,7 @@ export default function DetailsLocation() {
                       </div>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/doi%20tuong%20thich%20hop.png'
+                          src={doituong}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>Đối tượng thích hợp</label>
@@ -188,7 +198,7 @@ export default function DetailsLocation() {
                       </div>
                       <div className='w-40'>
                         <img
-                          src='https://travel.com.vn/images/icons/utility/uu%20dai.png'
+                          src={uudai}
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>Ưu đãi</label>
