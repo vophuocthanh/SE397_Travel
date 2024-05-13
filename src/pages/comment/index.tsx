@@ -26,7 +26,7 @@ const Comment = () => {
         <h2 className="px-10 pt-10 text-xl font-bold">Viết bình luận ... </h2>
         <div className="flex gap-8 mt-8">
           <textarea
-            style={{ outline: "none" }}
+            style={{ outline: "none", padding: "30px" }}
             placeholder="Nhập nội dung ..."
             value={comment}
             onChange={handleChange}
