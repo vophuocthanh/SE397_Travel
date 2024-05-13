@@ -109,14 +109,15 @@ const Footer = () => {
             </ul>
         </div>
         <div className='lg:block ml-auto mr-[2rem]'>
+        <h1 className="mb-4 text-xl font-semibold text-black">Email</h1>
           <div className='flex mb-[2rem] ml-[2rem] lg:ml-0'>
             <input type="text" name="EmailRegister" id="" placeholder="Email của Quý khách" className='rounded-lg w-[20rem] h-10 mt-2 rounded-md border border-input bg-background px-3 py-2 text-sm   '/>
-            <button className="mt-2.5 "> < MailCheck className="w-8 h-8"  /></button>
+            <button className="mt-2.5 ml-2.5 "> < MailCheck className="w-8 h-8"  /></button>
           </div>
           <h1 className="mb-4 text-xl font-semibold text-black">Tìm kiếm thông tin</h1>
           <div className='flex mb-4 ml-[2rem] lg:ml-0'>
             <input type="text" name="Search" id="" placeholder="Tour du lịch, điểm đến..." className='rounded-lg w-[20rem] h-10 mt-2 rounded-md border border-input bg-background px-3 py-2 text-sm   '/>
-            <button className="mt-2.5 "> < Search className="w-8 h-8"  /></button>
+            <button className="mt-2.5 ml-2.5"> < Search className="w-8 h-8"  /></button>
           </div>
           <div className='flex justify-between mt-4 text-left gap-x-[2rem]'>
           <div className='ml-[1rem] lg:ml-0'>
