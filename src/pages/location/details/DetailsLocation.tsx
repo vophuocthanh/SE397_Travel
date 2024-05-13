@@ -15,6 +15,7 @@ import khachsan from '@/assets/images/besttrip/khach san.webp';
 import phuongtien from '@/assets/images/besttrip/phuong tien di chuyen.webp';
 import lytuong from '@/assets/images/besttrip/thoi gian ly tuong.webp';
 import uudai from '@/assets/images/besttrip/uu dai.webp';
+import Comment from '@/pages/comment';
 
 export default function DetailsLocation() {
   const { locationId } = useParams();
@@ -235,6 +236,9 @@ export default function DetailsLocation() {
         ) : (
           <div className='w-20 h-20 mx-auto border-b-4 border-gray-900 rounded-full animate-spin'></div>
         )}
+      </div>
+      <div>
+        <Comment/>
       </div>
     </div>
   );
