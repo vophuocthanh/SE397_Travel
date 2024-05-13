@@ -21,22 +21,23 @@ const Comment = () => {
   };
 
   return (
-    <div className="container p-4 mx-auto">
-      <div className="p-2 bg-slate-300">
-        <h2 className="text-xl font-bold">Viết bình luận ... </h2>
-        <div className="flex gap-8">
+    <div className="container p-4 mx-auto ">
+      <div className="p-2 rounded-lg bg-slate-300">
+        <h2 className="px-10 pt-10 text-xl font-bold">Viết bình luận ... </h2>
+        <div className="flex gap-8 mt-8">
           <textarea
+            style={{ outline: "none" }}
             placeholder="Nhập nội dung ..."
             value={comment}
             onChange={handleChange}
-            className={`w-[80rem] flex justify-center items-center text-center ml-[4rem] `}
+            className="w-[80rem] flex justify-center items-center  ml-[4rem] rounded-sm px-2 "
           />
         </div>
 
         <button
           onClick={handleSubmit}
           disabled={!comment.trim()}
-          className={`px-4 py-2 mt-6 ml-10 font-bold text-white rounded ${
+          className={`px-4 py-2 m-10 ml-10 font-bold text-white rounded ${
             comment.trim()
               ? "bg-blue-500 hover:bg-blue-700"
               : "bg-gray-400 cursor-not-allowed"
