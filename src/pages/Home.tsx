@@ -7,6 +7,7 @@ import LocationBasedSearch from '@/components/LocationBasedSearch';
 import Footer from './footer/Footer';
 import CrispProvider from '@/components/crisp-provirde';
 import WhyChosseTravel from '@/components/why-chosse-travel';
+import { ScrollTop } from './scroll/ScrollTop';
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <LocationBasedSearch />
       <WhyChosseTravel />
       <Footer />
+      <ScrollTop />
       <CrispProvider />
     </div>
   );
