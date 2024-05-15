@@ -38,7 +38,7 @@ export default function LocationAll() {
   const debouncedSearchFunction = debounce(async (query: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/location?search=${query}`
+        `${import.meta.env.VITE_API_URL}/location?search=${query}`
       );
       setSearchResults(response.data.data);
     } catch (error) {

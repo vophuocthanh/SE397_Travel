@@ -1,7 +1,7 @@
-import { AppContext, AppContextType } from "@/contexts/app.context";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { AppContext, AppContextType } from '@/contexts/app.context';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,21 +22,21 @@ import {
   getSortedRowModel,
   useReactTable,
   // import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-
-} from "@tanstack/react-table";
-import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+} from '@tanstack/react-table';
+import { ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import LocationAdminModal from "./components/LocationAdminModal";
-import { debounce } from "lodash";
-import { getLocationPagination } from "@/apis/location";
+} from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
+import LocationAdminModal from './components/LocationAdminModal';
+import { debounce } from 'lodash';
+import { getLocationPagination } from '@/apis/location';
 
 export type Location = {
   id: string;
@@ -50,66 +50,66 @@ export type Location = {
 
 export const columns: ColumnDef<Location>[] = [
   {
-    accessorKey: "id",
-    header: "Id",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("id")}</div>,
+    accessorKey: 'id',
+    header: 'Id',
+    cell: ({ row }) => <div className='capitalize'>{row.getValue('id')}</div>,
   },
   {
-    accessorKey: "image",
-    header: "Image",
+    accessorKey: 'image',
+    header: 'Image',
     cell: ({ row }) => (
-      <div className="capitalize">
+      <div className='capitalize'>
         <img
-          src={row.getValue("image")}
-          alt="Tour"
-          className="object-cover w-16 h-16"
+          src={row.getValue('image')}
+          alt='Tour'
+          className='object-cover w-16 h-16'
         />
       </div>
     ),
   },
 
   {
-    accessorKey: "country",
-    header: "Country",
+    accessorKey: 'country',
+    header: 'Country',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("country")}</div>
+      <div className='capitalize'>{row.getValue('country')}</div>
     ),
   },
   {
-    accessorKey: "location",
-    header: "Location",
+    accessorKey: 'location',
+    header: 'Location',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("location")}</div>
+      <div className='capitalize'>{row.getValue('location')}</div>
     ),
   },
   {
-    accessorKey: "price",
-    header: "Price",
+    accessorKey: 'price',
+    header: 'Price',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("price")}</div>
+      <div className='capitalize'>{row.getValue('price')}</div>
     ),
   },
   {
-    accessorKey: "remainingCount",
-    header: "RemainingCount",
+    accessorKey: 'remainingCount',
+    header: 'RemainingCount',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("remainingCount")}</div>
+      <div className='capitalize'>{row.getValue('remainingCount')}</div>
     ),
   },
   {
-    accessorKey: "action",
-    header: "Action",
+    accessorKey: 'action',
+    header: 'Action',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("action")}</div>
+      <div className='capitalize'>{row.getValue('action')}</div>
     ),
   },
 ];
 
 export default function LocationAdmin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"create">("create");
+  const [modalType, setModalType] = useState<'create'>('create');
 
-  const handleOpenModal = (type: "create") => {
+  const handleOpenModal = (type: 'create') => {
     setIsModalOpen(true);
     setModalType(type);
   };
@@ -135,25 +135,25 @@ export default function LocationAdmin() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Location[]>([]);
-  console.log(searchQuery, "searchQuery");
+  console.log(searchQuery, 'searchQuery');
 
   const debouncedSearchFunction = debounce(async (query: string) => {
-    console.log(query, "12345");
+    console.log(query, '12345');
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/location?search=${query}`
+        `${import.meta.env.VITE_API_URL}/location?search=${query}`
       );
-      console.log(response.data.data, "response");
+      console.log(response.data.data, 'response');
       const newData = location.filter((item) =>
         item.country.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setSearchResults(newData);
       setSearchResults(response?.data?.data);
     } catch (error) {
-      console.error("Error fetching search results:", error);
+      console.error('Error fetching search results:', error);
       setSearchResults([]);
     }
   }, 1000);
@@ -164,7 +164,7 @@ export default function LocationAdmin() {
   };
 
   useEffect(() => {
-    if (searchQuery !== "") {
+    if (searchQuery !== '') {
       debouncedSearchFunction(searchQuery);
     } else {
       setSearchResults([]);
@@ -174,25 +174,25 @@ export default function LocationAdmin() {
   const handleDeleteTour = async (locationId: string) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/location/${locationId}`,
+        `${import.meta.env.VITE_API_URL}/location/${locationId}`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
-      console.log(response.data, "123");
+      console.log(response.data, '123');
 
       if (response.status === 200) {
         const updatedLocationList = location.filter(
           (item) => item.id !== locationId
         );
         setLocation(updatedLocationList);
-        toast.success("Location deleted successfully");
+        toast.success('Location deleted successfully');
       }
     } catch (error) {
-      console.error("Error deleting location:", error);
-      toast.error("Failed to delete location");
+      console.error('Error deleting location:', error);
+      toast.error('Failed to delete location');
     }
   };
 
@@ -203,7 +203,7 @@ export default function LocationAdmin() {
       setTotalPage(response.data.totalPage || 0);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching tours:", error);
+      console.error('Error fetching tours:', error);
       setLoading(false);
     }
   };
@@ -240,7 +240,7 @@ export default function LocationAdmin() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/login");
+      navigate('/login');
     }
   }, [isAuthenticated, navigate]);
   if (!isAuthenticated) {
@@ -248,29 +248,29 @@ export default function LocationAdmin() {
   }
 
   return (
-    <div className="w-full px-4 py-6 bg-white rounded-md">
-      <div className="flex py-4 items-centerzz">
+    <div className='w-full px-4 py-6 bg-white rounded-md'>
+      <div className='flex py-4 items-centerzz'>
         <Input
-          placeholder="Filter country..."
+          placeholder='Filter country...'
           value={searchQuery}
           onChange={handleSearch}
-          className="max-w-sm"
+          className='max-w-sm'
         />
         <Button
-          onClick={() => handleOpenModal("create")}
-          variant="outline"
-          className="ml-[48rem] mr-8 text-white hover:border hover:border-blue-600 bg-blue-600"
+          onClick={() => handleOpenModal('create')}
+          variant='outline'
+          className='ml-[48rem] mr-8 text-white hover:border hover:border-blue-600 bg-blue-600'
         >
           Add
         </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown className="w-4 h-4 ml-2" />
+            <Button variant='outline' className='ml-auto'>
+              Columns <ChevronDown className='w-4 h-4 ml-2' />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align='end'>
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -278,7 +278,7 @@ export default function LocationAdmin() {
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className="capitalize"
+                    className='capitalize'
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) =>
                       column.toggleVisibility(!!value)
@@ -291,7 +291,7 @@ export default function LocationAdmin() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="border rounded-md">
+      <div className='border rounded-md'>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -316,21 +316,21 @@ export default function LocationAdmin() {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center "
+                  className='h-24 text-center '
                 >
                   Loading...
                 </TableCell>
               </TableRow>
-            ) : searchQuery !== "" && searchResults.length > 0 ? (
+            ) : searchQuery !== '' && searchResults.length > 0 ? (
               searchResults.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>{item.id} </TableCell>
-                  <TableCell className="w-[150px] h-25">
+                  <TableCell className='w-[150px] h-25'>
                     <img
                       src={item.image}
-                      alt="Location"
-                      className="object-cover w-full h-full transition duration-300 transform border border-gray-500 hover:scale-110"
-                      style={{ objectFit: "cover" }}
+                      alt='Location'
+                      className='object-cover w-full h-full transition duration-300 transform border border-gray-500 hover:scale-110'
+                      style={{ objectFit: 'cover' }}
                     />
                   </TableCell>
                   <TableCell>{item.country}</TableCell>
@@ -338,22 +338,22 @@ export default function LocationAdmin() {
                   <TableCell>{item.price}$</TableCell>
                   <TableCell>{item.remainingCount}</TableCell>
                   <TableCell>
-                    <div className="flex gap-4 ">
+                    <div className='flex gap-4 '>
                       <Link to={`/admin/loaction/edit/${item.id}`}>
-                        <Button className="bg-yellow-400 hover:bg-yellow-500 hover:shadow-md">
+                        <Button className='bg-yellow-400 hover:bg-yellow-500 hover:shadow-md'>
                           Edit
                         </Button>
                       </Link>
 
                       <Button
-                        className="bg-red-400 hover:bg-red-500 hover:shadow-md"
+                        className='bg-red-400 hover:bg-red-500 hover:shadow-md'
                         onClick={() => handleDeleteTour(item.id)}
                       >
                         DELETE
                       </Button>
 
                       <Link to={`/admin/loaction/detail/${item.id}`}>
-                        <Button className="bg-yellow-400 hover:bg-yellow-500 hover:shadow-md">
+                        <Button className='bg-yellow-400 hover:bg-yellow-500 hover:shadow-md'>
                           Detail
                         </Button>
                       </Link>
@@ -366,12 +366,12 @@ export default function LocationAdmin() {
               location.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>{item.id} </TableCell>
-                  <TableCell className="w-[150px] h-25">
+                  <TableCell className='w-[150px] h-25'>
                     <img
                       src={item.image}
-                      alt="Location"
-                      className="object-cover w-full h-full transition duration-300 transform border border-gray-500 hover:scale-110"
-                      style={{ objectFit: "cover" }}
+                      alt='Location'
+                      className='object-cover w-full h-full transition duration-300 transform border border-gray-500 hover:scale-110'
+                      style={{ objectFit: 'cover' }}
                     />
                   </TableCell>
                   <TableCell>{item.country}</TableCell>
@@ -379,22 +379,22 @@ export default function LocationAdmin() {
                   <TableCell>{item.price}$</TableCell>
                   <TableCell>{item.remainingCount}</TableCell>
                   <TableCell>
-                    <div className="flex gap-4 ">
+                    <div className='flex gap-4 '>
                       <Link to={`/admin/loaction/edit/${item.id}`}>
-                        <Button className="bg-yellow-400 hover:bg-yellow-500 hover:shadow-md">
+                        <Button className='bg-yellow-400 hover:bg-yellow-500 hover:shadow-md'>
                           Edit
                         </Button>
                       </Link>
 
                       <Button
-                        className="bg-red-400 hover:bg-red-500 hover:shadow-md"
+                        className='bg-red-400 hover:bg-red-500 hover:shadow-md'
                         onClick={() => handleDeleteTour(item.id)}
                       >
                         DELETE
                       </Button>
 
                       <Link to={`/admin/loaction/detail/${item.id}`}>
-                        <Button className="bg-yellow-400 hover:bg-yellow-500 hover:shadow-md">
+                        <Button className='bg-yellow-400 hover:bg-yellow-500 hover:shadow-md'>
                           Detail
                         </Button>
                       </Link>
@@ -407,22 +407,22 @@ export default function LocationAdmin() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end py-4 space-x-2">
-        <div className="flex-1 text-sm text-muted-foreground">
+      <div className='flex items-center justify-end py-4 space-x-2'>
+        <div className='flex-1 text-sm text-muted-foreground'>
           Page {currentPage} of {totalPage}
         </div>
-        <div className="space-x-2">
+        <div className='space-x-2'>
           <Button
-            variant="outline"
-            size="sm"
+            variant='outline'
+            size='sm'
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
           >
             Previous
           </Button>
           <Button
-            variant="outline"
-            size="sm"
+            variant='outline'
+            size='sm'
             onClick={handleNextPage}
             disabled={currentPage === totalPage}
           >

@@ -37,7 +37,7 @@ export default function UserAdminDetails() {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `http://localhost:3000/api/users/${id}`,
+        `${import.meta.env.VITE_API_URL}/users/${id}`,
         {
           username: name,
           role: role,

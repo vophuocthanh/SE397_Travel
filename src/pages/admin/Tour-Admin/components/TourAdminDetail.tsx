@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 interface TourDetail {
   id: string;
@@ -24,12 +24,12 @@ const TourAdminDetail = () => {
         }
 
         const response = await axios.get(
-          `http://localhost:3000/api/tour/${tourId}`
+          `${import.meta.env.VITE_API_URL}/tour/${tourId}`
         );
         setTour(response.data.data.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching tour details:", error);
+        console.error('Error fetching tour details:', error);
         setLoading(false);
       }
     };
@@ -47,30 +47,30 @@ const TourAdminDetail = () => {
 
   return (
     <div>
-      <h1 className="mb-4 text-2xl text-3xl font-bold text-center">
+      <h1 className='mb-4 text-2xl text-3xl font-bold text-center'>
         Tour Admin Details
       </h1>
-      <div className="flex items-center justify-center ">
-        <div className="max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg">
+      <div className='flex items-center justify-center '>
+        <div className='max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg'>
           <img
-            className="w-full border-b shadow-md black"
+            className='w-full border-b shadow-md black'
             src={tour.image}
             alt={tour.name}
           />
-          <div className="p-4 text-xl">
-            <p className="text-gray-700 ">
+          <div className='p-4 text-xl'>
+            <p className='text-gray-700 '>
               <b>ID:</b> {tour.id}
             </p>
-            <p className="text-gray-700">
+            <p className='text-gray-700'>
               <b>Name:</b> {tour.name}
             </p>
-            <p className="text-gray-700">
+            <p className='text-gray-700'>
               <b>Description:</b> {tour.description}
             </p>
-            <p className="text-gray-700">
+            <p className='text-gray-700'>
               <b>Location:</b> {tour.location}
             </p>
-            <p className="text-gray-700">
+            <p className='text-gray-700'>
               <b>Price:</b> {tour.price}
             </p>
           </div>

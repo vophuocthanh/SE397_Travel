@@ -196,7 +196,7 @@ export default function TourAdmin() {
   const debouncedSearchFunction = debounce(async (query: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/tour?search=${query}`
+        `${import.meta.env.VITE_API_URL}/tour?search=${query}`
       );
       setSearchResults(response.data.data);
     } catch (error) {
@@ -249,7 +249,7 @@ export default function TourAdmin() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/tour?page=${currentPage}`
+          `${import.meta.env.VITE_API_URL}/tour?page=${currentPage}`
         );
         setTours(response.data.data);
         setTotalPages(response.data.totalPage || 0);
@@ -265,7 +265,7 @@ export default function TourAdmin() {
   const fetchTours = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/tour?page=${currentPage}`
+        `${import.meta.env.VITE_API_URL}/tour?page=${currentPage}`
       );
       setTours(response.data.data);
       setTotalPages(response.data.totalPage || 0);
@@ -283,7 +283,7 @@ export default function TourAdmin() {
   const handleDeleteTour = async (tourId: string) => {
     try {
       setIsDeleteModalOpen(true);
-      await axios.delete(`http://localhost:5000/api/tour/${tourId}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/tour/${tourId}`);
 
       setTours((prevTours) => prevTours.filter((tour) => tour.id !== tourId));
       toast.success('Delete Tour Successful');

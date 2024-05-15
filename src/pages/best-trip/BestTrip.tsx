@@ -36,7 +36,7 @@ export default function BestTrip() {
   const debouncedSearchFunction = debounce(async (query: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/tour?search=${query}`
+        `${import.meta.env.VITE_API_URL}/tour?search=${query}`
       );
       setSearchResults(response.data.data);
     } catch (error) {
