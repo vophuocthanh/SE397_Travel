@@ -4,6 +4,7 @@ export interface IMessage {
   message: string;
   tourId?: string;
   userId?: string;
+  realTime?: string;
 }
 
 export const messageTourApi = () => {
