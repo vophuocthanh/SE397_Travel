@@ -1,6 +1,6 @@
-import { CommentType } from "../Comment";
+import { CommentType } from "../TourComment";
 
-const CommentContent = ({ commentData }: { commentData: CommentType }) => {
+const TourCommentContent = ({ commentData }: { commentData: CommentType }) => {
   console.log("dataProps", commentData);
   // const timestamp = new Date().toISOString();
   // Lấy thời gian hiện tại của máy khách
@@ -51,4 +51,4 @@ const CommentContent = ({ commentData }: { commentData: CommentType }) => {
   );
 };
 
-export default CommentContent;
+export default TourCommentContent;

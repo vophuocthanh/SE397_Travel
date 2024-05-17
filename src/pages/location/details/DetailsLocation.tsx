@@ -15,7 +15,7 @@ import khachsan from '@/assets/images/besttrip/khach san.webp';
 import phuongtien from '@/assets/images/besttrip/phuong tien di chuyen.webp';
 import lytuong from '@/assets/images/besttrip/thoi gian ly tuong.webp';
 import uudai from '@/assets/images/besttrip/uu dai.webp';
-import Comment from '@/pages/comment/Comment';
+import LocationComment from '@/pages/comment-location/LocationComment';
 
 
 export default function DetailsLocation() {
@@ -239,7 +239,7 @@ export default function DetailsLocation() {
         )}
       </div>
       <div>
-        <Comment/>
+        <LocationComment/>
       </div>
     </div>
   );

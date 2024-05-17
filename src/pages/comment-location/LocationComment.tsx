@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
-import CommentContent from "./Components/CommentContent";
 import { request } from "@/lib/request";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import LocationCommentContent from "./components/LocationCommentContent";
 
-export interface CommentType {
+export interface LocationCommentType {
   id: string;
   message: string;
   userID: string | null;
-  tourID: string;
+  locationID: string;
   timestamp: string;
 }
 
-const Comment = () => {
+const LocationComment = () => {
   const [comment, setComment] = useState<string>("");
 
-  const [comments, setComments] = useState<CommentType[]>([]);
+  const [comments, setComments] = useState<LocationCommentType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { tourId } = useParams();
+  const { locationId } = useParams();
   // const dynamicId = locationId ? locationId : tourId;
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await request.get(`/message/${tourId}`);
+        const response = await request.get(`/message_location/${locationId}`);
         setComments(response.data.data.data);
         setLoading(false);
         console.log("data cmt", response.data.data);
@@ -45,7 +45,7 @@ const Comment = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/message/${tourId}/message`,
+        `http://localhost:5000/api/message_location/${locationId}/message`,
         {
           message: comment,
         }
@@ -92,7 +92,10 @@ const Comment = () => {
         <div>
           {comments.length > 0 &&
             comments.map((commentData) => (
-              <CommentContent key={commentData.id} commentData={commentData} />
+              <LocationCommentContent
+                key={commentData.id}
+                commentData={commentData}
+              />
             ))}
         </div>
       </div>
@@ -100,4 +103,4 @@ const Comment = () => {
   );
 };
 
-export default Comment;
+export default LocationComment;
