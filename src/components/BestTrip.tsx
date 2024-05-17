@@ -1,19 +1,19 @@
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { getBestTrip } from '@/apis/best-trip';
+import { getBestTripHome } from '@/apis/best-trip';
 import { TripType } from '@/lib/type';
 import { addProduct } from '@/redux/slice/cardSlice';
 import { useDispatch } from 'react-redux';
 import SectionInViewRight from '@/components/SectionInViewRight';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const BestTrip = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   // const { tourId } = useParams();
   const { data: queryGetBestTrip } = useQuery({
     queryKey: ['getBestTrip'],
-    queryFn: () => getBestTrip(1),
+    queryFn: () => getBestTripHome(1),
     enabled: true,
   });
   const dispatch = useDispatch();
@@ -28,8 +28,8 @@ const BestTrip = () => {
     <div className='mx-auto mb-20 max-w-7xl '>
       <div className='flex flex-col items-center justify-between w-full mb-10 md:flex-row'>
         <div className='flex flex-col mx-5 space-y-2 md:mx-0 md:mr-5 md:mb-0'>
-          <h1 className='text-3xl font-bold'>{t("address_tour")} </h1>
-          <p>{t("Information_tour")} </p>
+          <h1 className='text-3xl font-bold'>{t('address_tour')} </h1>
+          <p>{t('Information_tour')} </p>
         </div>
         <div className='mx-5 mt-6 md:mt-0 md:mb-0'>
           <Link to='/best-trip'>
@@ -63,7 +63,7 @@ const BestTrip = () => {
             </Link>
             <div className='flex items-center justify-between'>
               <span className='pl-6 text-xl font-semibold'>
-              {t("Price")} : {trip.price} $
+                {t('Price')} : {trip.price} $
               </span>
               <Button
                 className='w-40 m-6 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
@@ -79,7 +79,7 @@ const BestTrip = () => {
                   dispatch(addProduct(product));
                 }}
               >
-                 {t("buy")}
+                {t('buy')}
               </Button>
             </div>
           </div>

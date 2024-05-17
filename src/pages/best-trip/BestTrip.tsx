@@ -13,10 +13,10 @@ import { TripType } from '@/lib/type';
 import { getBestTrip } from '@/apis/best-trip';
 import debounce from 'debounce';
 import SectionInViewRight from '@/components/SectionInViewRight';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export default function BestTrip() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<TripType[]>([]);
@@ -75,11 +75,11 @@ export default function BestTrip() {
           className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
         >
           <ArrowLeft></ArrowLeft>
-          {t("Back")}
+          {t('Back')}
         </Link>
         <div className='items-center justify-between block mt-10 lg:flex'>
           <Input
-            placeholder={t("search")}
+            placeholder={t('search')}
             className='mx-auto w-96 lg:ml-[1.5rem] outline-none'
             value={searchQuery}
             onChange={handleSearch}
@@ -103,7 +103,7 @@ export default function BestTrip() {
               </h1>
             </Link>
             <span className='pl-6 text-xl font-semibold'>
-            {t("Price")}: {trip.price} $
+              {t('Price')}: {trip.price} $
             </span>
             <Link
               to={`/best-trip/details/${trip.id}`}
@@ -134,13 +134,13 @@ export default function BestTrip() {
               />
               <p className='h-10 px-6 truncate'>{trip.description}</p>
               <Link to={`/best-trip/details/${trip.id}`}>
-                <h1 className='px-6 text-xl font-bold'>
+                <h1 className='px-6 text-xl font-bold textContainerTour'>
                   {trip.name} - <span>{trip.location}</span>
                 </h1>
               </Link>
               <div className='flex items-center justify-between'>
                 <span className='pl-6 text-xl font-semibold'>
-                {t("Price")}: {trip.price} $
+                  {t('Price')}: {trip.price} $
                 </span>
                 <Button
                   className='w-40 m-6 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
@@ -156,7 +156,7 @@ export default function BestTrip() {
                     dispatch(addProduct(product));
                   }}
                 >
-                  {t("buy")}
+                  {t('buy')}
                 </Button>
               </div>
             </div>
