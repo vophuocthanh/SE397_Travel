@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Language } from '@/language/Language';
 
 import { getToken, removeToken } from '@/lib/storage';
 import { useQuery } from '@tanstack/react-query';
@@ -19,12 +20,14 @@ import { LogOut, User } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
   className: string;
 }
 
 const Header = ({ className }: HeaderProps) => {
+  const {t} = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -52,16 +55,13 @@ const Header = ({ className }: HeaderProps) => {
       {/* Menu trên màn hình lớn */}
       <div className='items-center justify-between hidden gap-10 text-xl font-bold md:flex '>
         <Link to='/best-trip' className='text-white hover:underline'>
-          Tours
+           {t("Tours")}
         </Link>
         <Link to='/location' className='text-white hover:underline'>
-          Locations
-        </Link>
-        <Link to='/' className='text-white hover:underline'>
-          Reviews
+           {t("Locations")}
         </Link>
         <Link to='/chat-ai' className='text-white hover:underline'>
-          Chat AI
+           {t("Chat AI")}
         </Link>
       </div>
 
@@ -85,18 +85,18 @@ const Header = ({ className }: HeaderProps) => {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='w-56'>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel> {t("My_Account")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem className='cursor-pointer'>
                   <Link to='/profile' className='flex items-center'>
                     <User className='w-4 h-4 mr-2' />
-                    <p>Account</p>
+                    <p> {t("Account")}</p>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={logout} className='cursor-pointer'>
                   <LogOut className='w-4 h-4 mr-2' />
-                  <span>Log out</span>
+                  <span> {t("log_out")}</span>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
@@ -105,19 +105,13 @@ const Header = ({ className }: HeaderProps) => {
             to='/best-trip'
             className='flex justify-center text-white hover:underline hover:bg-gray-500'
           >
-            Tours
+             {t("Tours")}
           </Link>
           <Link
             to='/location'
             className='flex justify-center text-white hover:underline hover:bg-gray-500 '
           >
-            Locations
-          </Link>
-          <Link
-            to='/'
-            className='flex justify-center text-white hover:underline hover:bg-gray-500'
-          >
-            Reviews
+             {t("Locations")}
           </Link>
         </div>
       </div>
@@ -164,6 +158,7 @@ const Header = ({ className }: HeaderProps) => {
       {token ? (
         <div className='flex items-center gap-8 '>
           <PopoverCart />
+          <Language />
           <ModeToggle />
           <div className='hidden lg:flex'>
             <DropdownMenu>
@@ -177,18 +172,18 @@ const Header = ({ className }: HeaderProps) => {
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent className='w-auto'>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel> {t("My_Account")}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem className='cursor-pointer'>
                     <Link to='/profile' className='flex items-center'>
                       <User className='w-4 h-4 mr-2' />
-                      <p>Account</p>
+                      <p> {t("Account")}</p>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={logout} className='cursor-pointer'>
                     <LogOut className='w-4 h-4 mr-2' />
-                    <span>Log out</span>
+                    <span> {t("log_out")}</span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
@@ -197,12 +192,13 @@ const Header = ({ className }: HeaderProps) => {
         </div>
       ) : (
         <div className='flex items-center gap-8 ml-6 text-xl font-bold'>
+          <Language />
           <ModeToggle />
           <Link to='/sign-up' className='text-white'>
-            Sign Up
+             {t("Sign_Up")}
           </Link>
           <Link to='/login' className='px-6 py-2 bg-white rounded-3xl'>
-            Login
+             {t("Sign_In")}
           </Link>
         </div>
       )}

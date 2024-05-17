@@ -18,7 +18,9 @@ import uudai from '@/assets/images/besttrip/uu dai.webp';
 import LocationComment from '@/pages/comment-location/LocationComment';
 
 
+import { useTranslation } from "react-i18next";
 export default function DetailsLocation() {
+  const {t} = useTranslation();
   const { locationId } = useParams();
   const { data: detailsLocation } = useQuery({
     queryKey: ['getDetailsLocation'],
@@ -41,7 +43,7 @@ export default function DetailsLocation() {
         className='flex justify-end w-20 gap-2 p-2 pr-2 mt-8 ml-auto mr-[1rem] text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg lg:mr-20'
       >
         <ArrowLeft></ArrowLeft>
-        Back
+        {t("Back")}
       </Link>
       <div className='flex m-[45px] max-sm:mb-[8rem] max-lg:space-around  '>
         {detailsLocation ? (
@@ -50,7 +52,7 @@ export default function DetailsLocation() {
               {detailsLocation?.data?.data?.data?.location}
             </p>
             <p className='mb-4 text-2xl font-bold text-slate-600'>
-              Quốc gia:{' '}
+            {t("Nation")}:{' '}
               <span className='text-2xl font-bold '>
                 {detailsLocation?.data?.data?.data?.country}
               </span>
@@ -95,26 +97,26 @@ export default function DetailsLocation() {
                   </div>
                   <div className='p-4 rounded-md shadow-md bg-slate-200'>
                     <p>
-                      Thời gian:{' '}
+                    {t("time")}:{' '}
                       <span className='text-base font-bold'>
                         {detailsLocation?.data?.data?.data?.time_out}
                       </span>
                     </p>
                     <p className=''>
                       {' '}
-                      Nơi khởi hành:{' '}
+                      {t("Starting")}:{' '}
                       <span className='text-base font-bold'>
                         {detailsLocation?.data?.data?.data?.starting_gate}
                       </span>
                     </p>
                     <p>
-                      Số chỗ còn nhận:{' '}
+                    {t("Number of seats available")}:{' '}
                       <span className='text-base font-bold'>
                         {detailsLocation?.data?.data?.data?.remainingCount}
                       </span>
                     </p>
                     <p>
-                      Giá:{' '}
+                    {t("buy")}:{' '}
                       <span className='text-base font-bold'>
                         {giaFormatted} $
                       </span>
@@ -129,7 +131,7 @@ export default function DetailsLocation() {
                           src={thoigian}
                           className='w-[25px] h-[25px] mb-3'
                         />
-                        <label className='font-bold'>Thời gian</label>
+                        <label className='font-bold'> {t("time")}</label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.time_out}
                         </p>
@@ -140,7 +142,7 @@ export default function DetailsLocation() {
                           className='w-[25px] h-[25px] mb-3'
                         />
                         <label className='font-bold'>
-                          Phương tiện di chuyển
+                        {t("Transport")}
                         </label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.transport}
@@ -151,7 +153,9 @@ export default function DetailsLocation() {
                           src={thamquan}
                           className='w-[25px] h-[25px] mb-3'
                         />
-                        <label className='font-bold'>Điểm tham quan</label>
+                        <label className='font-bold'>
+                        {t("Sight_seeing")}
+                          </label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.sight_seeing}
                         </p>
@@ -161,7 +165,9 @@ export default function DetailsLocation() {
                           src={amthuc}
                           className='w-[25px] h-[25px] mb-3'
                         />
-                        <label className='font-bold'>Ẩm thực</label>
+                        <label className='font-bold'>
+                        {t("Cuisine")}
+                         </label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.cuisine}
                         </p>
@@ -173,7 +179,8 @@ export default function DetailsLocation() {
                           src={khachsan}
                           className='w-[25px] h-[25px] mb-3'
                         />
-                        <label className='font-bold'>Khách sạn</label>
+                        <label className='font-bold'>
+                        {t("Hotel")}</label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.hotel}
                         </p>
@@ -183,7 +190,8 @@ export default function DetailsLocation() {
                           src={lytuong}
                           className='w-[25px] h-[25px] mb-3'
                         />
-                        <label className='font-bold'>Thời gian lý tưởng</label>
+                        <label className='font-bold'>
+                        {t("Ideal time")}</label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.ideal_time}
                         </p>
@@ -193,7 +201,8 @@ export default function DetailsLocation() {
                           src={doituong}
                           className='w-[25px] h-[25px] mb-3'
                         />
-                        <label className='font-bold'>Đối tượng thích hợp</label>
+                        <label className='font-bold'>
+                        {t("Suitable subject")}</label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.suitable_subject}
                         </p>
@@ -203,7 +212,8 @@ export default function DetailsLocation() {
                           src={uudai}
                           className='w-[25px] h-[25px] mb-3'
                         />
-                        <label className='font-bold'>Ưu đãi</label>
+                        <label className='font-bold'>
+                        {t("Endow")}</label>
                         <p className='mt-3'>
                           {detailsLocation?.data?.data?.data?.vchouer}
                         </p>
@@ -219,7 +229,7 @@ export default function DetailsLocation() {
                     dispatch(addProduct(detailsLocation?.data?.data?.data))
                   }
                 >
-                  Mua
+                  {t("buy")}
                 </Button>
               ) : (
                 <Button

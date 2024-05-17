@@ -6,8 +6,10 @@ import { LocationType } from '@/lib/type';
 import { addProduct } from '@/redux/slice/cardSlice';
 import { useDispatch } from 'react-redux';
 import SectionInViewRight from '@/components/SectionInViewRight';
+import { useTranslation } from "react-i18next";
 
 const LocationSection = () => {
+  const {t} = useTranslation();
   const { data: queryGetLocation } = useQuery({
     queryKey: ['getLocation'],
     queryFn: () => getLocation(),
@@ -18,8 +20,8 @@ const LocationSection = () => {
     <div className='mx-auto mb-20 max-w-7xl'>
       <div className='flex flex-col items-center justify-between w-full mb-10 md:flex-row'>
         <div className='mx-6 mb-4 md:mx-0 md:mr-6 md:mb-0'>
-          <h1 className='text-3xl font-bold'>Top Locations to Explore</h1>
-          <p>Here are some of the most visited places in 2023</p>
+          <h1 className='text-3xl font-bold'>{t("address_location")}</h1>
+          <p>{t("Information_location")}</p>
         </div>
         <div className='mx-6'>
           <Link to='/location'>
@@ -53,7 +55,7 @@ const LocationSection = () => {
 
             <div className='flex items-center justify-between'>
               <span className='pl-6 text-xl font-semibold'>
-                Giá: {location.price} $
+              {t("Price")}: {location.price} $
               </span>
 
               <Button
@@ -62,7 +64,7 @@ const LocationSection = () => {
                   dispatch(addProduct({ ...location, quantity: 1 }))
                 }
               >
-                Mua
+                {t("buy")}
               </Button>
             </div>
           </div>
