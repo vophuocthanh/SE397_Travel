@@ -15,10 +15,9 @@ import khachsan from '@/assets/images/besttrip/khach san.webp';
 import phuongtien from '@/assets/images/besttrip/phuong tien di chuyen.webp';
 import lytuong from '@/assets/images/besttrip/thoi gian ly tuong.webp';
 import uudai from '@/assets/images/besttrip/uu dai.webp';
-import Comment from '@/pages/comment';
+import TourComment from '@/pages/comment-Tour/TourComment';
 
 export default function DetailsBestTrip() {
-  const { t } = useTranslation();
   const { tourId } = useParams();
   console.log(tourId, 'bettrip');
 
@@ -45,7 +44,7 @@ export default function DetailsBestTrip() {
         className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto mr-20 text-white bg-green-500 rounded-md cursor-pointer max-sm:mr-[30px] hover:shadow-lg'
       >
         <ArrowLeft></ArrowLeft>
-        {t('Back')}
+        Back
       </Link>
 
       {/* flex-wrap */}
