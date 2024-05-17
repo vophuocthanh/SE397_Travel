@@ -13,8 +13,10 @@ import { TripType } from '@/lib/type';
 import { getBestTrip } from '@/apis/best-trip';
 import debounce from 'debounce';
 import SectionInViewRight from '@/components/SectionInViewRight';
+import { useTranslation } from "react-i18next";
 
 export default function BestTrip() {
+  const {t} = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<TripType[]>([]);
@@ -73,11 +75,11 @@ export default function BestTrip() {
           className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
         >
           <ArrowLeft></ArrowLeft>
-          Back
+          {t("Back")}
         </Link>
         <div className='items-center justify-between block mt-10 lg:flex'>
           <Input
-            placeholder='Search best trip'
+            placeholder={t("search")}
             className='mx-auto w-96 lg:ml-[1.5rem] outline-none'
             value={searchQuery}
             onChange={handleSearch}
@@ -101,7 +103,7 @@ export default function BestTrip() {
               </h1>
             </Link>
             <span className='pl-6 text-xl font-semibold'>
-              Giá: {trip.price} $
+            {t("Price")}: {trip.price} $
             </span>
             <Link
               to={`/best-trip/details/${trip.id}`}
@@ -113,7 +115,7 @@ export default function BestTrip() {
         ))}
 
         <h1 className='flex justify-center my-10 text-3xl font-bold'>
-          Best Trip
+          Tour List
         </h1>
         {error && <p>Đã xảy ra lỗi khi tải dữ liệu.</p>}
         {trips.length === 0 && !error && (
@@ -138,7 +140,7 @@ export default function BestTrip() {
               </Link>
               <div className='flex items-center justify-between'>
                 <span className='pl-6 text-xl font-semibold'>
-                  Giá: {trip.price} $
+                {t("Price")}: {trip.price} $
                 </span>
                 <Button
                   className='w-40 m-6 ml-auto text-xl bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg'
@@ -154,7 +156,7 @@ export default function BestTrip() {
                     dispatch(addProduct(product));
                   }}
                 >
-                  Mua
+                  {t("buy")}
                 </Button>
               </div>
             </div>

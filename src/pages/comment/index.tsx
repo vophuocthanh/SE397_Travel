@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import CommentContent, { CommentType } from "./Components/Comment";
+import { useTranslation } from "react-i18next";
 
 const Comment = () => {
+  const {t} = useTranslation();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState<CommentType[]>([]);
 
@@ -23,11 +25,11 @@ const Comment = () => {
   return (
     <div className="container p-4 mx-auto ">
       <div className="p-2 rounded-lg bg-slate-300">
-        <h2 className="px-10 pt-10 text-xl font-bold">Viết bình luận ... </h2>
+        <h2 className="px-10 pt-10 text-xl font-bold">{t("Write a comment")}</h2>
         <div className="flex gap-8 mt-8">
           <textarea
             style={{ outline: "none", padding: "30px" }}
-            placeholder="Nhập nội dung ..."
+            placeholder={t("Import content")}
             value={comment}
             onChange={handleChange}
             className="w-[80rem] flex justify-center items-center  ml-[4rem] rounded-sm px-2 "
@@ -43,7 +45,7 @@ const Comment = () => {
               : "bg-gray-400 cursor-not-allowed"
           }`}
         >
-          Gửi
+          {t("Send")}
         </button>
         <div>
           {comments.map((commentData, index) => (

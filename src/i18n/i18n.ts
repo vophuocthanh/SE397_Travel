@@ -44,7 +44,7 @@ const resources = {
             "Social_network": "Social network",
             "Certification": "Certification",
             "Accept_payment": "Accept payment",
-            "Copyright ": "Copyright by TravelTour © 2024",
+            "Copyright": "Copyright by TravelTour © 2024",
 
             "My_Account":"My Account",
             "Account":"Account",
@@ -110,7 +110,7 @@ const resources = {
             "Social_network": "Mạng xã hội",
             "Certification": "Chứng nhận",
             "Accept_payment": "Chấp nhận thanh toán",
-            "Copyright ": "Bản quyền thuộc về TravelTour © 2024",
+            "Copyright": "Bản quyền thuộc về TravelTour © 2024",
 
             "My_Account":"Tài khoản của tôi",
             "Account":"Tài khoản",

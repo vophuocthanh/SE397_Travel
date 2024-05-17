@@ -8,8 +8,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { deleteProduct } from '@/redux/slice/cardSlice';
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 export function PopoverCart() {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
   const CartProducts = useSelector((state: RootState) => state.cart.CartArr);
   return (
@@ -23,9 +25,9 @@ export function PopoverCart() {
         </div>
       </PopoverTrigger>
       <PopoverContent className='w-80'>
-        <h1 className='mb-6 text-xl font-bold'>Your shopping cart</h1>
+        <h1 className='mb-6 text-xl font-bold'>{t("Cart")}  </h1>
         {CartProducts.length === 0 ? (
-          <p className='text-center'>No products in the cart</p>
+          <p className='text-center'>{t("No products in the cart")}</p>
         ) : (
           <div className='flex flex-col space-y-2'>
             <table>
