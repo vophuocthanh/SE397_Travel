@@ -72,7 +72,7 @@ export default function BestTrip() {
       <div className='w-full mt-32 mb-20 lg:px-20'>
         <Link
           to='/'
-          className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
+          className='flex justify-end w-32 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
         >
           <ArrowLeft></ArrowLeft>
           {t('Back')}

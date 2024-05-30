@@ -14,10 +14,10 @@ import { Input } from '@/components/ui/input';
 import { debounce } from 'lodash';
 import axios from 'axios';
 import SectionInViewRight from '@/components/SectionInViewRight';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export default function LocationAll() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<LocationType[]>([]);
   const [pagination, setPagination] = useState({ page: 1, totalPage: 1 });
@@ -65,15 +65,15 @@ export default function LocationAll() {
       <div className='w-full mt-32 mb-20 lg:px-20'>
         <Link
           to='/'
-          className='flex justify-end w-20 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
+          className='flex justify-end w-32 gap-2 p-2 pr-2 mt-10 ml-auto text-white bg-green-500 rounded-md cursor-pointer hover:shadow-lg mr-[1.4rem] lg:mr-[0.4rem]'
         >
           <ArrowLeft></ArrowLeft>
-          {t("Back")}
+          {t('Back')}
         </Link>
 
         <div className='items-center justify-between block mt-10 lg:flex'>
           <Input
-            placeholder={t("search_location")}
+            placeholder={t('search_location')}
             className='mx-auto w-96 lg:ml-[1.5rem] outline-none'
             value={searchQuery}
             onChange={handleSearch}
@@ -94,7 +94,7 @@ export default function LocationAll() {
               <h1 className='mx-6 text-xl font-bold'>{location.country}</h1>
             </Link>
             <span className='pl-6 text-xl font-semibold'>
-            {t("Price")}: {location.price} $
+              {t('Price')}: {location.price} $
             </span>
             <Link
               to={`/location/details/${location.id}`}
@@ -128,7 +128,7 @@ export default function LocationAll() {
 
             <div className='flex items-center justify-between'>
               <span className='pl-6 text-xl font-semibold'>
-              {t("Price")}: {location.price} $
+                {t('Price')}: {location.price} $
               </span>
 
               <Button
@@ -137,7 +137,7 @@ export default function LocationAll() {
                   dispatch(addProduct({ ...location, quantity: 1 }))
                 }
               >
-                {t("buy")}
+                {t('buy')}
               </Button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { ReactNode } from 'react';
+import { toast } from 'sonner';
 
 interface Product {
   image: string | undefined;
@@ -13,14 +14,10 @@ interface Product {
 
 export interface CounterState {
   CartArr: Product[];
-  orderId: string | null;
-  usersWhoOrdered: string[];
 }
 
 const initialState: CounterState = {
   CartArr: [],
-  orderId: null,
-  usersWhoOrdered: [],
 };
 
 const productSlice = createSlice({
@@ -33,6 +30,7 @@ const productSlice = createSlice({
       );
       if (productIndex === -1) {
         state.CartArr.push({ ...action.payload, quantity: 1 });
+        toast.success('Add product successfully!');
       } else {
         state.CartArr[productIndex].quantity += 1;
       }
@@ -43,24 +41,15 @@ const productSlice = createSlice({
         (item) => item.id !== productIdToRemove
       );
       state.CartArr = newCart;
+
+      toast.error('Delete product successfully!');
     },
     clearCart: (state) => {
       state.CartArr = [];
     },
-    setOrderId: (state, action: PayloadAction<string>) => {
-      state.orderId = action.payload;
-    },
-    addUserToOrderList: (state, action: PayloadAction<string>) => {
-      state.usersWhoOrdered.push(action.payload);
-    },
   },
 });
 
-export const {
-  addProduct,
-  deleteProduct,
-  clearCart,
-  setOrderId,
-  addUserToOrderList,
-} = productSlice.actions;
+export const { addProduct, deleteProduct, clearCart } = productSlice.actions;
+
 export default productSlice.reducer;
