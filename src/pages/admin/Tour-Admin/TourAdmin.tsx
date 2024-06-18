@@ -1,6 +1,11 @@
-import { AppContext, AppContextType } from '@/contexts/app.context';
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -9,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { AppContext, AppContextType } from '@/contexts/app.context';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -21,21 +27,15 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
 import axios from 'axios';
+import { debounce } from 'lodash';
+import { ChevronDown } from 'lucide-react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import warningImage from '../../../assets/images/Tour/warning.png';
 import TourActions from './components/TourAction';
 import TourAdminModals from './components/TourAdminModals';
-import { toast } from 'sonner';
-import { debounce } from 'lodash';
-import warningImage from '../../../assets/images/Tour/warning.png';
 
 export type Tour = {
   id: string;
